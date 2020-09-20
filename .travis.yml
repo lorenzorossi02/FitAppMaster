@@ -9,4 +9,4 @@ addons:
         secure: eafcc02e563ab3862901253a771a08f1ba8b6a6f
 script: 
     - ant build 
-    - sonar-scanner
+    
