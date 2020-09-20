@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="400.0" style="-fx-border-width: 1;" styleClass="roundBorder" stylesheets="@../../lib/styles.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitapp.logic.controller.GymPopupViewController">
+   <children>
+      <VBox prefHeight="280.0" prefWidth="400.0" style="-fx-border-radius: 15;">
+         <children>
+            <HBox prefHeight="33.0" prefWidth="336.0" style="-fx-border-radius: 15;">
+               <children>
+                  <Button fx:id="closeBtn" mnemonicParsing="false" onMouseClicked="#closingPopup" style="-fx-background-color: TRANSPARENT; -fx-border-radius: 15; -fx-opacity: 0.5;">
+                     <graphic>
+                        <ImageView fitHeight="12.0" fitWidth="12.0">
+                           <image>
+                              <Image url="@../icon/close.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="1.0" top="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/pathGym.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="24.0" top="2.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="gymPopupTitleLbl" prefHeight="23.0" prefWidth="282.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="13.0" top="3.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <VBox prefHeight="198.0" prefWidth="400.0">
+               <children>
+                  <HBox prefHeight="28.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Event:" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="7.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="evtLbl" prefHeight="20.0" prefWidth="156.0" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="59.0" text="Duration:" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="-1.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="timeLbl" prefHeight="20.0" prefWidth="121.0" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="-1.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label text="Location:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="7.0" top="-7.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="gymAddressLbl" prefHeight="20.0" prefWidth="318.0" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="63.0" top="-20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox prefHeight="10.0" prefWidth="400.0">
+                     <children>
+                        <Label text="Personal Trainer:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="7.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="trainerLbl" prefHeight="20.0" prefWidth="120.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="2.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="individualLbl">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="1.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <Label prefHeight="20.0" prefWidth="79.0" text="Description:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="7.0" top="2.0" />
+                     </VBox.margin>
+                  </Label>
+                  <JFXTextArea fx:id="txtArea" editable="false" focusColor="WHITE" focusTraversable="false" maxWidth="380.0" minWidth="360.0" prefHeight="125.0" prefWidth="360.0" style="-fx-border-color: #FFFFFF;" unFocusColor="WHITE">
+                     <VBox.margin>
+                        <Insets left="10.0" />
+                     </VBox.margin>
+                  </JFXTextArea>
+               </children>
+            </VBox>
+            <HBox prefHeight="45.0" prefWidth="400.0" style="-fx-border-radius: 15;">
+               <children>
+                  <JFXButton fx:id="sendEmail" onMouseClicked="#sendEmail" prefHeight="25.0" prefWidth="101.0" style="-fx-background-color: #178B7E;" text="Send e-mail" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="191.0" top="11.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton fx:id="bookBtn" onMouseClicked="#bookingEvent" prefHeight="28.0" prefWidth="59.0" style="-fx-background-color: #178B7E;" text="Book" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets bottom="9.0" left="26.0" top="11.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+               <VBox.margin>
+                  <Insets top="2.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

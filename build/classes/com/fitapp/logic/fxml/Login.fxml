@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+
+<BorderPane prefHeight="600.0" prefWidth="900.0" stylesheets="@../../lib/styles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitapp.logic.controller.LoginViewController">
+   <left>
+      <Pane prefHeight="500.0" prefWidth="406.0" styleClass="linear-grad" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="227.0" fitWidth="272.0" layoutX="67.0" layoutY="185.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../icon/fitApp_LogIn.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="39.0" layoutY="376.0" text="Join the fitApp Experience!" textFill="#1b3039">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </left>
+   <center>
+      <StackPane alignment="TOP_RIGHT" prefHeight="150.0" prefWidth="200.0">
+         <children>
+            <Pane fx:id="pnSignUp" prefHeight="427.0" prefWidth="494.0" visible="false">
+               <children>
+                  <Label layoutX="131.0" layoutY="179.0" text="Sign Up" wrapText="true">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0">
+                           <stops>
+                              <Stop color="#8d6e63" />
+                              <Stop color="#78909c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+                  <Button fx:id="btnSignUp" layoutX="269.0" layoutY="333.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="31.0" prefWidth="95.0" styleClass="LogInBtn" text="Get Started!" wrapText="true" />
+                  <TextField fx:id="tfEmailAddr" layoutX="131.0" layoutY="254.0" prefHeight="40.0" prefWidth="233.0" promptText="Email Address" />
+                  <ImageView fx:id="btnBack" fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="112.0" onMouseClicked="#handleMouseEvent" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/back.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="50.0" layoutY="393.0" text="You will receive an email with subscription instructions." textFill="#797878" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="50.0" layoutY="410.0" text="If you can't find it, please check the spam box in your email client" textFill="#797878" wrapText="true">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="pnSignIn" prefHeight="307.0" prefWidth="494.0">
+               <children>
+                  <TextField id="tfUser" fx:id="tfUsername" layoutX="131.0" layoutY="166.0" onKeyPressed="#onEnter" prefHeight="40.0" prefWidth="233.0" promptText="Username" />
+                  <PasswordField id="tfPwd" fx:id="tfPwd" layoutX="131.0" layoutY="231.0" onKeyPressed="#onEnter" prefHeight="40.0" prefWidth="233.0" promptText="Password" />
+                  <Button fx:id="btnLogIn" layoutX="269.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="31.0" prefWidth="95.0" styleClass="LogInBtn" text="Log In" wrapText="true" />
+                  <Hyperlink id="hlForgot" layoutX="131.0" layoutY="313.0" prefHeight="30.0" prefWidth="133.0" text="Forgot Password?" underline="true">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Hyperlink>
+                  <Button fx:id="btnNoAcc" layoutX="131.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="25.0" prefWidth="233.0" styleClass="signUpBtn" text="Don't have an account? Sign Up!" wrapText="true" />
+                  <Label layoutX="131.0" layoutY="115.0" text="Sign In" wrapText="true">
+                     <font>
+                        <Font size="28.0" />
+                     </font>
+                     <textFill>
+                        <LinearGradient endX="1.0" endY="1.0" startX="0.3571428571428571">
+                           <stops>
+                              <Stop color="#8d6e63" />
+                              <Stop color="#78909c" offset="1.0" />
+                           </stops>
+                        </LinearGradient>
+                     </textFill>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

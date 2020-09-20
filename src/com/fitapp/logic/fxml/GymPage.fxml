@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="600.0" maxWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fitapp.logic.controller.GymPageViewController">
+   <children>
+      <BorderPane maxHeight="600.0" maxWidth="900.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <StackPane maxHeight="600.0" maxWidth="700.0">
+               <children>
+                  <ImageView fitHeight="600.0" fitWidth="700.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../icon/gympage.jpg" />
+                     </image>
+                  </ImageView>
+                  <AnchorPane fx:id="tableAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="502.0" prefWidth="680.0" stylesheets="@../../lib/styles.css">
+                     <children>
+                        <BorderPane layoutX="204.0" layoutY="119.0" prefHeight="502.0" prefWidth="680.0" stylesheets="@../../lib/styles.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <bottom>
+                              <AnchorPane style="-fx-background-color: #f5f5f5;" styleClass="bottomBar" stylesheets="@../../lib/styles.css" BorderPane.alignment="CENTER">
+                                 <children>
+                                    <HBox layoutX="13.0" layoutY="12.0" spacing="10.0" AnchorPane.bottomAnchor="11.0" AnchorPane.leftAnchor="12.0" AnchorPane.topAnchor="10.0">
+                                       <children>
+                                          <VBox>
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                             <children>
+                                                <TextField fx:id="nameField" promptText="Trainer Name" />
+                                             </children>
+                                          </VBox>
+                                          <VBox spacing="1.0">
+                                             <children>
+                                                <CheckBox fx:id="kickCheck" mnemonicParsing="false" text="Kick Boxe" />
+                                                <CheckBox fx:id="boxeCheck" mnemonicParsing="false" text="Boxe" />
+                                                <CheckBox fx:id="zumbaCheck" mnemonicParsing="false" text="Zumba" />
+                                             </children>
+                                          </VBox>
+                                          <VBox layoutX="233.0" layoutY="10.0" spacing="1.0">
+                                             <children>
+                                                <CheckBox fx:id="salsaCheck" mnemonicParsing="false" text="Salsa" />
+                                                <CheckBox fx:id="functCheck" mnemonicParsing="false" text="Functional" />
+                                                <CheckBox fx:id="walkCheck" mnemonicParsing="false" text="Walking" />
+                                             </children>
+                                          </VBox>
+                                          <CheckBox fx:id="pumpCheck" mnemonicParsing="false" text="Pump">
+                                             <HBox.margin>
+                                                <Insets />
+                                             </HBox.margin>
+                                          </CheckBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox layoutX="517.7999877929688" layoutY="17.0" spacing="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="6.0">
+                                       <children>
+                                          <HBox alignment="TOP_RIGHT" spacing="10.0">
+                                             <children>
+                                                <Button fx:id="addButton" mnemonicParsing="false" onAction="#manage" styleClass="homeBtn" stylesheets="@../../lib/styles.css" text="Add" />
+                                                <Button fx:id="editButton" mnemonicParsing="false" onAction="#manage" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Edit" />
+                                             </children>
+                                          </HBox>
+                                          <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#manage" prefHeight="26.0" prefWidth="86.0" styleClass="LogInBtn" text="Delete" />
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </bottom>
+                           <center>
+                              <TableView fx:id="trainerTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                <columns>
+                                  <TableColumn fx:id="trainerName" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Name" />
+                                  <TableColumn fx:id="kickCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Kick Boxe" />
+                                    <TableColumn fx:id="boxeCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Boxe" />
+                                    <TableColumn fx:id="zumbaCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Zumba" />
+                                    <TableColumn fx:id="salsaCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Salsa" />
+                                    <TableColumn fx:id="functCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Functional" />
+                                    <TableColumn fx:id="walkCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Walking" />
+                                    <TableColumn fx:id="pumpCol" minWidth="-1.0" prefWidth="84.0" resizable="false" text="Pump" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </center>
+                        </BorderPane>
+                     </children>
+                     <styleClass>
+                        <String fx:value="roundBorder" />
+                        <String fx:value="dropShadow" />
+                     </styleClass>
+                  </AnchorPane>
+                  <Pane fx:id="calendarBox" prefHeight="200.0" prefWidth="200.0" visible="false">
+                     <StackPane.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </StackPane.margin></Pane>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </StackPane>
+         </center>
+         <left>
+            <Pane prefHeight="600.0" prefWidth="199.0" style="-fx-background-color: WHITE;" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="268.0" prefWidth="200.0">
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                     <children>
+                        <ImageView fx:id="sideUserIcon" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icon/user.png" />
+                           </image>
+                        </ImageView>
+                        <Line endX="190.0" />
+                        <HBox>
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/user.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="sideUsername" text="Username">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/home.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="sideGymName" text="GymName">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                        </HBox>
+                        <HBox>
+                           <children>
+                              <ImageView fitHeight="52.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/map.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="5.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="sideGymStreet" maxHeight="1.7976931348623157E308" maxWidth="160.0" text="Street">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                           </padding>
+                        </HBox>
+                        <Line endX="190.0" />
+                        <Button fx:id="manageTrainer" mnemonicParsing="false" onAction="#manageTrainer" prefHeight="30.0" prefWidth="164.0" styleClass="homeBtn" stylesheets="@../../lib/styles.css" text="Manage Your Trainers" textAlignment="CENTER" textFill="#797878">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="30.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="openCalendar" mnemonicParsing="false" onAction="#showCalendar" prefHeight="30.0" prefWidth="164.0" styleClass="homeBtn" stylesheets="@../../lib/styles.css" text="Open Calendar" textAlignment="CENTER" textFill="#797878">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="viewReview" layoutX="28.0" layoutY="312.0" mnemonicParsing="false" onAction="#viewReview" prefHeight="30.0" prefWidth="164.0" styleClass="homeBtn" stylesheets="@../../lib/styles.css" text="View Your Reviews" textAlignment="CENTER" textFill="#797878">
+                           <font>
+                              <Font name="System Italic" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </Pane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,139 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.backbutton{
+	-fx-background-image:url('../logic/icon/back.png');
+	-fx-background-size: 10.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90.0%;
+}
+.close{
+	-fx-background-image:url('../logic/icons/close.png');
+	-fx-background-size: 8.0px;
+	 -fx-background-repeat: no-repeat;
+}
+.card{
+	-fx-border-radius: 5.0;
+	-fx-background-radius:5.0;	
+	-fx-background-color: #e0e0e0;
+}
+
+.signUpLabel{
+	-fx-text-fill: #797878;
+	-fx-font-style: italic;
+	
+}
+
+.topBar{
+    -fx-border-width: 1.0;
+	-fx-border-style: solid none solid none;
+}
+.bottomBar{
+    -fx-border-width: 1.0;
+	-fx-border-style: solid none none none;
+}
+.exitButton{
+	-fx-background-image: url('../icons/logout.png');
+	-fx-background-size: 35.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90.0%;
+}
+.imagelable{
+	-fx-background-image: url('../icons/user.png');
+	-fx-background-size: 35.0px;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 90.0%;
+}
+.whitelable{
+	-fx-border-radius: 5.0;
+	-fx-border-width: 1.0px;
+	-fx-border-color: BLACK;
+	-fx-background-color: WHITE;
+	-fx-background-radius:5.0;	
+}
+
+
+.LogInBtn{
+    -fx-background-color: #78909c;
+    -fx-text-fill: #ffffff;
+}
+.LogInBtn:hover{
+    -fx-text-fill: #000000;
+}
+.LogInBtn:pressed{
+    -fx-background-color: linear-gradient(to bottom left, #78909c, #8d6e63);
+    -fx-text-fill: #ffffff;
+}
+.homeBtn{
+    -fx-background-color: #78909c;
+    -fx-text-fill: #ffffff;
+}
+.homeBtn:hover{
+    -fx-text-fill: #000000;
+}
+.homeBtn:pressed{
+    -fx-background-color: linear-gradient(to bottom left, #78909c, #8d6e63);
+    -fx-text-fill: #ffffff;
+}
+.signUpBtn{
+    -fx-background-color: #a7c0cd;
+    -fx-background-radius: 5.0; 
+    -fx-border-radius: 5.0;
+    -fx-border-color: #455a64;
+    -fx-text-fill: #ffffff;
+}
+.signUpBtn:hover{
+    -fx-text-fill: #000000;
+}
+.signUpBtn:pressed{
+    -fx-background-color: linear-gradient(to bottom left, #78909c, #8d6e63);
+    -fx-text-fill: #ffffff;
+}
+
+.linear-grad{
+    -fx-background-color: linear-gradient(to bottom left, #78909c, #8d6e63);
+}
+
+.containerTopBar{
+    -fx-background-color: linear-gradient(to bottom, rgba(213.0,213.0,213.0,1.0) 0.0%, rgba(255.0,255.0,255.0,1.0) 6.0%, rgba(213.0,213.0,213.0,1.0) 90.0%);
+}
+.containerBorder{
+	-fx-border-color: BLACK;
+	-fx-border-width: 1.5px;
+	-fx-effect: dropshadow(three-pass-box, rgba(0.0, 0.0, 0.0, 0.8), 10.0, 0.0, 0.0, 0.0);
+}
+.bottomPaneBorder{
+ 	-fx-border-width: 1.0px;
+	-fx-border-style: hidden solid hidden solid; 	
+}
+.roundBorder{
+	-fx-background-color: transparent;
+    -fx-background-radius: 5.0px;
+    -fx-border-radius: 5.0px;
+    -fx-border-width: 2.5px;
+    -fx-border-color: gray;
+}
+.dropShadow{
+	-fx-effect: dropshadow(three-pass-box, rgba(0.0, 0.0, 0.0, 0.8), 10.0, 0.0, 0.0, 0.0);
+}
+.circleButton{
+	-fx-background-radius: 8.0px; 
+	-fx-background-size: 15.0px;
+	-fx-border-radius: 80.0px;
+	-fx-border-width: 2px;
+    -fx-border-color: #5c7079;
+    -fx-min-width: 15.0px;
+	-fx-min-height: 15.0px;
+	-fx-max-width: 15.0px;
+    -fx-max-height: 15.0px;
+    -fx-padding: 0px;
+    -fx-background-insets: 0px;
+    -fx-background-position: center;
+}
+.circleButton:focused{
+	-fx-background-color: transparent;
+}
+.circleButton:hover{
+	-fx-background-color: transparent;
+}
+.circleButton:pressed{
+	-fx-background-color: transparent;
+}
