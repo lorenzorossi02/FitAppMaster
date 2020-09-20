@@ -3,13 +3,10 @@ jdk:
 - openjdk8
 
 addons:
-    apt:
-        packages:
-            - openjfx
     sonarcloud:
-        organization: lorenzorossi02
-        token:
-            secure: c56aa64447d41281b089c13c1f2afc22fdf3b33f
+    organization: "lorenzorossi02"
+    token:
+        secure: c56aa64447d41281b089c13c1f2afc22fdf3b33f
 script: 
     - ant build 
     - sonar-scanner
