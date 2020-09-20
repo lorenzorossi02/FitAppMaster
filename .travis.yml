@@ -3,6 +3,9 @@ jdk:
 - openjdk8
 
 addons:
+    apt:
+        packages:
+            - openjfx
     sonarcloud:
         organization: "lorenzorossi02"
         token:
