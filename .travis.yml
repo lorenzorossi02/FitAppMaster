@@ -7,9 +7,9 @@ addons:
         packages:
             - openjfx
     sonarcloud:
-        organization: lorenzorossi02
+        organization:lorenzorossi02
         token:
-            secure: 339ea0fe268fc38daed8ec1b80a75ccba7c056da
+            secure:339ea0fe268fc38daed8ec1b80a75ccba7c056da
 script: 
     - ant build 
     - sonar-scanner
