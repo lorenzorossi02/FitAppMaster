@@ -16,7 +16,7 @@ public class EmailController {
 
 	}
 
-	public void sendEmail() {
+	public boolean sendEmail() {
 		try {
 			String object;
 			String subject;
@@ -25,11 +25,11 @@ public class EmailController {
 			object = "Hi, guest! In order to enjoy FitApp experience log in with:\nUser: guest \nPassword: "
 					+ baseUserModel.getPwd();
 			emailSender.sendEmails(subject, object, baseUserModel.getEmail());
-
+			return true;
 		} catch (MessagingException e) {
 			AlertFactory.getInstance().createAlert(e);
 		}
-
+		return false;
 	}
 
 	public void initMsg(String email, String pwd) {

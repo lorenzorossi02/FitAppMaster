@@ -46,7 +46,9 @@ public class BookingFormViewController {
 	private static final double MIN_DISTANCE = 0.5;
 	private static final double DEFAULT_DISTANCE = 17;
 	private ApplicationFacade applicationFacade = ApplicationFacade.getInstance();
+	private BookingFormController bookingFormController;
 	private BookingFormModel bookingModel;
+	private BookingOnMapBean bookingOnMapBean;
 
 	@FXML
 	public void goBack(MouseEvent event) {
@@ -70,18 +72,16 @@ public class BookingFormViewController {
 				if (sltTime.isBefore(localTime) || sltDate.isBefore(localDate)) {
 					throw new InputNotComplianException();
 				} else {
-					BookingOnMapBean bookingOnMapBean = new BookingOnMapBean();
-					BookingOnMapModel bookingOnMapModel = new BookingOnMapModel(bookingOnMapBean);
-					bookingOnMapModel.setDate(sltDate);
-					bookingOnMapModel.setTime(sltTime);
-					bookingOnMapModel.setRadius(slideBtn.getValue());
+
+					bookingFormController.setSearchParameters(sltDate, sltTime, slideBtn.getValue());
 
 					applicationFacade.decorateView(ViewType.BOOKINGONMAP);
 					BookingOnMapView bookingOnMapView = (BookingOnMapView) applicationFacade.getViewMap()
 							.get(ViewType.BOOKINGONMAP);
 					BookingOnMapViewController bookingOnMapViewController = (BookingOnMapViewController) bookingOnMapView
 							.getChildernController(ViewType.BOOKINGONMAP);
-					bookingOnMapViewController.setModel(bookingOnMapBean, bookingOnMapModel, bookingModel);
+					bookingOnMapViewController.setModel(bookingOnMapBean, bookingFormController.getBookingModel(),
+							bookingModel);
 					bookingOnMapViewController.initView();
 
 				}
@@ -99,6 +99,9 @@ public class BookingFormViewController {
 		slideBtn.setValue(DEFAULT_DISTANCE);
 		slideBtn.setVisible(true);
 		radiousLbl.setVisible(true);
+		BookingOnMapBean bookingOnMapBean = new BookingOnMapBean();
+		BookingOnMapModel bookingOnMapModel = new BookingOnMapModel(bookingOnMapBean);
+		bookingFormController = new BookingFormController(bookingOnMapModel);
 	}
 
 	public void setModel(BookingFormModel bookingFormModel) {

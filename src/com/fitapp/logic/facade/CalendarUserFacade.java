@@ -14,7 +14,6 @@ import com.calendarfx.view.DateControl.EntryDetailsPopOverContentParameter;
 import com.calendarfx.view.RequestEvent;
 import com.calendarfx.view.page.DayPage;
 import com.calendarfx.view.page.MonthPage;
-import com.fitapp.logic.bean.CalendaUserBean;
 import com.fitapp.logic.bean.CalendarPopupUserBean;
 import com.fitapp.logic.controller.UserPopupCalendarViewController;
 import com.fitapp.logic.dao.GymDAO;
@@ -39,15 +38,15 @@ public class CalendarUserFacade {
 	private MonthPage monthPage;
 	private DayPage dayPage;
 	private CalendarsEvent calendaEvent;
-	private CalendaUserBean calendarUserBean;
+	private String userEmail;
 
-	public CalendarUserFacade(CalendaUserBean calendarUserBean, CalendarUserModel calendarUserModel,
-			MonthPage monthPage, DayPage dayPage) {
+	public CalendarUserFacade(String userEmail, CalendarUserModel calendarUserModel, MonthPage monthPage,
+			DayPage dayPage) {
 		this.calendarUserModel = calendarUserModel;
 		this.monthPage = monthPage;
 		this.dayPage = dayPage;
 		this.calendaEvent = new CalendarsEvent();
-		this.calendarUserBean = calendarUserBean;
+		this.userEmail = userEmail;
 	}
 
 	public void initCalendar() {
@@ -102,7 +101,7 @@ public class CalendarUserFacade {
 			CalendarPopupUserModel calendarPopupUserModel = new CalendarPopupUserModel(calendarPopupUserBean);
 			Entry<Session> currentEntry = (Entry<Session>) param.getEntry();
 			calendarPopupUserModel.setCurrentEntry(currentEntry);
-			calendarPopupUserModel.setEmail(calendarUserBean.getUserEmail());
+			calendarPopupUserModel.setEmail(userEmail);
 			FXMLLoader fxmlLoader = new FXMLLoader(
 					getClass().getResource("/com/fitapp/logic/fxml/CalendarUserLeftClick.fxml"));
 			Pane loader = fxmlLoader.load();

@@ -135,8 +135,9 @@ public class GymPageViewController {
 	private String[] propertyName = { "kick", "boxe", "zumba", "salsa", "funct", "walk", "pump" };
 	private List<TableColumn<Trainer, Boolean>> colList = new ArrayList<>();
 	private ManagerUserBean managerUserBean;
-	private ManagerUserModel managerUserModel;
 	private DayPage dayPage;
+
+	private GymPageController gymPageController;
 
 	@FXML
 	void manageTrainer(ActionEvent event) {
@@ -207,11 +208,10 @@ public class GymPageViewController {
 			Trainer trainer = new Trainer();
 			Map<Course, Boolean> course = createCourse();
 			trainer.setName(nameField.getText());
-			trainer.setGymId(managerUserModel.getGym().getGymId());
+			trainer.setGymId(gymPageController.getGymId());
 			trainer.setCourse(course);
 			// commented line to prevent saving on db
-
-			managerUserModel.addTrainer(trainer);
+			gymPageController.addTrainer(trainer);
 			trainer.setTrainerId(managerUserBean.getAddedTrainerId());
 			trainerTable.getItems().add(trainer);
 			nameField.clear();
@@ -235,7 +235,7 @@ public class GymPageViewController {
 
 	private void edit() {
 		if (!trainerSelected.isEmpty()) {
-			if (managerUserModel.hasSessionTrainer(trainerSelected.get(0).getTrainerId())) {
+			if (gymPageController.trainerHasSession(trainerSelected.get(0).getTrainerId())) {
 				AlertFactory.getInstance()
 						.createAlert(AlertType.INFORMATION, "Trainer With Sessions",
 								"You are trying to delete a Trainer with active sessions",
@@ -246,7 +246,7 @@ public class GymPageViewController {
 				Trainer selectedTrainer = trainerSelected.get(0);
 				selectedTrainer.setCourse(course);
 				trainerSelected.forEach(allTrainer::remove);
-				managerUserModel.editTrainer(selectedTrainer);
+				gymPageController.editTrainer(selectedTrainer);
 
 				trainerTable.setItems(managerUserBean.getManagerTrainerList());
 			}
@@ -259,7 +259,7 @@ public class GymPageViewController {
 
 	private void delete() {
 		if (!trainerSelected.isEmpty()) {
-			boolean hasSession = managerUserModel.hasSessionTrainer(trainerSelected.get(0).getTrainerId());
+			boolean hasSession = gymPageController.trainerHasSession(trainerSelected.get(0).getTrainerId());
 			if (hasSession) {
 				AlertFactory.getInstance()
 						.createAlert(AlertType.INFORMATION, "Trainer With Sessions",
@@ -267,7 +267,7 @@ public class GymPageViewController {
 								"Open your calendar and delete the involved session instead and retry.")
 						.display();
 			} else {
-				managerUserModel.deleteTrainer(trainerSelected.get(0));
+				gymPageController.deleteTrainer(trainerSelected.get(0));
 				trainerTable.setItems(managerUserBean.getManagerTrainerList());
 			}
 		}
@@ -365,11 +365,12 @@ public class GymPageViewController {
 	}
 
 	public void initModel(ManagerUserModel managerUserModel) {
-		this.managerUserModel = managerUserModel;
+		ManagerUserModel managerModel = managerUserModel;
 		managerUserBean = managerUserModel.getState();
 		sideUsername.textProperty().bind(managerUserBean.getManagerName());
 		sideGymName.textProperty().bind(managerUserBean.getGym().getGymName());
 		sideGymStreet.textProperty().bind(managerUserBean.getGym().getStreet());
+		gymPageController = new GymPageController(managerModel);
 
 		fillGraphics();
 		managerUserModel.initializeTrainers();

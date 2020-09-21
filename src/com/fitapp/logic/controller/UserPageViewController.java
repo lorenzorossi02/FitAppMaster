@@ -55,23 +55,20 @@ public class UserPageViewController {
 	private Button openCalendar;
 	@FXML
 	private MonthPage monthPage;
-
 	private DayPage dayPage;
+	UserPageController userPageController;
 	UserBean userBean;
 
 	@FXML
 	public void bookSession(ActionEvent event) {
 		if (event.getSource().equals(bookSession)) {
-			BookingFormBean bookingFormBean = new BookingFormBean();
-			BookingFormModel bookingFormModel = new BookingFormModel(bookingFormBean);
+			userPageController.setBookingInfo(userBean.getUserId(), userBean.getUserEmail());
 
-			bookingFormModel.setUserId(userBean.getUserId());
-			bookingFormModel.setUserEmail(userBean.getUserEmail());
 			applicationFacade.decorateView(ViewType.BOOKINGVIEW);
 			BookingView bookingView = (BookingView) applicationFacade.getViewMap().get(ViewType.BOOKINGVIEW);
 			BookingFormViewController bookingFormViewController = (BookingFormViewController) bookingView
 					.getChildernController(ViewType.BOOKINGVIEW);
-			bookingFormViewController.setModel(bookingFormModel);
+			bookingFormViewController.setModel(userPageController.getBookingFormModel());
 
 		}
 	}
@@ -96,14 +93,10 @@ public class UserPageViewController {
 	}
 
 	public void calendarSetUp() {
+		userPageController.setCalendarInfo(userBean.getUserId(), userBean.getUserEmail());
 
-		CalendaUserBean calendarUserBean = new CalendaUserBean();
-		CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
-		calendarUserModel.setCalendarId(userBean.getUserId());
-		calendarUserModel.setUserId(userBean.getUserId());
-		calendarUserModel.setUserEmail(userBean.getUserEmail());
-		CalendarUserFacade calendarUserFacade = new CalendarUserFacade(calendarUserBean, calendarUserModel, monthPage,
-				dayPage);
+		CalendarUserFacade calendarUserFacade = new CalendarUserFacade(userBean.getUserEmail(),
+				userPageController.getCalendarUserModel(), monthPage, dayPage);
 		calendarUserFacade.initCalendar();
 	}
 
@@ -115,6 +108,11 @@ public class UserPageViewController {
 		assert sideUserIcon != null : "fx:id=\"sideUserIcon\" was not injected: check your FXML file 'UserPage.fxml'.";
 		assert sideUsername != null : "fx:id=\"sideUsername\" was not injected: check your FXML file 'UserPage.fxml'.";
 		calendarBox.setVisible(false);
+		BookingFormBean bookingFormBean = new BookingFormBean();
+		BookingFormModel bookingFormModel = new BookingFormModel(bookingFormBean);
+		CalendaUserBean calendarUserBean = new CalendaUserBean();
+		CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
+		userPageController = new UserPageController(bookingFormModel, calendarUserModel);
 		applicationFacade = ApplicationFacade.getInstance();
 		applicationFacade.setupHomePageView();
 		monthPage.getMonthView().setShowWeekNumbers(false);
