@@ -80,7 +80,6 @@ public class CalendarPopupBean implements Observer {
 
 	public void setCurrentEntry(Entry<Session> entry) {
 		if (entry != null) {
-			System.out.println("CAMVIAMENTO");
 			this.currentEntry = entry;
 		}
 	}

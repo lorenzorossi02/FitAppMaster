@@ -86,16 +86,6 @@ public class ApplicationFacade {
 		this.viewMap = viewMap;
 	}
 
-	// public void undecorateView(ViewType type) {
-	// View view = viewMap.get(type);
-	// switch (type){
-	// case LOGIN:
-	// view.getRoot().getChildren().remove(view.getLoadedChildren(type));
-	// break;
-	// default:
-	// break;
-	// }
-	// }
 	public void logOut() {
 		simpleView.getChildren().clear();
 		decorateView(ViewType.LOGIN);

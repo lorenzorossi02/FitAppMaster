@@ -32,7 +32,6 @@ public class UserDAO extends ConnectionManager {
 				String pwd = rs.getString("password");
 				String street = rs.getString("street");
 				boolean manager = rs.getBoolean("manager");
-				System.out.println("EMAIL MANAGER" + email);
 				return new User(userId, username, pwd, email, street, manager);
 			}
 		} catch (SQLException e) {
@@ -40,19 +39,6 @@ public class UserDAO extends ConnectionManager {
 		}
 		return null;
 	}
-
-	// public String getEmailById(int id) {
-	// try {
-	// ResultSet rs = Query.getEmailById(this.st, id);
-	// rs.first();
-	// if (checkResultValidity(1, 1, rs)) {
-	// return rs.getString("email");
-	// }
-	// } catch (SQLException e) {
-	// AlertFactory.getInstance().createAlert(e);
-	// }
-	// return null;
-	// }
 
 	public User getUserEntity(String username, String password) {
 

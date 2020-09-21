@@ -11,7 +11,6 @@ import org.controlsfx.control.PopOver;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.page.MonthPage;
 import com.fitapp.logic.bean.CalendarPopupBean;
-import com.fitapp.logic.facade.CalendarsEvent;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.model.CalendarPopupModel;
 import com.fitapp.logic.model.entity.Session;
@@ -117,7 +116,6 @@ public class EntryDeatilsController {
 		}
 		calendarPopupModel.deleteSession(currentEntry.getUserObject());
 		List<Entry<?>> sessionEntryToRemove = currentEntry.getCalendar().findEntries(currentEntry.getTitle());
-		System.out.println(sessionEntryToRemove);
 		currentEntry.getCalendar().removeEntries(sessionEntryToRemove);
 		PopOver stage = (PopOver) ((JFXButton) event.getTarget()).getScene().getWindow();
 		stage.hide();
@@ -269,7 +267,7 @@ public class EntryDeatilsController {
 	}
 
 	public void setModels(CalendarPopupBean calendarPopupBean, CalendarPopupModel calendarPopupModel,
-			CalendarsEvent calendarEvent, MonthPage monthPage) {
+			MonthPage monthPage) {
 		this.calendarPopupBean = calendarPopupBean;
 		this.calendarPopupModel = calendarPopupModel;
 		this.monthPage = monthPage;

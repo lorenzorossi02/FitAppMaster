@@ -61,8 +61,6 @@ public class CalendarFacade {
 		monthPage.getCalendarSources().setAll(calendarEvent.getAvaiableCalendar());
 		dayPage.getCalendarSources().setAll(calendarEvent.getAvaiableCalendar());
 
-		// entryBehaviour();
-
 	}
 
 	private void fullDayBehaviour() {
@@ -85,8 +83,6 @@ public class CalendarFacade {
 			// all calendar are manageable
 			dayPage.getCalendarSources().get(0).getCalendars().get(i).setReadOnly(false);
 		}
-		// all double click are enabled
-		// dayPage.getCalendars().get(0).removeEventHandler(getEventHandler());
 
 		return new PopOver(this.dayPage);
 	}
@@ -117,7 +113,7 @@ public class CalendarFacade {
 					getClass().getResource("/com/fitapp/logic/fxml/CalendarLeftClick.fxml"));
 			Pane loader = fxmlLoader.load();
 			EntryDeatilsController entryDeatilsController = (EntryDeatilsController) fxmlLoader.getController();
-			entryDeatilsController.setModels(calendarPopupBean, calendarPopupModel, calendarEvent, monthPage);
+			entryDeatilsController.setModels(calendarPopupBean, calendarPopupModel, monthPage);
 			entryDeatilsController.initView();
 			return (AnchorPane) loader;
 		} catch (IOException e) {

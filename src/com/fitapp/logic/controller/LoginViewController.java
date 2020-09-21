@@ -63,6 +63,7 @@ public class LoginViewController {
 		if (event.getSource().equals(btnSignUp)) {
 			String email = tfEmailAddr.getText();
 			if (!email.equals("")) {
+				emailBean.setEmail(email);
 
 				String pwd = String.valueOf(baseUserModel.generateRandomDigits(8));
 

@@ -1,7 +1,5 @@
 package com.fitapp.logic.dao;
 
-//import logic.model.entity.Trainer;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

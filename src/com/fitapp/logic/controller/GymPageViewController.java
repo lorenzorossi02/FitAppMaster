@@ -129,10 +129,8 @@ public class GymPageViewController {
 
 	@FXML
 	private Button viewReview;
-	private ApplicationFacade applicationFacade;
 
 	private MonthPage monthPage;
-	private BooleanProperty bp;
 	private ObservableList<Trainer> trainerSelected;
 	private ObservableList<Trainer> allTrainer;
 	private List<CheckBox> checkList;
@@ -140,8 +138,6 @@ public class GymPageViewController {
 	private List<TableColumn<Trainer, Boolean>> colList = new ArrayList<>();
 	private ManagerUserBean managerUserBean;
 	private ManagerUserModel managerUserModel;
-	private CalendarBean calendarBean;
-
 	private DayPage dayPage;
 
 	@FXML
@@ -179,7 +175,6 @@ public class GymPageViewController {
 				openCalendar.setText("Open Calendar");
 				calendarBox.setVisible(false);
 				calendarBox.setDisable(true);
-				// calendarBox.setManaged(true);
 			}
 		}
 	}
@@ -235,7 +230,7 @@ public class GymPageViewController {
 				.or(boxeCheck.selectedProperty().or(
 						zumbaCheck.selectedProperty().or(salsaCheck.selectedProperty().or(functCheck.selectedProperty()
 								.or(walkCheck.selectedProperty().or(pumpCheck.selectedProperty()))))));
-		bp = new SimpleBooleanProperty();
+		BooleanProperty bp = new SimpleBooleanProperty();
 		bp.bind(checkBinding);
 		bp.addListener((obsV, oldV, newV) -> addButton.setDisable(oldV));
 	}
@@ -274,9 +269,6 @@ public class GymPageViewController {
 								"Open your calendar and delete the involved session instead and retry.")
 						.display();
 			} else {
-				// linee commentate per evitare di cancellare cose su db durante testing
-				// trainerSelected.forEach(allTrainer::remove);
-				//
 				managerUserModel.deleteTrainer(trainerSelected.get(0));
 				trainerTable.setItems(managerUserBean.getManagerTrainerList());
 			}
@@ -313,7 +305,7 @@ public class GymPageViewController {
 	}
 
 	private void calendarSetup() {
-		calendarBean = new CalendarBean();
+		CalendarBean calendarBean = new CalendarBean();
 		CalendarGymModel calendarModel = new CalendarGymModel(calendarBean);
 		CalendarFacade calendarFacade = new CalendarFacade(calendarModel, monthPage, dayPage, allTrainer);
 		calendarModel.setCalendarId(managerUserBean.getManagerId().get());
@@ -366,7 +358,7 @@ public class GymPageViewController {
 		assert manageTrainer != null : "fx:id=\"manageTrainer\" was not injected: check your FXML file 'GymPage.fxml'.";
 		assert openCalendar != null : "fx:id=\"openCalendar\" was not injected: check your FXML file 'GymPage.fxml'.";
 		assert viewReview != null : "fx:id=\"viewReview\" was not injected: check your FXML file 'GymPage.fxml'.";
-		applicationFacade = ApplicationFacade.getInstance();
+		ApplicationFacade applicationFacade = ApplicationFacade.getInstance();
 		ContainerView containerView = applicationFacade.getSimpleView();
 		ContainerViewController containerViewController = (ContainerViewController) containerView
 				.getChildernController(ViewType.CONTAINER);

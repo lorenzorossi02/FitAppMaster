@@ -23,6 +23,18 @@ import javafx.beans.property.IntegerProperty;
 
 public class SessionDAO extends ConnectionManager {
 	private static SessionDAO instance = null;
+	private static final String TIMESTARTS = "time_start";
+	private static final String TIMEEND = "time_end";
+	private static final String RECURRENCE = "recurrence";
+	private static final String DESCRIPTION = "description";
+	private static final String COURSEID = "course_id";
+	private static final String COURSENAME = "course_name";
+	private static final String SESSIONID = "session_id";
+	private static final String INDIVUDAL = "individual";
+	private static final String TRAINERID = "trainer_id";
+	private static final String TRAINERNAME = "trainer_name";
+	private static final String STREET = "street";
+
 	String none = "default";
 
 	private SessionDAO() {
@@ -42,7 +54,7 @@ public class SessionDAO extends ConnectionManager {
 			ResultSet rs = Query.getCourseName(this.statement, id);
 			String courseName;
 			while (rs.next()) {
-				courseName = rs.getString("course_name");
+				courseName = rs.getString(COURSENAME);
 				return courseName;
 			}
 		} catch (SQLException e) {
@@ -59,20 +71,20 @@ public class SessionDAO extends ConnectionManager {
 			while (rs.next()) {
 
 				// Data property
-				Time timeStart = Time.valueOf(rs.getString("time_start"));
-				Time timeEnd = Time.valueOf(rs.getString("time_end"));
+				Time timeStart = Time.valueOf(rs.getString(TIMESTARTS));
+				Time timeEnd = Time.valueOf(rs.getString(TIMEEND));
 				Time[] duration = { timeStart, timeEnd };
 				Date data = rs.getDate("day");
-				String recurrence = rs.getString("recurrence");
+				String recurrence = rs.getString(RECURRENCE);
 				// SessionCourseProperty
-				String description = rs.getString("description");
-				int courseId = rs.getInt("course_id");
-				int sessionId = rs.getInt("session_id");
-				boolean individual = rs.getBoolean("individual");
-				int trainderId = rs.getInt("trainer_id");
-				String trainerName = rs.getString("trainer_name");
+				String description = rs.getString(DESCRIPTION);
+				int courseId = rs.getInt(COURSEID);
+				int sessionId = rs.getInt(SESSIONID);
+				boolean individual = rs.getBoolean(INDIVUDAL);
+				int trainderId = rs.getInt(TRAINERID);
+				String trainerName = rs.getString(TRAINERNAME);
 				LocalDate localDate = LocalDate.parse(data.toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-				String street = rs.getString("street");
+				String street = rs.getString(STREET);
 				SessionTime sessionTime = new SessionTime(duration, localDate, recurrence);
 				SessionCourse sessionCourse = new SessionCourse(sessionId, courseId, individual, description);
 
@@ -97,7 +109,7 @@ public class SessionDAO extends ConnectionManager {
 		try {
 			ResultSet rs = Query.getBookedSession(this.statement, id);
 			while (rs.next()) {
-				list.add(rs.getInt(("session_id")));
+				list.add(rs.getInt((SESSIONID)));
 
 			}
 		} catch (SQLException e) {
@@ -110,18 +122,18 @@ public class SessionDAO extends ConnectionManager {
 		try {
 			ResultSet rs = Query.getSession(this.statement, Integer.parseInt(sessionId.toString()));
 			while (rs.next()) {
-				String trainerName = rs.getString("trainer_name");
-				int trainerid = rs.getInt("trainer_id");
+				String trainerName = rs.getString(TRAINERNAME);
+				int trainerid = rs.getInt(TRAINERID);
 				int gymId = rs.getInt("gym_id");
-				Time timeStart = Time.valueOf(rs.getString("time_start"));
-				Time timeEnd = Time.valueOf(rs.getString("time_end"));
+				Time timeStart = Time.valueOf(rs.getString(TIMESTARTS));
+				Time timeEnd = Time.valueOf(rs.getString(TIMEEND));
 				Time[] duration = { timeStart, timeEnd };
 				Date data = rs.getDate("day");
-				String description = rs.getString("description");
-				int courseId = rs.getInt("course_id");
-				String street = rs.getString("street");
-				boolean individual = rs.getBoolean("individual");
-				String recurrence = rs.getString("recurrence");
+				String description = rs.getString(DESCRIPTION);
+				int courseId = rs.getInt(COURSEID);
+				String street = rs.getString(STREET);
+				boolean individual = rs.getBoolean(INDIVUDAL);
+				String recurrence = rs.getString(RECURRENCE);
 				SessionTime sessionTime = new SessionTime(duration, data.toLocalDate(), recurrence);
 				SessionCourse sessionCourse = new SessionCourse(sessionId, courseId, individual, description);
 				Session bookedSession = new Session();
@@ -213,18 +225,18 @@ public class SessionDAO extends ConnectionManager {
 			ResultSet rs = Query.getEventListByEvent(this.statement, bookingDate.toString(), bookingTime.toString());
 			while (rs.next()) {
 
-				Time timeEventStart = Time.valueOf(rs.getString("time_start"));
-				Time timeEventEnd = Time.valueOf(rs.getString("time_end"));
+				Time timeEventStart = Time.valueOf(rs.getString(TIMESTARTS));
+				Time timeEventEnd = Time.valueOf(rs.getString(TIMEEND));
 				Time[] duration = { timeEventStart, timeEventEnd };
 				LocalDate date = rs.getDate("day").toLocalDate();
-				String description = rs.getString("description");
-				int courseId = rs.getInt("course_id");
-				String street = rs.getString("street");
-				boolean individual = rs.getBoolean("individual");
-				String trainerName = rs.getString("trainer_name");
-				int trainerId = rs.getInt("trainer_id");
-				int sessionId = rs.getInt("session_id");
-				String recurrence = rs.getString("recurrence");
+				String description = rs.getString(DESCRIPTION);
+				int courseId = rs.getInt(COURSEID);
+				String street = rs.getString(STREET);
+				boolean individual = rs.getBoolean(INDIVUDAL);
+				String trainerName = rs.getString(TRAINERNAME);
+				int trainerId = rs.getInt(TRAINERID);
+				int sessionId = rs.getInt(SESSIONID);
+				String recurrence = rs.getString(RECURRENCE);
 				int gymId = rs.getInt("gym_id");
 				SessionTime sessionTime = new SessionTime(duration, date, recurrence);
 				SessionCourse sessionCourse = new SessionCourse(sessionId, courseId, individual, description);
@@ -248,7 +260,7 @@ public class SessionDAO extends ConnectionManager {
 		try {
 			ResultSet resultSet = Query.getAllBookedSession(this.statement);
 			while (resultSet.next()) {
-				bookedSessionList.add(resultSet.getInt("session_id"));
+				bookedSessionList.add(resultSet.getInt(SESSIONID));
 
 			}
 		} catch (SQLException e) {

@@ -47,7 +47,6 @@ public class CalendaUserBean implements Observer {
 	}
 
 	public void setUserEmail(String userEmail) {
-		System.out.println("NOTIFICANDO IL CAMBIAMENTO EMAIL" + userEmail);
 		this.userEmail = userEmail;
 	}
 

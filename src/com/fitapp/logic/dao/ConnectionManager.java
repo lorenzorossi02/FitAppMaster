@@ -60,7 +60,6 @@ public class ConnectionManager implements ConnectionInterface {
 			connection = connectionPool.getConnection();
 			statement = connection.createStatement(SCROLL_TYPE, READ_TYPE);
 		} catch (SQLException e) {
-			// logger.log(Level.SEVERE, e.getMessage(), e);
 			LOGGER.info("NO CONNECTION");
 		}
 	}

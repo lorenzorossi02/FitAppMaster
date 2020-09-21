@@ -128,9 +128,8 @@ public class BaseUserModel extends Observable {
 				setGym(gym);
 			}
 			return autenticated;
-		} else {
-			return autenticated;
 		}
+		return false;
 	}
 
 	private void setGym(Gym gym) {
@@ -157,7 +156,7 @@ public class BaseUserModel extends Observable {
 
 	public void registerNewUser() {
 		UserDAO.getInstance().registerUser(this.name, this.pwd, this.email, this.manager, this.myPosition, this.id);
-		if (manager) {
+		if (Boolean.TRUE.equals(manager)) {
 			GymDAO.getInstance().registerGym(this.gymName, this.gymStreet, this.id, this.name);
 		}
 	}

@@ -16,8 +16,8 @@ import javafx.beans.property.StringProperty;
 public class EmailBean implements Observer {
 	private String subject;
 	private String msg;
-	private StringProperty event = new SimpleStringProperty();;
-	private StringProperty gym = new SimpleStringProperty();;
+	private StringProperty event = new SimpleStringProperty();
+	private StringProperty gym = new SimpleStringProperty();
 	private StringProperty email = new SimpleStringProperty();
 	private String pwd;
 	private StringProperty guestUsernameProperty = new SimpleStringProperty();
@@ -159,7 +159,6 @@ public class EmailBean implements Observer {
 	}
 
 	public void setEmailUser(String emailUser) {
-		System.out.println("NUOVA EMAIL");
 		this.emailUser = emailUser;
 	}
 
@@ -168,7 +167,6 @@ public class EmailBean implements Observer {
 	}
 
 	public void setEventEmail(Session session) {
-		System.out.println("SETTO EVENTO EMAIL");
 		this.sessionToSendEmail = session;
 	}
 

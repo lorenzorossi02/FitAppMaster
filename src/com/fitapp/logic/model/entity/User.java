@@ -13,12 +13,4 @@ public class User extends AbstractUser {
 		setMyPosition(position);
 	}
 
-//    public List<Session> getBookedSession() {
-//        return bookedSession;
-//    }
-//
-//    public void setBookedSession(List<Session> bookedSession) {
-//        this.bookedSession = bookedSession;
-//    }
-
 }

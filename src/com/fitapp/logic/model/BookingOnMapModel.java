@@ -180,8 +180,6 @@ public class BookingOnMapModel extends Observable {
 					&& Boolean.TRUE.equals(session.isIndividual().getValue())) {
 				sessionToRemove.add(session);
 			} else {
-				System.out.println("GYM ID GETSESSIONS:" + session.getGymId() + "LINKED TO SESSIONID"
-						+ session.getSessionId().get());
 				Gym newGym = GymDAO.getInstance().getGymEntityById(session.getGymId());
 				Trainer newTrainer = TrainerDAO.getInstance().getTrainerById(session.getTrainerId());
 				session.setGymSession(newGym);

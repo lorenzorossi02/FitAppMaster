@@ -16,6 +16,7 @@ import com.fitapp.logic.model.entity.Trainer;
 
 public class TrainerDAO extends ConnectionManager {
 	private static TrainerDAO instance;
+	private static final String TRAINERID = "trainer_id";
 
 	private TrainerDAO() {
 		super();
@@ -38,7 +39,7 @@ public class TrainerDAO extends ConnectionManager {
 				List<Trainer> trainerList = new ArrayList<>();
 				do {
 					name = rs.getString("trainer_name");
-					trainerId = rs.getInt("trainer_id");
+					trainerId = rs.getInt(TRAINERID);
 					course = new EnumMap<>(Course.class);
 					for (int i = 0; i < Course.values().length; i++)
 						course.put(Course.getCourse(i), rs.getBoolean(Course.getCourse(i).getCourseName()));
@@ -68,7 +69,7 @@ public class TrainerDAO extends ConnectionManager {
 		try {
 			ResultSet rs = Query.getTrainerId(this.statement, t);
 			if (checkResultValidity(1, 1, rs)) {
-				return rs.getInt("trainer_id");
+				return rs.getInt(TRAINERID);
 			}
 		} catch (SQLException e) {
 			AlertFactory.getInstance().createAlert(e);
@@ -91,9 +92,9 @@ public class TrainerDAO extends ConnectionManager {
 		try {
 			ResultSet rs = Query.getTrainerEntity(this.statement, trainerId);
 			while (rs.next()) {
-				if (rs.getInt("trainer_id") == trainerId) {
+				if (rs.getInt(TRAINERID) == trainerId) {
 
-					Map<Course, Boolean> map = new EnumMap<Course, Boolean>(Course.class);
+					Map<Course, Boolean> map = new EnumMap<>(Course.class);
 					map.put(Course.KICKBOXING, rs.getBoolean("kickboxing"));
 					map.put(Course.FUNCTIONAL, rs.getBoolean("funzionale"));
 					map.put(Course.PUGILATO, rs.getBoolean("pugilato"));

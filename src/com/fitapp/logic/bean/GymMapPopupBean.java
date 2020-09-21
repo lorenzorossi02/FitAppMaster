@@ -27,6 +27,7 @@ public class GymMapPopupBean implements Observer {
 				break;
 			case EMAIL:
 				setUserEmail(gymMapPopupModel.getUserEmail());
+				break;
 
 			default:
 				break;

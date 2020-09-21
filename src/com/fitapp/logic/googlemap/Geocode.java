@@ -20,7 +20,6 @@ public class Geocode {
 	}
 
 	public void setCoordinates(LatLong coordinates) {
-		System.out.println("SETTING COORDINATE" + coordinates);
 		this.coordinates = coordinates;
 	}
 

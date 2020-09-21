@@ -49,7 +49,6 @@ public class BookingOnMapBean implements Observer {
 	}
 
 	public void setBookList(ObservableList<Session> observableList) {
-		System.out.print("NUOVE LISTA" + observableList);
 		this.bookList = observableList;
 	}
 

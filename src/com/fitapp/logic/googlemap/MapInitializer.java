@@ -43,7 +43,7 @@ public class MapInitializer implements MapComponentInitializedListener {
 	private String baseUserStreet;
 	private BookingOnMapModel bookingOnMapModel;
 
-	private List<Marker> mark = new ArrayList<>();
+	private List<Marker> mark;
 
 	private BookingFormModel bookingFormModel;
 
@@ -72,6 +72,7 @@ public class MapInitializer implements MapComponentInitializedListener {
 		Geocode geocode = new Geocode();
 		geocode.getLocation(baseUserStreet);
 		LatLong baseLatLong = geocode.getCoordinates();
+		this.mark = new ArrayList<>();
 		this.mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius);
 
 		MapOptions mapOptions = new MapOptions();
@@ -147,7 +148,6 @@ public class MapInitializer implements MapComponentInitializedListener {
 
 					if (selectedItemName.contentEquals(mark.get(i).getTitle())
 							&& !mark.get(i).getTitle().equals("You are here!")) {
-						System.out.println("SELECTED ITEAM" + selectedItem.getGymName() + selectedItem.getSessionId());
 						startUpPopup(selectedItem);
 						break;
 					}

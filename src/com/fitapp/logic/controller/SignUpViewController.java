@@ -114,8 +114,8 @@ public class SignUpViewController {
 	@FXML
 	public void confirmAction(ActionEvent event) {
 		if (event.getSource().equals(confirmBtn) && (!guestLabel.isVisible()) && (!confirmEmailLabel.isVisible())
-				&& (!confirmPassLabel.isVisible()) && ((!userStreet.getText().trim().isEmpty()
-						|| (!gymName.getText().trim().isEmpty() && !gymStreet.getText().trim().isEmpty())))) {
+				&& (!confirmPassLabel.isVisible()) && !userStreet.getText().trim().isEmpty()
+				|| (!gymName.getText().trim().isEmpty() && !gymStreet.getText().trim().isEmpty())) {
 			registerUser();
 
 			String title = "User Created";
@@ -132,7 +132,6 @@ public class SignUpViewController {
 
 	private void addCheckListener(TextField fieldToListen) {
 		fieldToListen.textProperty().addListener((observable, oldValue, newValue) -> {
-			// makeBinding();
 			if (fieldToListen.hashCode() == username.hashCode()) {
 				if (newValue.toLowerCase().contentEquals("guest")) {
 					guestLabel.setVisible(true);
@@ -159,23 +158,6 @@ public class SignUpViewController {
 		emailLabel.setText("the email was retrieve from the database, you can't edit");
 		emailLabel.setVisible(true);
 	}
-
-//	private void makeBinding() {
-//		BooleanBinding userBinding;
-//		if (!managerCheck.isSelected()) {
-//			userBinding = username.textProperty().isEmpty()
-//					.or(confirmEmail.textProperty().isEmpty().or(password.textProperty().isEmpty()
-//							.or(confirmPass.textProperty().isEmpty().or(userStreet.textProperty().isEmpty()))));
-//			confirmBtn.disableProperty().bind(userBinding);
-//		} else {
-//			userBinding = username.textProperty().isNotEmpty().or(confirmEmail.textProperty().isNotEmpty()
-//					.or(password.textProperty().isNotEmpty().or(confirmPass.textProperty().isNotEmpty()
-//							.or(gymName.textProperty().isNotEmpty().or(gymStreet.textProperty().isNotEmpty())))));
-//
-//			confirmBtn.disableProperty().bind(userBinding);
-//		}
-//
-//	}
 
 	private void registerUser() {
 

@@ -102,7 +102,6 @@ public class CalendarUserFacade {
 			CalendarPopupUserModel calendarPopupUserModel = new CalendarPopupUserModel(calendarPopupUserBean);
 			Entry<Session> currentEntry = (Entry<Session>) param.getEntry();
 			calendarPopupUserModel.setCurrentEntry(currentEntry);
-			System.out.println("CALENDARUSERBEAN EMAIL" + calendarUserBean.getUserEmail());
 			calendarPopupUserModel.setEmail(calendarUserBean.getUserEmail());
 			FXMLLoader fxmlLoader = new FXMLLoader(
 					getClass().getResource("/com/fitapp/logic/fxml/CalendarUserLeftClick.fxml"));

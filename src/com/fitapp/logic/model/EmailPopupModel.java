@@ -54,7 +54,6 @@ public class EmailPopupModel extends Observable {
 			EmailSender emailSender = new EmailSender();
 			String finalSubject = "Email from" + userEmail + "\nEvent:" + eventToSend + "\n\nSujbet:" + subject
 					+ "\nObject:" + msg;
-			System.out.println("FINALSUBJECT" + finalSubject);
 			emailSender.sendEmails("EMAIL FROM USER TO GYM", finalSubject, managerEmailGym);
 		} catch (MessagingException e) {
 			AlertFactory.getInstance().createAlert(e);
