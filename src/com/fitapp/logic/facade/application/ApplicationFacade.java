@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.EnumMap;
 import java.util.Map;
 
+import com.calendarfx.view.page.DayPage;
+import com.calendarfx.view.page.MonthPage;
+import com.fitapp.logic.controller.ContainerViewController;
 import com.fitapp.logic.decorator.View;
 import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.view.BookingOnMapView;
@@ -91,4 +94,11 @@ public class ApplicationFacade {
 		decorateView(ViewType.LOGIN);
 	}
 
+	public void setupHomePageView() {
+		ContainerView containerView = getSimpleView();
+		ContainerViewController containerViewController = (ContainerViewController) containerView
+				.getChildernController(ViewType.CONTAINER);
+		containerViewController.showLogoutPanel();
+
+	}
 }

@@ -12,12 +12,10 @@ import com.fitapp.logic.bean.ManagerUserBean;
 import com.fitapp.logic.facade.CalendarFacade;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.CalendarGymModel;
 import com.fitapp.logic.model.ManagerUserModel;
 import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Trainer;
-import com.fitapp.logic.view.ContainerView;
 
 import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
@@ -129,7 +127,7 @@ public class GymPageViewController {
 
 	@FXML
 	private Button viewReview;
-
+	@FXML
 	private MonthPage monthPage;
 	private ObservableList<Trainer> trainerSelected;
 	private ObservableList<Trainer> allTrainer;
@@ -359,21 +357,10 @@ public class GymPageViewController {
 		assert openCalendar != null : "fx:id=\"openCalendar\" was not injected: check your FXML file 'GymPage.fxml'.";
 		assert viewReview != null : "fx:id=\"viewReview\" was not injected: check your FXML file 'GymPage.fxml'.";
 		ApplicationFacade applicationFacade = ApplicationFacade.getInstance();
-		ContainerView containerView = applicationFacade.getSimpleView();
-		ContainerViewController containerViewController = (ContainerViewController) containerView
-				.getChildernController(ViewType.CONTAINER);
-		containerViewController.showLogoutPanel();
-		monthPage = new MonthPage();
-		monthPage.setShowToday(true);
-		monthPage.setMaxSize(680, 502);
-		monthPage.setMinSize(680, 502);
+		applicationFacade.setupHomePageView();
 		monthPage.getMonthView().setShowWeekNumbers(false);
-		calendarBox.getChildren().add(monthPage);
 		dayPage = new DayPage();
 		dayPage.setDayPageLayout(DayPage.DayPageLayout.DAY_ONLY);
-		dayPage.setMinWidth(340);
-		dayPage.setMinHeight(330);
-		dayPage.setMaxHeight(340);
 
 	}
 

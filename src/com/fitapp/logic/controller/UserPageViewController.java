@@ -14,7 +14,6 @@ import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.CalendarUserModel;
 import com.fitapp.logic.model.UserModel;
 import com.fitapp.logic.view.BookingView;
-import com.fitapp.logic.view.ContainerView;
 
 import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
@@ -27,7 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class UserPageViewController {
-	ApplicationFacade applicationFacade = ApplicationFacade.getInstance();
+	ApplicationFacade applicationFacade;
 	@FXML
 	private ResourceBundle resources;
 
@@ -54,7 +53,7 @@ public class UserPageViewController {
 
 	@FXML
 	private Button openCalendar;
-
+	@FXML
 	private MonthPage monthPage;
 
 	private DayPage dayPage;
@@ -83,6 +82,7 @@ public class UserPageViewController {
 			if (!calendarBox.isVisible()) {
 				new ZoomIn(calendarBox).play();
 				calendarBox.setVisible(true);
+
 				calendarBox.toFront();
 				openCalendar.setText("Close Calendar");
 			} else {
@@ -90,6 +90,7 @@ public class UserPageViewController {
 				calendarBox.toBack();
 				openCalendar.setText("Open Calendar");
 				calendarBox.setVisible(false);
+
 			}
 		}
 	}
@@ -113,23 +114,12 @@ public class UserPageViewController {
 		assert bookSession != null : "fx:id=\"bookSession\" was not injected: check your FXML file 'UserPage.fxml'.";
 		assert sideUserIcon != null : "fx:id=\"sideUserIcon\" was not injected: check your FXML file 'UserPage.fxml'.";
 		assert sideUsername != null : "fx:id=\"sideUsername\" was not injected: check your FXML file 'UserPage.fxml'.";
-
-		ContainerView containerView = applicationFacade.getSimpleView();
-		ContainerViewController containerViewController = (ContainerViewController) containerView
-				.getChildernController(ViewType.CONTAINER);
-		containerViewController.showLogoutPanel();
-
-		monthPage = new MonthPage();
-		monthPage.setShowToday(true);
-		monthPage.setMaxSize(680, 502);
-		monthPage.setMinSize(680, 502);
+		calendarBox.setVisible(false);
+		applicationFacade = ApplicationFacade.getInstance();
+		applicationFacade.setupHomePageView();
 		monthPage.getMonthView().setShowWeekNumbers(false);
-		calendarBox.getChildren().add(monthPage);
 		dayPage = new DayPage();
 		dayPage.setDayPageLayout(DayPage.DayPageLayout.DAY_ONLY);
-		dayPage.setMinWidth(340);
-		dayPage.setMinHeight(330);
-		dayPage.setMaxHeight(340);
 
 	}
 
