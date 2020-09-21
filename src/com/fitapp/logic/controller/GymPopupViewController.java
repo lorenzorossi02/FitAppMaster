@@ -3,6 +3,8 @@ package com.fitapp.logic.controller;
 import java.io.IOException;
 import java.sql.Time;
 
+import org.controlsfx.control.PopOver;
+
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.GymMapPopupBean;
 import com.fitapp.logic.facade.application.ApplicationFacade;
@@ -19,15 +21,12 @@ import com.jfoenix.controls.JFXTextArea;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class GymPopupViewController {
 
@@ -103,11 +102,8 @@ public class GymPopupViewController {
 	@FXML
 	void sendEmail(MouseEvent event) {
 		try {
-			Stage emailStage = new Stage();
-			emailStage.initStyle(StageStyle.TRANSPARENT);
-			emailStage.initModality(Modality.APPLICATION_MODAL);
-			emailStage.setMinWidth(335);
-			emailStage.setMinHeight(150);
+
+			PopOver popOver = new PopOver();
 			EmailBean emailBean = new EmailBean();
 			EmailPopupModel emailPopupModel = new EmailPopupModel(emailBean);
 			emailPopupModel.setEvent(currSession);
@@ -118,9 +114,10 @@ public class GymPopupViewController {
 			EmailViewController emailViewController = (EmailViewController) fxmlLoader.getController();
 			emailViewController.setModel(emailPopupModel, emailBean);
 			emailViewController.initView();
-			Scene scene = new Scene(loader);
-			emailStage.setScene(scene);
-			emailStage.showAndWait();
+			popOver.setAutoHide(true);
+			popOver.setContentNode(loader);
+			popOver.show((Button) event.getSource());
+
 		} catch (IOException ex) {
 			AlertFactory.getInstance().createAlert(ex);
 

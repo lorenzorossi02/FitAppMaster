@@ -19,8 +19,8 @@ import com.jfoenix.controls.JFXTimePicker;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -28,9 +28,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class UserPopupCalendarViewController {
 
@@ -97,11 +94,8 @@ public class UserPopupCalendarViewController {
 	@FXML
 	void sendEmail(MouseEvent event) {
 		try {
-			Stage emailStage = new Stage();
-			emailStage.initStyle(StageStyle.TRANSPARENT);
-			emailStage.initModality(Modality.APPLICATION_MODAL);
-			emailStage.setMinWidth(335);
-			emailStage.setMinHeight(150);
+			PopOver popOver = new PopOver();
+
 			EmailBean emailBean = new EmailBean();
 			EmailPopupModel emailPopupModel = new EmailPopupModel(emailBean);
 			emailPopupModel.setEvent(currentEntry.getUserObject());
@@ -112,9 +106,9 @@ public class UserPopupCalendarViewController {
 			EmailViewController emailViewController = (EmailViewController) fxmlLoader.getController();
 			emailViewController.setModel(emailPopupModel, emailBean);
 			emailViewController.initView();
-			Scene scene = new Scene(loader);
-			emailStage.setScene(scene);
-			emailStage.showAndWait();
+			popOver.setAutoHide(true);
+			popOver.setContentNode(loader);
+			popOver.show((Button) event.getSource());
 		} catch (IOException e) {
 			AlertFactory.getInstance().createAlert(e);
 		}

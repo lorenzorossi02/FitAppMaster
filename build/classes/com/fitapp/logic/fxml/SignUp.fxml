@@ -187,6 +187,7 @@
                                           <Font name="System Italic" size="14.0" />
                                        </font>
                                     </Label>
+                                    <Label styleClass="signUpLabel" stylesheets="@../../lib/styles.css" text="(ex. Via Due Giugno 3, Ciampino)" />
                                     <HBox>
                                        <children>
                                           <TextField fx:id="userStreet" promptText="user's street" />

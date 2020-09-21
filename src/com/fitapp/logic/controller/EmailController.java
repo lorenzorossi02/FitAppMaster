@@ -36,4 +36,5 @@ public class EmailController {
 		this.baseUserModel.setEmail(email);
 		this.baseUserModel.setPwd(pwd);
 	}
+
 }
