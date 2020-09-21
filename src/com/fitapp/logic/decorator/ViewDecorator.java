@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import com.fitapp.logic.factory.viewfactory.ViewType;
 
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public abstract class ViewDecorator implements View {
 	View view;
+	private BorderPane parentRoot;
 
 	public ViewDecorator(View view) {
 		this.view = view;
@@ -22,6 +24,8 @@ public abstract class ViewDecorator implements View {
 	@Override
 	public void loadView(ViewType type) throws IOException {
 		this.view.loadView(type);
+		setRoot(getRoot());
+		parentRoot.setCenter(getLoadedChildren(type));
 	}
 
 	@Override
@@ -31,5 +35,15 @@ public abstract class ViewDecorator implements View {
 
 	public Object getLoadedController(ViewType type) {
 		return this.view.getChildernController(type);
+	}
+
+	@Override
+	public void setRoot(Pane root) {
+		parentRoot = (BorderPane) root;
+	}
+
+	@Override
+	public Object getChildernController(ViewType type) {
+		return getLoadedController(type);
 	}
 }
