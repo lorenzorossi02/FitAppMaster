@@ -2,8 +2,6 @@ package com.fitapp.logic.model.entity;
 
 public class User extends AbstractUser {
 
-	// private List<Session> bookedSession;
-
 	public User() {
 		super();
 	}

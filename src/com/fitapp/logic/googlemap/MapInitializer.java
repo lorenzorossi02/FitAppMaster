@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXListView;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.event.UIEventType;
+import com.lynden.gmapsfx.javascript.object.Animation;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MapOptions;
@@ -147,6 +148,7 @@ public class MapInitializer implements MapComponentInitializedListener {
 
 					if (selectedItemName.contentEquals(mark.get(i).getTitle())
 							&& !mark.get(i).getTitle().equals("You are here!")) {
+						mark.get(i).setAnimation(Animation.BOUNCE);
 						startUpPopup(selectedItem);
 						break;
 					}
