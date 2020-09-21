@@ -61,6 +61,7 @@ public class MapInitializer implements MapComponentInitializedListener {
 		this.bookingOnMapModel = bookinOnMapModel;
 		this.bookingFormModel = bookingModel;
 		this.bookingOnMapBean = bookingOnMapBean;
+		this.mark = new ArrayList<>();
 
 	}
 
@@ -72,7 +73,6 @@ public class MapInitializer implements MapComponentInitializedListener {
 		Geocode geocode = new Geocode();
 		geocode.getLocation(baseUserStreet);
 		LatLong baseLatLong = geocode.getCoordinates();
-		mark = new ArrayList<>();
 		mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius);
 
 		MapOptions mapOptions = new MapOptions();
