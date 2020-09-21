@@ -43,11 +43,10 @@ public class MapInitializer implements MapComponentInitializedListener {
 	private String baseUserStreet;
 	private BookingOnMapModel bookingOnMapModel;
 
-	private List<Marker> mark;
-
 	private BookingFormModel bookingFormModel;
 
 	private BookingOnMapBean bookingOnMapBean;
+	private List<Marker> mark;
 
 	public MapInitializer(Double bookingRadius, List<Session> avaiableSession, String userStreet,
 			BookingOnMapModel bookinOnMapModel, BookingFormModel bookingModel, BookingOnMapBean bookingOnMapBean) {
@@ -72,8 +71,8 @@ public class MapInitializer implements MapComponentInitializedListener {
 		Geocode geocode = new Geocode();
 		geocode.getLocation(baseUserStreet);
 		LatLong baseLatLong = geocode.getCoordinates();
-		this.mark = new ArrayList<>();
-		this.mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius);
+		mark = new ArrayList<>();
+		mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius);
 
 		MapOptions mapOptions = new MapOptions();
 
