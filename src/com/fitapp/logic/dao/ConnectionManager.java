@@ -31,6 +31,7 @@ public class ConnectionManager implements ConnectionInterface {
 	// Database Properties
 	private static final String USR = "postgres";
 	private static final String PWD = "postgres";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ConnectionManager.class);
 	private static final int[] portNumber = { 5432 };
 	private static final String DBNAME = "fitappdb";

@@ -245,7 +245,7 @@
                                                 </Label>
                                                 <HBox>
                                                    <children>
-                                                      <TextField fx:id="gymStreet" promptText="Gym's Street" />
+                                                      <TextField fx:id="gymStreet" editable="false" promptText="Gym's Street" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -264,7 +264,7 @@
                         <Insets top="12.0" />
                      </padding>
                   </VBox>
-                  <HBox alignment="TOP_RIGHT" layoutX="-50.0" layoutY="442.0" prefWidth="200.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox alignment="TOP_RIGHT" layoutX="-50.0" layoutY="536.0" minHeight="80.0" prefHeight="58.0" prefWidth="694.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Back" />
                         <Button fx:id="confirmBtn" mnemonicParsing="false" onAction="#confirmAction" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Confirm">
@@ -274,7 +274,7 @@
                         </Button>
                      </children>
                      <padding>
-                        <Insets left="10.0" right="10.0" top="111.0" />
+                        <Insets left="10.0" right="10.0" top="46.0" />
                      </padding>
                   </HBox>
                </children>

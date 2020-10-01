@@ -35,6 +35,11 @@ public class Query {
 	}
 
 	public static ResultSet getGym(Statement st, Integer id) throws SQLException {
+		String sql = "select  * from gym where gym_id = '" + id + "';";
+		return st.executeQuery(sql);
+	}
+	
+	public static ResultSet getManagerGym(Statement st, Integer id) throws SQLException {
 		String sql = "select  * from gym where manager_id = '" + id + "';";
 		return st.executeQuery(sql);
 	}
@@ -47,7 +52,7 @@ public class Query {
 	}
 
 	public static ResultSet getGymById(Statement st, Integer id) throws SQLException {
-		String sql = "select * from gym where gym_id = '" + id + "';";
+		String sql = "select * from gym where manager_id = '" + id + "';";
 		return st.executeQuery(sql);
 	}
 
@@ -92,8 +97,7 @@ public class Query {
 	}
 
 	public static ResultSet getAllCourse(Statement st, int id) throws SQLException {
-		String sql = "select trainer_name, course_id, individual,street,time_start,time_end,day,description,recurrence,session_id,trainer_id from training_session where gym_id = '"
-				+ id + "';";
+		String sql = "select * from training_session where gym_id = '" + id + "';";
 
 		return st.executeQuery(sql);
 	}
@@ -106,13 +110,13 @@ public class Query {
 
 	public static int addTrainer(Statement st, Trainer t) throws SQLException {
 		String sql = "insert into trainer(trainer_name, gym_id, kickboxing, pugilato, zumba, salsa, funzionale, walking, pump) values('"
-				+ t.getName() + "'," + t.getGymId() + "," + t.getKick() + "," + t.getBoxe() + "," + t.getZumba() + ","
+				+ t.getName().get() + "'," + t.getGymId() + "," + t.getKick() + "," + t.getBoxe() + "," + t.getZumba() + ","
 				+ t.getSalsa() + "," + t.getFunct() + "," + t.getWalk() + "," + t.getPump() + ")";
 		return st.executeUpdate(sql);
 	}
 
 	public static ResultSet getTrainerId(Statement st, Trainer t) throws SQLException {
-		String sql = "select trainer_id from trainer where trainer_name = '" + t.getName() + "' and gym_id = "
+		String sql = "select trainer_id from trainer where trainer_name = '" + t.getName().get() + "' and gym_id = "
 				+ t.getGymId() + ";";
 		return st.executeQuery(sql);
 	}
@@ -143,9 +147,20 @@ public class Query {
 		String sql = "select * from trainer where trainer_id = " + trainerId;
 		return st.executeQuery(sql);
 	}
+	
+	public static ResultSet getTrainerEntityByName(Statement st, String trainerName) throws SQLException {
+		String sql = "select * from trainer where trainer_name = " + trainerName;
+		return st.executeQuery(sql);
+	}
 
 	public static int insertNewSession(Statement statement, Session newSession) throws SQLException {
-
+		System.out.println(""
+				+ newSession.getTrainerId() + "','" + newSession.getTrainerName().get() + "','"
+				+ newSession.getCourseId().get() + "','" + newSession.isIndividual().getValue() + "','"
+				+ newSession.getGymId() + "','" + newSession.getGymStreet().get() + "','"
+				+ newSession.getTimeStart().getValue().toString() + "','"
+				+ newSession.getTimeEnd().getValue().toString() + "','" + newSession.getDate().getValue().toString()
+				+ "','" + newSession.getDescription().getValue() + "','" + newSession.getRecurrence().get() + "');");
 		String sql = "insert into training_session(trainer_id, trainer_name, course_id, individual, gym_id, street, time_start, time_end, day, description,recurrence) values ('"
 				+ newSession.getTrainerId() + "','" + newSession.getTrainerName().get() + "','"
 				+ newSession.getCourseId().get() + "','" + newSession.isIndividual().getValue() + "','"
@@ -158,6 +173,7 @@ public class Query {
 
 	public static int deleteSession(Statement statement, int sessionToRemove) throws SQLException {
 		String sql = "delete from training_session where session_id = " + sessionToRemove + ";";
+		
 		return statement.executeUpdate(sql);
 	}
 
@@ -179,5 +195,10 @@ public class Query {
 	public static int bookSession(Statement statement, int sessionId, Integer userId) throws SQLException {
 		String sql = "insert into booked_session(session_id,user_id) values(" + sessionId + "," + userId + ");";
 		return statement.executeUpdate(sql);
+	}
+
+	public static ResultSet isRegistered(Statement statement, String email) throws SQLException {
+		String sql = "select * from users where email='" + email + "';";
+		return statement.executeQuery(sql);
 	}
 }

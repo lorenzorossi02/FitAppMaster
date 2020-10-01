@@ -93,7 +93,7 @@ public class EmailBean implements Observer {
 		return pwd;
 	}
 
-	private static boolean isValid(String email) {
+	private boolean isValid(String email) {
 		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
 		return email.matches(regex);
 	}

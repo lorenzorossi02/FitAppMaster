@@ -7,6 +7,19 @@ import javafx.beans.property.StringProperty;
 
 public class Trainer {
 	private StringProperty trainername = new SimpleStringProperty();
+	private String trainerStringNameString;
+
+	public String getTrainerStringNameString() {
+		System.out.println("GET"+trainerStringNameString);
+		return trainerStringNameString;
+	}
+
+	public void setTrainerStringNameString(String trainerStringNameString) {
+		this.trainerStringNameString = trainerStringNameString;
+		System.out.println("SET"+trainerStringNameString);
+
+	}
+
 	private int trainerId;
 	private int gymId;
 	private Map<Course, Boolean> course;
@@ -19,6 +32,7 @@ public class Trainer {
 	private Boolean pump;
 
 	public Trainer() {
+		
 
 	}
 
@@ -30,10 +44,19 @@ public class Trainer {
 	}
 
 	public StringProperty getName() {
-		return trainername;
+		System.out.println("THIS IS GET NAME IN TRAINE$"+ this.trainername.getValue());
+
+		return this.trainername;
+	}
+
+	public String getTrainerName() {
+		System.out.println("GET TRAINER NAME"+ trainerStringNameString);
+		return trainerStringNameString;
 	}
 
 	public void setName(String trainername) {
+		System.out.println("TRAINER NAME IN TRAINER ENTITY"+ trainername);
+		setTrainerStringNameString(trainername);
 		this.trainername.set(trainername);
 	}
 

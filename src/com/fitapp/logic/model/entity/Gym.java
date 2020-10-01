@@ -17,6 +17,7 @@ public class Gym {
 	private Map<Integer, String> courses;
 
 	private List<Trainer> trainerList;
+	private Double[] latlng;
 
 	public Gym() {
 	}
@@ -91,5 +92,13 @@ public class Gym {
 
 	public void setTrainerList(List<Trainer> trainerList) {
 		this.trainerList = trainerList;
+	}
+
+	public void setCoorindates(Double[] endPoint) {
+		this.latlng = endPoint;
+	}
+
+	public Double[] getCoordinates() {
+		return latlng;
 	}
 }

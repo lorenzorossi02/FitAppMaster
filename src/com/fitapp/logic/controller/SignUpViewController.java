@@ -83,13 +83,15 @@ public class SignUpViewController {
 	private Label userStreetLabel;
 
 	private ApplicationFacade applicationFacade = ApplicationFacade.getInstance();
-	private BaseUserModel model;
+	private SignUpController signUpController;
 
 	@FXML
 	public void isManager(ActionEvent event) {
 
 		if (managerCheck.isSelected()) {
 			setManager.setVisible(true);
+			gymName.setEditable(true);
+			gymStreet.setEditable(true);
 		} else if (!managerCheck.isSelected()) {
 			setManager.setVisible(false);
 
@@ -113,10 +115,12 @@ public class SignUpViewController {
 
 	@FXML
 	public void confirmAction(ActionEvent event) {
-		if (event.getSource().equals(confirmBtn) && (!guestLabel.isVisible()) && (!confirmEmailLabel.isVisible())
-				&& (!confirmPassLabel.isVisible()) && !userStreet.getText().trim().isEmpty()
-				|| (!gymName.getText().trim().isEmpty() && !gymStreet.getText().trim().isEmpty())) {
-			registerUser();
+		if (!guestLabel.isVisible() && !confirmEmailLabel.isVisible() && !confirmPassLabel.isVisible()
+				&& (userStreet.getText() != null || (gymName.getText() != null && gymStreet.getText() != null))) {
+			System.out.println(gymName.getText() + gymStreet.getText());
+			;
+			signUpController.registerUser(confirmEmail.getText(), username.getText(), userStreet.getText(),
+					password.getText(), managerCheck.isSelected(), gymName.getText(), gymStreet.getText());
 
 			String title = "User Created";
 			String header = "Hi " + username.getText() + ", welcome in FitApp!";
@@ -124,7 +128,7 @@ public class SignUpViewController {
 					+ "If You want to edit your informations, click cancel.";
 			CustomAlertBox customBox = AlertFactory.getInstance().createAlert(AlertType.CONFIRMATION, title, header,
 					content);
-			model.setName(username.getText());
+			signUpController.setName(username.getText());
 			customBox.display(backBtn);
 
 		}
@@ -152,28 +156,11 @@ public class SignUpViewController {
 	}
 
 	private void setEmail() {
-		String s = model.getEmail();
+		String s = signUpController.getEmail();
 		email.setText(s);
 		email.setDisable(true);
 		emailLabel.setText("the email was retrieve from the database, you can't edit");
 		emailLabel.setVisible(true);
-	}
-
-	private void registerUser() {
-
-		model.setEmail(email.getText());
-
-		model.setName(username.getText());
-
-		model.setMyPosition(userStreet.getText());
-		model.setPwd(password.getText());
-		model.setManager(managerCheck.isSelected());
-		if (managerCheck.isSelected()) {
-			model.getGym().setGymName(gymName.getText());
-			model.getGym().setStreet(gymStreet.getText());
-		}
-		model.registerNewUser();
-
 	}
 
 	public boolean findNode(TextField field, String s) {
@@ -204,7 +191,6 @@ public class SignUpViewController {
 		passLabel.setVisible(false);
 		confirmPassLabel.setVisible(false);
 		setManager.setVisible(false);
-		confirmBtn.setDisable(false);
 		userStreetLabel.setVisible(false);
 		addCheckListener(username);
 		addCheckListener(confirmEmail);
@@ -213,10 +199,8 @@ public class SignUpViewController {
 	}
 
 	public void initModel(BaseUserModel userModel) {
-		if (this.model != null) {
-			throw new IllegalStateException("Model can only be initialized once");
-		}
-		this.model = userModel;
+
+		signUpController = new SignUpController(userModel);
 		setEmail();
 
 	}

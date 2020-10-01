@@ -99,7 +99,7 @@ public class BookingFormViewController {
 		slideBtn.setValue(DEFAULT_DISTANCE);
 		slideBtn.setVisible(true);
 		radiousLbl.setVisible(true);
-		BookingOnMapBean bookingOnMapBean = new BookingOnMapBean();
+		bookingOnMapBean = new BookingOnMapBean();
 		BookingOnMapModel bookingOnMapModel = new BookingOnMapModel(bookingOnMapBean);
 		bookingFormController = new BookingFormController(bookingOnMapModel);
 	}

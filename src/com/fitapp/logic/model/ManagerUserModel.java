@@ -1,10 +1,14 @@
 package com.fitapp.logic.model;
 
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 
 import com.fitapp.logic.bean.ManagerUserBean;
 import com.fitapp.logic.dao.SessionDAO;
 import com.fitapp.logic.dao.TrainerDAO;
+import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Gym;
 import com.fitapp.logic.model.entity.Trainer;
 
@@ -56,9 +60,32 @@ public class ManagerUserModel extends Observable {
 	}
 
 	public void initializeTrainers() {
+		System.out.println("GYM ID"+ gym.getGymId());
 		ObservableList<Trainer> products = FXCollections.observableArrayList();
+		List<Trainer> trainerGymList = trainerDAO.getTrainerList(gym.getGymId());
+		System.out.println("TRAINER GYM LIST"+ trainerGymList);
+		if(trainerGymList.isEmpty()) {
+			Trainer trainer = new Trainer();
+			trainer.setTrainerStringNameString("DEFAULT");
+			trainer.setTrainerId(0);
+			trainer.setGymId(0);
+			Map<Course, Boolean> map = new EnumMap<>(Course.class);
+			map.put(Course.KICKBOXING, false);
+			map.put(Course.FUNCTIONAL, false);
+			map.put(Course.PUGILATO, false);
+			map.put(Course.PUMP, false);
+			map.put(Course.SALSA, false);
+			map.put(Course.WALKING, false);
+			map.put(Course.ZUMBA, false);
+			trainer.setCourse(map);
+			setTrainerList(products);
+
+			products.add(trainer);
+		}else {
 		for (Trainer t : trainerDAO.getTrainerList(gym.getGymId()))
 			products.add(t);
+		}
+		System.out.println("TRAINER LIST IN MODEL"+ products);
 		setTrainerList(products);
 	}
 

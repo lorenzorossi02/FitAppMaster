@@ -79,6 +79,7 @@ public class TrainerDAO extends ConnectionManager {
 
 	public void deleteTrainer(int trainerId) {
 		try {
+			System.out.println("TRAINER ID"+ trainerId);
 			int count = Query.deleteTrainer(this.statement, trainerId);
 			if (count < 1) {
 				throw new DeleteException();
@@ -102,7 +103,11 @@ public class TrainerDAO extends ConnectionManager {
 					map.put(Course.SALSA, rs.getBoolean("salsa"));
 					map.put(Course.WALKING, rs.getBoolean("walking"));
 					map.put(Course.ZUMBA, rs.getBoolean("zumba"));
-					return new Trainer(rs.getString("trainer_name"), trainerId, rs.getInt("gym_id"), map);
+					Trainer newTrainer = new Trainer(rs.getString("trainer_name"), trainerId, rs.getInt("gym_id"), map);
+					newTrainer.setTrainerId(trainerId);
+					return newTrainer;
+			        
+			            
 
 				}
 			}
@@ -112,4 +117,6 @@ public class TrainerDAO extends ConnectionManager {
 		}
 		return null;
 	}
+
+
 }

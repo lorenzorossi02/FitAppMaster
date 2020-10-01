@@ -68,8 +68,8 @@ public class SessionDAO extends ConnectionManager {
 
 		try {
 			ResultSet rs = Query.getAllCourse(this.statement, id);
-			while (rs.next()) {
 
+			while (rs.next()) {
 				// Data property
 				Time timeStart = Time.valueOf(rs.getString(TIMESTARTS));
 				Time timeEnd = Time.valueOf(rs.getString(TIMEEND));
@@ -167,6 +167,7 @@ public class SessionDAO extends ConnectionManager {
 	public int insertNewSession(Session newSession) {
 		try {
 			int count = Query.insertNewSession(this.statement, newSession);
+			System.out.println("COUNT VALUE"+ count);
 			if (count < 1) {
 				throw new InsertException();
 			}
@@ -186,7 +187,10 @@ public class SessionDAO extends ConnectionManager {
 
 	public void removeSession(Session sessionToRemove) {
 		try {
+			System.out.println("SESSION TO DELETE"+sessionToRemove.getSessionId().get());
+
 			int count = Query.deleteSession(this.statement, sessionToRemove.getSessionId().get());
+			System.out.println("COUNT VALUE:"+ count);
 			if (count < 1) {
 				throw new DeleteException();
 			}

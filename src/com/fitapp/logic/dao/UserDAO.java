@@ -96,4 +96,14 @@ public class UserDAO extends ConnectionManager {
 			AlertFactory.getInstance().createAlert(e);
 		}
 	}
+
+	public boolean isRegistered(String email) {
+		try {
+			ResultSet resultSet = Query.isRegistered(this.statement, email);
+			return resultSet.first();
+		} catch (SQLException e) {
+			AlertFactory.getInstance().createAlert(e);
+		}
+		return false;
+	}
 }

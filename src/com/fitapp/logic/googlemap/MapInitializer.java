@@ -73,7 +73,7 @@ public class MapInitializer implements MapComponentInitializedListener {
 		Geocode geocode = new Geocode();
 		geocode.getLocation(baseUserStreet);
 		LatLong baseLatLong = geocode.getCoordinates();
-		mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius);
+		mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius, true);
 
 		MapOptions mapOptions = new MapOptions();
 

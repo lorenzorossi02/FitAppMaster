@@ -32,9 +32,7 @@ public class BookingOnMapModel extends Observable {
 	private double radius;
 	private String baseAddress;
 	private LatLong baseLatLong;
-	private String pathUser = MarkerImageFactory.createMarkerImage("/com/fitapp/logic/icon/pathUser.png", "png");
-
-	private String pathGym = MarkerImageFactory.createMarkerImage("/com/fitapp/logic/icon/pathGym.png", "png");
+	
 	private ObservableList<Session> newSessionList = FXCollections.observableArrayList();
 
 	public ObservableList<Session> getNewSessionList() {
@@ -80,30 +78,35 @@ public class BookingOnMapModel extends Observable {
 		return radius;
 	}
 
-	public List<Marker> geocodeMarkers(List<Session> avaiableSession, String baseUserStreet, Double bookingRadius) {
+	public List<Marker> geocodeMarkers(List<Session> avaiableSession, String baseUserStreet, Double bookingRadius, Boolean markerObj) {
 
 		Geocode posGeocode = new Geocode();
-
 		List<Marker> listMarker = new ArrayList<>();
 		this.baseAddress = baseUserStreet;
+		System.out.println("BASE ADDRESS"+this.baseAddress);
+
 		posGeocode.getLocation(baseUserStreet);
 		LatLong baseCoordinates = posGeocode.getCoordinates();
 		if (baseCoordinates == null) {
 			return new ArrayList<>();
 		}
+		if(Boolean.TRUE.equals(markerObj)) {
 		Marker baseMarker = setupMaker(baseCoordinates, "You are Here!", baseUserStreet, 0, null);
 		listMarker.add(baseMarker);
+		}
 		for (int indexSessionList = avaiableSession.size() - 1; indexSessionList >= 0; --indexSessionList) {
 			posGeocode.getLocation(avaiableSession.get(indexSessionList).getGymStreet().get());
 			LatLong endPoint = posGeocode.getCoordinates();
 			double relativeDistance = distanceRelative(baseCoordinates.getLatitude(), endPoint.getLatitude(),
 					baseCoordinates.getLongitude(), endPoint.getLongitude());
 			if (Double.compare(relativeDistance, bookingRadius) < 0) {
+				if(Boolean.TRUE.equals(markerObj)) {
 				Marker newMarker = setupMaker(endPoint, avaiableSession.get(indexSessionList).getGymName().getValue(),
 						avaiableSession.get(indexSessionList).getGymStreet().get(),
 						avaiableSession.get(indexSessionList).getSessionId().get(),
 						avaiableSession.get(indexSessionList).getCourseName().get());
 				listMarker.add(newMarker);
+				}
 			} else {
 				avaiableSession.remove(avaiableSession.get(indexSessionList));
 			}
@@ -124,7 +127,9 @@ public class BookingOnMapModel extends Observable {
 			String courseName) {
 		if (position == null)
 			return null;
+		String pathUser = MarkerImageFactory.createMarkerImage("/com/fitapp/logic/icon/pathUser.png", "png");
 
+		String pathGym = MarkerImageFactory.createMarkerImage("/com/fitapp/logic/icon/pathGym.png", "png");
 		pathUser = pathUser.replace("(", "");
 		pathUser = pathUser.replace(")", "");
 		pathGym = pathGym.replace("(", "");
@@ -133,6 +138,7 @@ public class BookingOnMapModel extends Observable {
 		MarkerOptions markerOptions = new MarkerOptions();
 
 		if (markerAddres.equals(baseAddress)) {
+		
 			markerOptions.position(position).visible(Boolean.TRUE).title(markerName).icon(pathUser);
 
 		} else {
@@ -193,6 +199,38 @@ public class BookingOnMapModel extends Observable {
 		temporanySessionList.removeAll(sessionToRemove);
 
 		return temporanySessionList;
+	}
+
+	
+	public List<Session> geocodeSessions(List<Session> userSessionList, String baseAddress, double bookingRadius) {
+		Geocode pos = new Geocode();
+		this.baseAddress = baseAddress;
+		pos.getCoords(this.baseAddress);
+		Double[] baseCoordinates = pos.getCoords(this.baseAddress);
+		if (baseCoordinates == null) {
+			return new ArrayList<>();
+		}		
+		for (int indexSessionList = userSessionList.size() - 1; indexSessionList >= 0; --indexSessionList) {
+			Double[] endPoint = pos.getCoords(userSessionList.get(indexSessionList).getGymStreet().get());
+			double relativeDistance = distanceRelative(baseCoordinates[0], endPoint[0],
+					baseCoordinates[1], endPoint[1]);
+			if (Double.compare(relativeDistance, bookingRadius) < 0) {
+				userSessionList.get(indexSessionList).setCoordinates(endPoint);
+			} else {
+				userSessionList.remove(userSessionList.get(indexSessionList));
+			}
+		}
+
+		newSessionList.setAll(userSessionList);
+		setNewSessionList(newSessionList);
+		return newSessionList;
+
+		
+	}
+
+	public Object getCenterMap() {
+		Geocode pos = new Geocode();
+		return pos.getCoords(baseAddress);
 	}
 
 }

@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+#brand-logo {
+  font-size: 34px;
+}
+
+#app-navbar {
+  background: linear-gradient(120deg, #ffffff, #ffffff);
+  border: 10px;
+}
+

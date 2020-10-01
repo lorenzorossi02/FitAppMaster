@@ -33,7 +33,7 @@ public class BaseUserBean implements Observer {
 	}
 
 	public void setUserName(String name) {
-		if (!checkField(name)) {
+		if (!checkField(name) && !isValid(name)) {
 			this.usernameStringProperty.set(name);
 		}
 	}
@@ -129,4 +129,8 @@ public class BaseUserBean implements Observer {
 		return this.usernameStringProperty;
 	}
 
+	private static boolean isValid(String email) {
+		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		return email.matches(regex);
+	}
 }

@@ -9,7 +9,6 @@ import com.calendarfx.view.page.DayPage;
 import com.calendarfx.view.page.MonthPage;
 import com.fitapp.logic.bean.CalendarBean;
 import com.fitapp.logic.bean.ManagerUserBean;
-import com.fitapp.logic.facade.CalendarFacade;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.model.CalendarGymModel;
@@ -305,12 +304,8 @@ public class GymPageViewController {
 	private void calendarSetup() {
 		CalendarBean calendarBean = new CalendarBean();
 		CalendarGymModel calendarModel = new CalendarGymModel(calendarBean);
-		CalendarFacade calendarFacade = new CalendarFacade(calendarModel, monthPage, dayPage, allTrainer);
-		calendarModel.setCalendarId(managerUserBean.getManagerId().get());
-		calendarModel.setManagerProperty(true);
-		calendarModel.setGym(managerUserBean.getGym());
-		calendarFacade.initCalendar();
-
+		gymPageController.setModel(calendarModel, managerUserBean.getManagerId().get(), true, managerUserBean.getGym());
+		gymPageController.initializeCalendar(monthPage, dayPage, allTrainer);
 	}
 
 	private Map<Course, Boolean> createCourse() {
@@ -373,7 +368,7 @@ public class GymPageViewController {
 		gymPageController = new GymPageController(managerModel);
 
 		fillGraphics();
-		managerUserModel.initializeTrainers();
+		gymPageController.initializeTrainers();
 		initTable();
 		calendarSetup();
 

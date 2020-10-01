@@ -72,11 +72,42 @@ public class Geocode {
 
 			double lng = (double) location.get("lng");
 			double lat = (double) location.get("lat");
-			coord = new LatLong(lat, lng);
+			coord = new LatLong(lat,lng);
 			setCoordinates(coord);
 		} catch (ParseException e) {
 			AlertFactory.getInstance().createAlert(e);
 		}
 	}
+
+	public Double[] getCoords(String address) {
+
+		StringBuilder str = this.getConnection(address);
+
+		JSONObject location = null;
+		Double[] coord = new Double[2];
+		try {
+			JSONParser parser = new JSONParser();
+			String requestResult = str.toString();
+			Object obj = parser.parse(requestResult);
+			JSONObject jb = (JSONObject) obj;
+			JSONArray array = (JSONArray) jb.get("results");
+			JSONObject result = (JSONObject) array.get(0);
+			JSONObject geometry = (JSONObject) result.get("geometry");
+			location = (JSONObject) geometry.get("location");
+
+			double lng = (double) location.get("lng");
+			double lat = (double) location.get("lat");
+			coord[0] = lat;
+			coord[1] = lng;
+			System.out.println(coord);
+			return coord;
+			
+		} catch (ParseException e) {
+			AlertFactory.getInstance().createAlert(e);
+		}
+		return coord;
+	}
+
+
 
 }

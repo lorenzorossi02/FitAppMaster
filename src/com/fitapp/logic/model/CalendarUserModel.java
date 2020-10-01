@@ -6,6 +6,7 @@ import java.util.Observable;
 
 import com.fitapp.logic.bean.CalendaUserBean;
 import com.fitapp.logic.dao.SessionDAO;
+import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Session;
 
 public class CalendarUserModel extends Observable {
@@ -51,7 +52,11 @@ public class CalendarUserModel extends Observable {
 		List<Integer> listBookedSession = SessionDAO.getInstance().getBookedSessionById(userId);
 		List<Session> bookedSessionList = new ArrayList<>();
 		for (Integer sessionId : listBookedSession) {
-			bookedSessionList.add(SessionDAO.getInstance().getBookedSessionEntity(sessionId));
+			Session bookedSession = SessionDAO.getInstance().getBookedSessionEntity(sessionId);
+			Course course = Course.getCourse(bookedSession.getCourseId().get()-1);
+			bookedSession.setCourseName(course.name());
+		
+			bookedSessionList.add(bookedSession);
 		}
 		return bookedSessionList;
 	}

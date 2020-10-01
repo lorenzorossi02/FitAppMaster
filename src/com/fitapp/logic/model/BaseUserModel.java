@@ -34,9 +34,8 @@ public class BaseUserModel extends Observable {
 	}
 
 	public BaseUserModel(BaseUserBean bean, EmailBean emailBean) {
-		super();
-		this.addObserver(bean);
-		this.addObserver(emailBean);
+		addObserver(bean);
+		addObserver(emailBean);
 
 	}
 
@@ -116,6 +115,7 @@ public class BaseUserModel extends Observable {
 	public boolean autenticate() {
 		UserDAO userDAO = UserDAO.getInstance();
 		boolean autenticated = userDAO.checkCredential(this.name, this.pwd);
+		System.out.println(autenticated);
 		if (autenticated && !this.name.contentEquals("") && !this.pwd.contentEquals("")) {
 			User user = userDAO.getUserEntity(this.name, this.pwd);
 			setName(user.getName());
@@ -124,7 +124,7 @@ public class BaseUserModel extends Observable {
 			setManager(user.isManager());
 			setMyPosition(user.getMyPosition());
 			if (user.isManager()) {
-				gym = GymDAO.getInstance().getGymEntity(user.getId());
+				gym = GymDAO.getInstance().getGymEntityByManagerId(user.getId());
 				setGym(gym);
 			}
 			return autenticated;
@@ -132,10 +132,30 @@ public class BaseUserModel extends Observable {
 		return false;
 	}
 
-	private void setGym(Gym gym) {
+	public void setGym(Gym gym) {
 		this.gym = gym;
 		setChanged();
 		notifyObservers(ChangedValue.GYM);
+	}
+
+	public String getGymName() {
+		return gymName;
+	}
+
+	public void setGymName(String gymName) {
+		this.gymName = gymName;
+	}
+
+	public String getGymStreet() {
+		return gymStreet;
+	}
+
+	public void setGymStreet(String gymStreet) {
+		this.gymStreet = gymStreet;
+	}
+
+	public Boolean getManager() {
+		return manager;
 	}
 
 	public Gym getGym() {
@@ -155,10 +175,15 @@ public class BaseUserModel extends Observable {
 	}
 
 	public void registerNewUser() {
+		System.out.println("ID UTENTE"+this.id);
 		UserDAO.getInstance().registerUser(this.name, this.pwd, this.email, this.manager, this.myPosition, this.id);
 		if (Boolean.TRUE.equals(manager)) {
 			GymDAO.getInstance().registerGym(this.gymName, this.gymStreet, this.id, this.name);
 		}
+	}
+
+	public boolean alreadyRegistered(String email) {
+		return UserDAO.getInstance().isRegistered(email);
 	}
 
 }

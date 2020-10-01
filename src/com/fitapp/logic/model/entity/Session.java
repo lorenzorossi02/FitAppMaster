@@ -71,6 +71,7 @@ public class Session {
 	}
 
 	public void setCourseName(String courseName) {
+		System.out.println("COURSE NAME IN SESSION"+courseName);
 		this.sessionCourse.setCourseName(courseName);
 	}
 
@@ -169,6 +170,14 @@ public class Session {
 
 	public Time[] getDuration() {
 		return this.sessionTime.getDuration().get();
+	}
+
+	public void setCoordinates(Double[] endPoint) {
+		this.sessionGym.setCoorindates(endPoint);
+	}
+	
+	public Double[] getCoordinates() {
+		return this.sessionGym.getCoordinates();
 	}
 
 }

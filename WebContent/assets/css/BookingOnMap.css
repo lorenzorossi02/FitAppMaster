@@ -1,0 +1,105 @@
+@charset "ISO-8859-1";
+
+.card-container {
+	width: 800px;
+	max-width: 700px;
+	min-width: 700px;
+	height: 800px;
+	min-height: 800px;
+	max-height: 800px;
+	overflow-y: scroll;
+	flex-direction: column;
+	background-color: #FFFFFF;
+	padding: 0rem;
+	opacity: 0.93;
+	max-height: 800px;
+}
+
+.card {
+	min-width: 700px;
+	height: 200px;
+	max-height: 350px;
+	min-height: 200px;
+	border-radius: 16px;
+	background-color: #FFFFFF;
+	display: flex;
+	flex-direction: row;
+	padding: 0rem;
+	transition: 0.2s;
+	border-radius: 16px;
+}
+
+.date {
+	color: #8a8a8a;
+}
+
+.tags {
+	display: flex;
+	flex-wrap: wrap;
+	margin: 1rem 0 1rem;
+}
+
+.tags div {
+	font-size: 9px;
+	font-weight: 700;
+	padding: 4px 10px;
+	border: 3px solid #28242f;
+	border-radius: 2rem;
+}
+
+.card .category-title {
+	font-size: 14px;
+	color: #fff;
+	margin-bottom: 1rem;
+}
+
+.card .article-title {
+	font-size: 20px;
+	font-weight: 700;
+}
+
+.card .article-header {
+	margin-bottom: auto;
+}
+
+.card .author {
+	margin-top: 3rem;
+	display: grid;
+	grid-template-columns: 75px 1fr;
+}
+
+.author .info .caption {
+	color: #8a8a8a;
+}
+
+.card:not(:first-child) {
+	margin-left: 0px;
+}
+
+.card:hover {
+	transform: translateY(1rem);
+}
+
+.card:hover ~.card {
+	transform: translateX(0px);
+}
+
+.card-btn {
+	display: block;
+	width: 15rem;
+	height:4rem;
+	padding: 0.5rem;
+	font-size: 0.8rem;
+	color: #214a80;
+	background-color: #d8e0fd;
+	border: none;
+	border-radius: 0.4rem;
+	transition: 0.2s;
+	cursor: pointer;
+	letter-spacing: 0.1rem;
+}
+
+.card-btn:hover,
+.card-btn:active {
+  background-color: #c2cffc;
+}

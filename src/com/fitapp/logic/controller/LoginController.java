@@ -23,6 +23,9 @@ public class LoginController {
 		EmailController emailController = new EmailController(baseUserModel);
 		emailController.initMsg(email, pwd);
 		if (email != null && pwd != null) {
+			if (baseUserModel.alreadyRegistered(email)) {
+				return false;
+			}
 			baseUserModel.signUp(email, pwd);
 			return emailController.sendEmail();
 
@@ -52,6 +55,7 @@ public class LoginController {
 	}
 
 	public void setManagerModel(Integer userId, String userName, Gym gym) {
+		System.out.println(gym.getManagerName()+ gym.getStreet().get()+ gym.getGymName().get());
 		managerUserModel.setManagerId(userId);
 		managerUserModel.setManagerName(userName);
 		managerUserModel.setGym(gym);
