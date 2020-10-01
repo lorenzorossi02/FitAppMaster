@@ -14,12 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fitapp.logic.bean.BookingOnMapBean;
 import com.fitapp.logic.bean.GymMapPopupBean;
 import com.fitapp.logic.bean.UserBean;
-import com.fitapp.logic.googlemap.Geocode;
 import com.fitapp.logic.model.BookingOnMapModel;
 import com.fitapp.logic.model.GymMapPopupModel;
 import com.fitapp.logic.model.entity.Session;
-import com.lynden.gmapsfx.javascript.object.LatLong;
-import com.lynden.gmapsfx.javascript.object.Marker;
+
 
 import javafx.collections.ObservableList;
 

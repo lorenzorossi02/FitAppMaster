@@ -13,7 +13,6 @@ import com.calendarfx.view.page.MonthPage;
 import com.fitapp.logic.bean.CalendarPopupBean;
 import com.fitapp.logic.dao.TrainerDAO;
 import com.fitapp.logic.facade.CalendarFacade;
-import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.model.CalendarGymModel;
 import com.fitapp.logic.model.CalendarPopupModel;
 import com.fitapp.logic.model.ManagerUserModel;
@@ -25,7 +24,6 @@ import com.fitapp.logic.model.entity.SessionTime;
 import com.fitapp.logic.model.entity.Trainer;
 
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert.AlertType;
 
 public class GymPageController {
 

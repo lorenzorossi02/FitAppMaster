@@ -1,7 +1,6 @@
 package com.fitapp.logic.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,11 +14,9 @@ import com.fitapp.logic.bean.BaseUserBean;
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.ManagerUserBean;
 import com.fitapp.logic.bean.UserBean;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.BaseUserModel;
 import com.fitapp.logic.model.ManagerUserModel;
 import com.fitapp.logic.model.UserModel;
-import com.fitapp.logic.view.UserPageView;
 
 /**
  * Servlet implementation class LoginServlet
