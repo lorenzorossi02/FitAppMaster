@@ -3,67 +3,91 @@
               Any modifications will be overwritten.
               To include a user specific buildfile here, simply create one in the same
               directory with the processing instruction <?eclipse.ant.import?>
-              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FitApp">
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="FitAppMaster">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse/java-2020-03/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../../eclipse/java-2020-09/eclipse/"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.8"/>
     <property name="source" value="1.8"/>
-    <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/annotations-api.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-ant.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-ha.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-storeconfig.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-tribes.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/ecj-4.4.2.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/el-api.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jasper-el.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jasper.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jsp-api.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-api.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-coyote.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-dbcp.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-es.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-fr.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-ja.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-jdbc.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-jni.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-spdy.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-util-scan.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-util.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-websocket.jar"/>
-        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/websocket-api.jar"/>
+    <path id="Web App Libraries.libraryclasspath">
+        <pathelement location="WebContent/WEB-INF/lib/GMapsFXlib.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/animatefx-1.2.0.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/byte-buddy-1.6.11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/byte-buddy-agent-1.6.11.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/controlsfx-8.40.14.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/fontawesomefx-commons-8.13.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/fontawesomefx-fontawesome-4.7.0-1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javax.mail.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/javax_mail.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jfoenix-8.0.8.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/json-simple-1.1.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/jstl-1.2.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/lib-recur-0.11.6.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/logback-classic-1.2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/logback-core-1.2.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/mockito-core-2.7.17.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/objenesis-2.5.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/postgresql-42.2.9.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/recurrence-8.6.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/rfc5545-datetime-0.3.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/slf4j-api-1.7.23.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/view-8.6.1.jar"/>
     </path>
-    <path id="Web App Libraries.libraryclasspath"/>
     <path id="EAR Libraries.libraryclasspath"/>
-    <path id="FitApp.classpath">
+    <path id="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath">
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/annotations-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-ant.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-ha.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/catalina.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/ecj-4.4.2.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/el-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jasper-el.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jasper.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/jsp-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/servlet-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-api.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-spdy.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-util.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../../../Program Files/Apache Software Foundation/Tomcat 8.0/lib/websocket-api.jar"/>
+    </path>
+    <path id="FitAppMaster.classpath">
         <pathelement location="build/classes"/>
-        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
+        <pathelement location="src/com/fitapp/lib/animatefx-1.2.0.jar"/>
+        <pathelement location="src/com/fitapp/lib/byte-buddy-1.6.11.jar"/>
+        <pathelement location="src/com/fitapp/lib/byte-buddy-agent-1.6.11.jar"/>
+        <pathelement location="src/com/fitapp/lib/controlsfx-8.40.14.jar"/>
+        <pathelement location="src/com/fitapp/lib/fontawesomefx-commons-8.13.jar"/>
+        <pathelement location="src/com/fitapp/lib/fontawesomefx-fontawesome-4.7.0-1.jar"/>
+        <pathelement location="src/com/fitapp/lib/GMapsFXlib.jar"/>
+        <pathelement location="src/com/fitapp/lib/javax_mail.jar"/>
+        <pathelement location="src/com/fitapp/lib/javax.mail.jar"/>
+        <pathelement location="src/com/fitapp/lib/jfoenix-8.0.8.jar"/>
+        <pathelement location="src/com/fitapp/lib/json-simple-1.1.1.jar"/>
+        <pathelement location="src/com/fitapp/lib/lib-recur-0.11.6.jar"/>
+        <pathelement location="src/com/fitapp/lib/logback-classic-1.2.1.jar"/>
+        <pathelement location="src/com/fitapp/lib/logback-core-1.2.1.jar"/>
+        <pathelement location="src/com/fitapp/lib/mockito-core-2.7.17.jar"/>
+        <pathelement location="src/com/fitapp/lib/objenesis-2.5.jar"/>
+        <pathelement location="src/com/fitapp/lib/postgresql-42.2.9.jar"/>
+        <pathelement location="src/com/fitapp/lib/recurrence-8.6.1.jar"/>
+        <pathelement location="src/com/fitapp/lib/rfc5545-datetime-0.3.jar"/>
+        <pathelement location="src/com/fitapp/lib/slf4j-api-1.7.23.jar"/>
+        <pathelement location="src/com/fitapp/lib/view-8.6.1.jar"/>
+        <pathelement location="WebContent/WEB-INF/lib/GMapsFXlib.jar"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
-        <pathelement location="src/src/com/fitapp/lib/animatefx-1.2.0.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/byte-buddy-1.6.11.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/byte-buddy-agent-1.6.11.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/controlsfx-8.40.14.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/fontawesomefx-commons-8.13.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/fontawesomefx-fontawesome-4.7.0-1.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/GMapsFXlib.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/javax_mail.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/javax.mail.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/jfoenix-8.0.8.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/json-simple-1.1.1.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/lib-recur-0.11.6.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/logback-classic-1.2.1.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/logback-core-1.2.1.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/mockito-core-2.7.17.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/objenesis-2.5.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/postgresql-42.2.9.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/recurrence-8.6.1.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/rfc5545-datetime-0.3.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/slf4j-api-1.7.23.jar"/>
-        <pathelement location="src/src/com/fitapp/lib/view-8.6.1.jar"/>
+        <path refid="Apache Tomcat v8.0 [Apache Tomcat v8.0].libraryclasspath"/>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -85,7 +109,7 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src"/>
-            <classpath refid="FitApp.classpath"/>
+            <classpath refid="FitAppMaster.classpath"/>
         </javac>
     </target>
     <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
@@ -102,19 +126,9 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="Client (1)">
+    <target name="Client">
         <java classname="com.fitapp.logic.facade.application.Client" failonerror="true" fork="yes">
-            <classpath refid="FitApp.classpath"/>
-        </java>
-    </target>
-    <target name="Main (16)">
-        <java classname="logic.view.Main" failonerror="true" fork="yes">
-            <classpath refid="FitApp.classpath"/>
-        </java>
-    </target>
-    <target name="MainView">
-        <java classname="logic.view.MainView" failonerror="true" fork="yes">
-            <classpath refid="FitApp.classpath"/>
+            <classpath refid="FitAppMaster.classpath"/>
         </java>
     </target>
 </project>

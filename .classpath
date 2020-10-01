@@ -1,38 +1,123 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_241">
+	<classpathentry kind="lib" path="src/com/fitapp/lib/animatefx-1.2.0.jar">
 		<attributes>
-			<attribute name="owner.project.facets" value="java"/>
+			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/byte-buddy-1.6.11.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/byte-buddy-agent-1.6.11.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/controlsfx-8.40.14.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/fontawesomefx-commons-8.13.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/fontawesomefx-fontawesome-4.7.0-1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/GMapsFXlib.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/javax_mail.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/javax.mail.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/jfoenix-8.0.8.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/json-simple-1.1.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/lib-recur-0.11.6.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/logback-classic-1.2.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/logback-core-1.2.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/mockito-core-2.7.17.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/objenesis-2.5.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/postgresql-42.2.9.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/recurrence-8.6.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/rfc5545-datetime-0.3.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/slf4j-api-1.7.23.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="src/com/fitapp/lib/view-8.6.1.jar">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/GMapsFXlib.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0">
 		<attributes>
 			<attribute name="owner.project.facets" value="jst.web"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/animatefx-1.2.0.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/byte-buddy-1.6.11.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/byte-buddy-agent-1.6.11.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/controlsfx-8.40.14.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/fontawesomefx-commons-8.13.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/fontawesomefx-fontawesome-4.7.0-1.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/GMapsFXlib.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/javax_mail.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/javax.mail.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/jfoenix-8.0.8.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/json-simple-1.1.1.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/lib-recur-0.11.6.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/logback-classic-1.2.1.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/logback-core-1.2.1.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/mockito-core-2.7.17.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/objenesis-2.5.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/postgresql-42.2.9.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/recurrence-8.6.1.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/rfc5545-datetime-0.3.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/slf4j-api-1.7.23.jar"/>
-	<classpathentry kind="lib" path="src/src/com/fitapp/lib/view-8.6.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_241">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
