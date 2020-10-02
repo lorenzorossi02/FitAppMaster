@@ -72,7 +72,7 @@ public class LoginServlet extends HttpServlet {
 
 					if (loginController.getBaseUsername().equals("guest")) {
 						SignUpController signUpController = new SignUpController(baseUserModel);
-						request.getSession().setAttribute("SignUpController", signUpController);
+						request.setAttribute("SignUpController", signUpController);
 						request.getSession().setAttribute("email", signUpController.getEmail());
 						String nextJSPString = "/Registration.jsp";
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSPString);

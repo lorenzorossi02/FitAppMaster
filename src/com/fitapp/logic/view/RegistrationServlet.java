@@ -39,7 +39,7 @@ public class RegistrationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
-		SignUpController signUpController = (SignUpController) request.getSession().getAttribute("SignUpController");
+		SignUpController signUpController = (SignUpController) request.getAttribute("SignUpController");
 		String username = request.getParameter("username");
 		String email = (String) request.getSession().getAttribute("email");
 		String confirmEmail = request.getParameter("confirmEmail");
