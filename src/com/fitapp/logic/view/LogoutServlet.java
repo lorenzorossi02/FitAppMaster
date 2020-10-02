@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,7 +23,6 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	public LogoutServlet() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
@@ -35,11 +34,9 @@ public class LogoutServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		out.println("thanq you!!, Your session was destroyed successfully!!");
 		HttpSession session = request.getSession(false);
-		// session.setAttribute("user", null);
 		session.removeAttribute("user");
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/index.jsp");
 		dis.forward(request, response);
-		return;
 	}
 
 }

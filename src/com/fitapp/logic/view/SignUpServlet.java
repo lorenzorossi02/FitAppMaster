@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.EmailBean;
+import com.fitapp.logic.controller.LoginController;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -23,15 +24,6 @@ public class SignUpServlet extends HttpServlet {
 	 */
 	public SignUpServlet() {
 		super();
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
 	}
 
 	/**

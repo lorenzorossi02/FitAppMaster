@@ -60,10 +60,8 @@ public class ManagerUserModel extends Observable {
 	}
 
 	public void initializeTrainers() {
-		System.out.println("GYM ID"+ gym.getGymId());
 		ObservableList<Trainer> products = FXCollections.observableArrayList();
 		List<Trainer> trainerGymList = trainerDAO.getTrainerList(gym.getGymId());
-		System.out.println("TRAINER GYM LIST"+ trainerGymList);
 		if(trainerGymList.isEmpty()) {
 			Trainer trainer = new Trainer();
 			trainer.setTrainerStringNameString("DEFAULT");
@@ -85,7 +83,6 @@ public class ManagerUserModel extends Observable {
 		for (Trainer t : trainerDAO.getTrainerList(gym.getGymId()))
 			products.add(t);
 		}
-		System.out.println("TRAINER LIST IN MODEL"+ products);
 		setTrainerList(products);
 	}
 

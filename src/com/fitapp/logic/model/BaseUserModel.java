@@ -115,7 +115,6 @@ public class BaseUserModel extends Observable {
 	public boolean autenticate() {
 		UserDAO userDAO = UserDAO.getInstance();
 		boolean autenticated = userDAO.checkCredential(this.name, this.pwd);
-		System.out.println(autenticated);
 		if (autenticated && !this.name.contentEquals("") && !this.pwd.contentEquals("")) {
 			User user = userDAO.getUserEntity(this.name, this.pwd);
 			setName(user.getName());
@@ -154,9 +153,6 @@ public class BaseUserModel extends Observable {
 		this.gymStreet = gymStreet;
 	}
 
-	public Boolean getManager() {
-		return manager;
-	}
 
 	public Gym getGym() {
 		return gym;
@@ -175,7 +171,6 @@ public class BaseUserModel extends Observable {
 	}
 
 	public void registerNewUser() {
-		System.out.println("ID UTENTE"+this.id);
 		UserDAO.getInstance().registerUser(this.name, this.pwd, this.email, this.manager, this.myPosition, this.id);
 		if (Boolean.TRUE.equals(manager)) {
 			GymDAO.getInstance().registerGym(this.gymName, this.gymStreet, this.id, this.name);

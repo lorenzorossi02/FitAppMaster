@@ -71,7 +71,6 @@ public class Session {
 	}
 
 	public void setCourseName(String courseName) {
-		System.out.println("COURSE NAME IN SESSION"+courseName);
 		this.sessionCourse.setCourseName(courseName);
 	}
 

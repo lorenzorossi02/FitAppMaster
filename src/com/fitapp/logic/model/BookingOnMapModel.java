@@ -83,7 +83,6 @@ public class BookingOnMapModel extends Observable {
 		Geocode posGeocode = new Geocode();
 		List<Marker> listMarker = new ArrayList<>();
 		this.baseAddress = baseUserStreet;
-		System.out.println("BASE ADDRESS"+this.baseAddress);
 
 		posGeocode.getLocation(baseUserStreet);
 		LatLong baseCoordinates = posGeocode.getCoordinates();

@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 
@@ -14,6 +14,9 @@ import com.fitapp.logic.bean.BaseUserBean;
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.ManagerUserBean;
 import com.fitapp.logic.bean.UserBean;
+import com.fitapp.logic.controller.GymPageController;
+import com.fitapp.logic.controller.LoginController;
+import com.fitapp.logic.controller.SignUpController;
 import com.fitapp.logic.model.BaseUserModel;
 import com.fitapp.logic.model.ManagerUserModel;
 import com.fitapp.logic.model.UserModel;
@@ -66,9 +69,9 @@ public class LoginServlet extends HttpServlet {
 				baseUserModel.setPwd(password);
 				loginController.setBaseUser(baseUserBean.getUserName(), baseUserBean.getUserPassword());
 				if (loginController.login() && baseUserBean.getUserName() != null) {
-			         HttpSession session = request.getSession(true);
-			         session.setAttribute("user", username);
-			         
+					HttpSession session = request.getSession(true);
+					session.setAttribute("user", username);
+
 					if (loginController.getBaseUsername().equals("guest")) {
 						SignUpController signUpController = new SignUpController(baseUserModel);
 						request.getSession().setAttribute("SignUpController", signUpController);
@@ -79,7 +82,7 @@ public class LoginServlet extends HttpServlet {
 
 
 					} else if (loginController.checkManager()) {
-						
+
 						loginController.setManagerModel(baseUserBean.getUserId(), baseUserBean.getUserName(),
 								baseUserBean.getGym());
 						request.getSession().setAttribute("ManagerUserBean", managerUserBean);
@@ -89,29 +92,26 @@ public class LoginServlet extends HttpServlet {
 
 						response.sendRedirect(nextJSPString);
 
-						
+
 					} else if(!loginController.checkManager()) {
 						loginController.setUserModel(baseUserBean.getUserName(), baseUserBean.getUserPosition(),
 								baseUserBean.getUserId(), baseUserBean.getUserEmail());
 						request.getSession().setAttribute("UserBean", userBean);
-						//userPageViewController.initModel(loginController.getUserModel());
 						String nextJSPString = "/UserPageServlet";
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSPString);
 						dispatcher.forward(request, response);
-						
-					}
-				}else if(loginController.login()==false) {
-							
 
-							 response.getWriter().println("<script type=\"text/javascript\">");
-							 response.getWriter().println("alert('Wrong username or password, check yourfield');");
-							 response.getWriter().println("location='index.jsp';");
-							 response.getWriter().println("</script>");
-								
-								
-							return;
 					}
-				
+				}else if(Boolean.FALSE.equals(loginController.login())) {
+
+
+					response.getWriter().println("<script type=\"text/javascript\">");
+					response.getWriter().println("alert('Wrong username or password, check yourfield');");
+					response.getWriter().println("location='index.jsp';");
+					response.getWriter().println("</script>");
+
+				}
+
 			} else if (request.getParameter("SignUp") != null) {
 				String nextJSPString = "/SignUp.jsp";
 				request.getSession().setAttribute("LoginController", loginController);

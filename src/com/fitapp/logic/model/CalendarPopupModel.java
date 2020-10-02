@@ -76,15 +76,11 @@ public class CalendarPopupModel extends Observable {
 	}
 
 	public void addNewSession(Entry<Session> newCalendarEntry, Entry<Session> currentEntry) {
-		System.out.println("popup model");
 		if (currentEntry.getUserObject() != null) {
-			System.out.println("deiverso da null");
 			SessionDAO.getInstance().removeSession(currentEntry.getUserObject());
 
 		}
-		System.out.println(newCalendarEntry.getUserObject());
 		int sessionId = SessionDAO.getInstance().insertNewSession(newCalendarEntry.getUserObject());
-		System.out.println("ARRIVO QUISS");
 		newCalendarEntry.getUserObject().setSessionId(sessionId);
 		newCalendarEntry.setTitle(newCalendarEntry.getUserObject().getCourseName().get());
 		currentEntry.setUserObject(newCalendarEntry.getUserObject());

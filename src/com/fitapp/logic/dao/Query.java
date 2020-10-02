@@ -154,13 +154,6 @@ public class Query {
 	}
 
 	public static int insertNewSession(Statement statement, Session newSession) throws SQLException {
-		System.out.println(""
-				+ newSession.getTrainerId() + "','" + newSession.getTrainerName().get() + "','"
-				+ newSession.getCourseId().get() + "','" + newSession.isIndividual().getValue() + "','"
-				+ newSession.getGymId() + "','" + newSession.getGymStreet().get() + "','"
-				+ newSession.getTimeStart().getValue().toString() + "','"
-				+ newSession.getTimeEnd().getValue().toString() + "','" + newSession.getDate().getValue().toString()
-				+ "','" + newSession.getDescription().getValue() + "','" + newSession.getRecurrence().get() + "');");
 		String sql = "insert into training_session(trainer_id, trainer_name, course_id, individual, gym_id, street, time_start, time_end, day, description,recurrence) values ('"
 				+ newSession.getTrainerId() + "','" + newSession.getTrainerName().get() + "','"
 				+ newSession.getCourseId().get() + "','" + newSession.isIndividual().getValue() + "','"

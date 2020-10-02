@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 
@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fitapp.logic.controller.SignUpController;
 
 
 /**

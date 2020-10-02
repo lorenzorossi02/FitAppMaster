@@ -117,8 +117,7 @@ public class SignUpViewController {
 	public void confirmAction(ActionEvent event) {
 		if (!guestLabel.isVisible() && !confirmEmailLabel.isVisible() && !confirmPassLabel.isVisible()
 				&& (userStreet.getText() != null || (gymName.getText() != null && gymStreet.getText() != null))) {
-			System.out.println(gymName.getText() + gymStreet.getText());
-			;
+
 			signUpController.registerUser(confirmEmail.getText(), username.getText(), userStreet.getText(),
 					password.getText(), managerCheck.isSelected(), gymName.getText(), gymStreet.getText());
 

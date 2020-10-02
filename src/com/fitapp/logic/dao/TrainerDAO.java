@@ -79,7 +79,6 @@ public class TrainerDAO extends ConnectionManager {
 
 	public void deleteTrainer(int trainerId) {
 		try {
-			System.out.println("TRAINER ID"+ trainerId);
 			int count = Query.deleteTrainer(this.statement, trainerId);
 			if (count < 1) {
 				throw new DeleteException();

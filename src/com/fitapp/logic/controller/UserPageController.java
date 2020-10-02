@@ -70,8 +70,7 @@ public class UserPageController {
 		Gym sessionGym = GymDAO.getInstance().getGymEntity(sessionIdGym);
 		
 		this.selectedSessionManager = Integer.toString(sessionGym.getManagerId());
-		System.out.println("Selected session manager"+ selectedSessionManager);
-		System.out.println(sessionGym);
+
 	}
 
 }

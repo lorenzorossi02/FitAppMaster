@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.util.List;
@@ -13,6 +13,7 @@ import com.fitapp.logic.bean.CalendaUserBean;
 
 import com.fitapp.logic.bean.BookingFormBean;
 import com.fitapp.logic.bean.UserBean;
+import com.fitapp.logic.controller.UserPageController;
 import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.CalendarUserModel;
 import com.fitapp.logic.model.entity.Session;
@@ -47,7 +48,6 @@ public class UserPageServlet extends HttpServlet {
 		CalendaUserBean calendarUserBean = new CalendaUserBean();
 		CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
 		userPageController = new UserPageController(bookingFormModel, calendarUserModel);
-		System.out.println("USER ID"+userBean.getUserId());
 		userPageController.setCalendarInfo(userBean.getUserId(), userBean.getUserEmail());
 		avaiableSession = userPageController.getBookedSession();
 		request.setAttribute("avaiableSessions", avaiableSession);
@@ -60,26 +60,24 @@ public class UserPageServlet extends HttpServlet {
 		
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/UserPage.jsp");
 		dis.forward(request, response);
-		return;
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (request.getParameter("deleteSession") != null) {
-			String sessionToRemoveString = request.getParameter("deleteSession");
+		String sessionToRemoveString = request.getParameter("deleteSession");
+		String emailToGym = request.getParameter("emailToGym");
+		if (sessionToRemoveString != null) {
 			int sessionIndex = Integer.parseInt(sessionToRemoveString.replace("deleteSession", "").trim());
 			Session sessionToRemove = avaiableSession.get(sessionIndex);
 			
 				userPageController.removeSession(sessionToRemove);
 
-		}else if(request.getParameter("emailToGym")!=null) {
-			System.out.println("Sending EMail"+request.getParameter("emailToGym"));
+		}else if(emailToGym!=null) {
 			String subject= request.getParameter("subject");
 			String object = request.getParameter("object");
-			Session selectedSession = avaiableSession.get(Integer.parseInt(request.getParameter("emailToGym")));
-			System.out.println( "MANAGER ID"+selectedSession.getGymId() );
+			Session selectedSession = avaiableSession.get(Integer.parseInt(emailToGym));
 			
 			userPageController.setSelectedSessionInfo(selectedSession.getCourseName().get(), selectedSession.getGymId());
 			userPageController.sendEmail(subject,object);

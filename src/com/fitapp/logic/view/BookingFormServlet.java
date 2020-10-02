@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.BookingOnMapBean;
 import com.fitapp.logic.bean.UserBean;
+import com.fitapp.logic.controller.BookingFormController;
 import com.fitapp.logic.model.BookingOnMapModel;
 
 /**
@@ -55,7 +56,6 @@ public class BookingFormServlet extends HttpServlet {
 			String radious= (String) request.getParameter("radiousBooking");
 			String date = (String) request.getParameter("dateBooking");
 			String time = (String) request.getParameter("timeBooking");
-			System.out.println(radious+date+time);
 			if(radious!=null && date!=null && time!=null) {
 				
 				request.getSession().setAttribute("userId", userBean.getUserId());
@@ -64,7 +64,6 @@ public class BookingFormServlet extends HttpServlet {
 				BookingOnMapBean bookingOnMapBean = new BookingOnMapBean();
 				BookingOnMapModel bookingOnMapModel = new BookingOnMapModel(bookingOnMapBean);
 				BookingFormController bookingFormController = new BookingFormController(bookingOnMapModel);
-				System.out.println("RADIUOSU DOUBLE"+ Double.parseDouble(radious));
 				bookingFormController.setSearchParameters(LocalDate.parse(date), LocalTime.parse(time), Double.parseDouble(radious));
 				
 				request.getSession().setAttribute("bookingOnMapBean", bookingOnMapBean);

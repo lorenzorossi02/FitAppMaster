@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,14 +47,12 @@ public class BookingOnMapServlet extends HttpServlet {
 			return;
 		}
 		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
-		System.out.println("sto in booking Form Servlet");
 		request.setAttribute("username", userBean.getUserUsername().get());
 		request.setAttribute("userStreet", userBean.getUserPosition().get());
 		bookingOnMapBean = (BookingOnMapBean) request.getSession().getAttribute("bookingOnMapBean");
 		bookingOnMapModel = (BookingOnMapModel) request.getSession().getAttribute("bookingOnMapModel");
-		System.out.println("DATE AND TIME:"+bookingOnMapBean.getDateBooking()+""+ bookingOnMapBean.getTimeBooking());
-		List<Session> userSessionList = new ArrayList<>();
-		userSessionList =  bookingOnMapModel.getAvaiableSession(bookingOnMapBean.getDateBooking(), bookingOnMapBean.getTimeBooking());	
+		
+		List<Session> userSessionList =  bookingOnMapModel.getAvaiableSession(bookingOnMapBean.getDateBooking(), bookingOnMapBean.getTimeBooking());	
 		allBookList = bookingOnMapModel.geocodeSessions(userSessionList, userBean.getUserPosition().get(), bookingOnMapBean.getBookingRadius());
 		request.setAttribute("allBookList", userSessionList);
 		request.setAttribute("userBaseCoords", bookingOnMapModel.getCenterMap());
@@ -70,11 +68,10 @@ public class BookingOnMapServlet extends HttpServlet {
 		GymMapPopupBean gymMapPopupBean = new GymMapPopupBean();
 		GymMapPopupModel gymMapPopupModel = new GymMapPopupModel(gymMapPopupBean,bookingOnMapBean);
 		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
-
+		String bookSession = request.getParameter("bookSession");
 		gymMapPopupModel.setUserId(userBean.getUserId());
-		if(request.getParameter("bookSession")!=null) {
-			System.out.println(request.getParameter("bookSession"));
-			int sessionIndex = Integer.valueOf(request.getParameter("bookSession"));
+		if(bookSession!=null) {
+			int sessionIndex = Integer.parseInt(bookSession);
 			gymMapPopupModel.bookSession(sessionIndex);
 			for(int allBookId=0;allBookId< allBookList.size();allBookId++) {
 				if(allBookList.get(allBookId).getSessionId().get() == sessionIndex && allBookList.get(allBookId).isIndividual().getValue()) {

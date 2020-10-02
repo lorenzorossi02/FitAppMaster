@@ -99,7 +99,6 @@ public class Geocode {
 			double lat = (double) location.get("lat");
 			coord[0] = lat;
 			coord[1] = lng;
-			System.out.println(coord);
 			return coord;
 			
 		} catch (ParseException e) {

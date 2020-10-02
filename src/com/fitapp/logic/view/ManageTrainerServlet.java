@@ -1,4 +1,4 @@
-package com.fitapp.logic.controller;
+package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.util.EnumMap;
@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.ManagerUserBean;
+import com.fitapp.logic.controller.GymPageController;
 import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Trainer;
 
@@ -71,7 +72,6 @@ public class ManageTrainerServlet extends HttpServlet {
 
 			return;
 		}else if(request.getParameter("deleteTrainer")!=null) {
-			System.out.println("\n\n\n\n\n DELETE TRAINER");
 			String trainerIdString = request.getParameter("deleteTrainer");
 			
 
@@ -85,29 +85,22 @@ public class ManageTrainerServlet extends HttpServlet {
 			gymPageController.deleteTrainer(trainerToDelete);
 			doGet(request,response);
 
-			 return;
 			}else {
 				
 				 response.sendRedirect("ManageTrainerServlet");
 			}
 		}else if(request.getParameter("homePage")!=null) {
-			System.out.println("HOME PAGE");
 			response.sendRedirect("GymPageServlet");
-			return;
 		}
 	}
 	
 	
 	private boolean checkBox(String booleanValue) {
-		System.out.println("\n\n\n");
 		if(booleanValue == null || booleanValue.contentEquals("off")) {
-			System.out.println("FALSE"+booleanValue);
 			return false;
 		}else if(booleanValue.contentEquals("on")) {
-			System.out.println("TRUE"+booleanValue);
 
 			return true;}
-		System.out.println("\n\n\n");
 
 		return false;
 		

@@ -133,10 +133,8 @@ public class GymPageController {
 
 	private boolean checkTrainerCourse(int courseId, Trainer trainer) {
 		Map<Course, Boolean> mapCourseTrainer = trainer.getCourse();
-
-		if(Boolean.TRUE.equals(mapCourseTrainer.get(Course.getCourse(courseId-1))))
-			return true;
-		return false;
+		return Boolean.TRUE.equals(mapCourseTrainer.get(Course.getCourse(courseId-1)));
+			
 	}
 
 }

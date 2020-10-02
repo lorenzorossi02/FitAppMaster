@@ -48,7 +48,6 @@ public class SessionDAO extends ConnectionManager {
 		return SessionDAO.instance;
 	}
 
-	// Da levare in Map Controller
 	public String getCourseById(int id) {
 		try {
 			ResultSet rs = Query.getCourseName(this.statement, id);
@@ -167,7 +166,6 @@ public class SessionDAO extends ConnectionManager {
 	public int insertNewSession(Session newSession) {
 		try {
 			int count = Query.insertNewSession(this.statement, newSession);
-			System.out.println("COUNT VALUE"+ count);
 			if (count < 1) {
 				throw new InsertException();
 			}
@@ -187,10 +185,8 @@ public class SessionDAO extends ConnectionManager {
 
 	public void removeSession(Session sessionToRemove) {
 		try {
-			System.out.println("SESSION TO DELETE"+sessionToRemove.getSessionId().get());
 
 			int count = Query.deleteSession(this.statement, sessionToRemove.getSessionId().get());
-			System.out.println("COUNT VALUE:"+ count);
 			if (count < 1) {
 				throw new DeleteException();
 			}

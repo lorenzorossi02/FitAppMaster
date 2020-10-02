@@ -10,13 +10,11 @@ public class Trainer {
 	private String trainerStringNameString;
 
 	public String getTrainerStringNameString() {
-		System.out.println("GET"+trainerStringNameString);
 		return trainerStringNameString;
 	}
 
 	public void setTrainerStringNameString(String trainerStringNameString) {
 		this.trainerStringNameString = trainerStringNameString;
-		System.out.println("SET"+trainerStringNameString);
 
 	}
 
@@ -44,18 +42,15 @@ public class Trainer {
 	}
 
 	public StringProperty getName() {
-		System.out.println("THIS IS GET NAME IN TRAINE$"+ this.trainername.getValue());
 
 		return this.trainername;
 	}
 
 	public String getTrainerName() {
-		System.out.println("GET TRAINER NAME"+ trainerStringNameString);
 		return trainerStringNameString;
 	}
 
 	public void setName(String trainername) {
-		System.out.println("TRAINER NAME IN TRAINER ENTITY"+ trainername);
 		setTrainerStringNameString(trainername);
 		this.trainername.set(trainername);
 	}
