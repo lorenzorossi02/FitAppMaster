@@ -2,6 +2,8 @@ package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import com.fitapp.logic.model.entity.Trainer;
  */
 @WebServlet("/GymPageServlet")
 public class GymPageServlet extends HttpServlet {
+    private static final Logger LOGGER = Logger.getLogger(GymPageServlet.class.getName());
+
 	private static final long serialVersionUID = 1L;
 	private ManagerUserBean managerUserBean;
 	private GymPageController gymPageController;
@@ -37,15 +41,14 @@ public class GymPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-	
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		managerUserBean = (ManagerUserBean) request.getSession().getAttribute("ManagerUserBean");
 		request.setAttribute("managerUserName", managerUserBean.getManagerName().get());
 		request.setAttribute("managerGymName", managerUserBean.getGym().getGymName().get());
 		request.setAttribute("managerGymStreet", managerUserBean.getGym().getStreet().get());
-		gymPageController = (GymPageController) request.getSession()
-				.getAttribute("GymPageController");
+		gymPageController = (GymPageController) request.getSession().getAttribute("GymPageController");
 		gymPageController.initializeTrainers();
 		List<Trainer> listGymTrainers = managerUserBean.getManagerTrainerList();
 		request.setAttribute("managerTrainerList", listGymTrainers);
@@ -55,20 +58,21 @@ public class GymPageServlet extends HttpServlet {
 		gymPageController.setModel(calendarGymModel, managerUserBean.getManagerId().get(), true,
 				managerUserBean.getGym());
 		request.setAttribute("avaiableSessions", gymPageController.getAvaiableSession());
-		RequestDispatcher dis= getServletContext().getRequestDispatcher("/GymPage.jsp");
+		RequestDispatcher dis = getServletContext().getRequestDispatcher("/GymPage.jsp");
 		dis.forward(request, response);
+		}catch(ServletException| IOException ex) {
+			LOGGER.log(Level.SEVERE,"exception",ex);
 
-
-		
-
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		String deleteSession = request.getParameter("deleteSession");
 		if (request.getParameter("manageTrainerBtn") != null) {
 			request.getSession().setAttribute("ManagerUserBean", managerUserBean);
@@ -76,7 +80,7 @@ public class GymPageServlet extends HttpServlet {
 			String nextPage = "/ManageTrainerServlet";
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
 			dispatcher.forward(request, response);
-			
+
 		} else if (request.getParameter("viewReviewBtn") != null) {
 			/*
 			 * 
@@ -84,36 +88,38 @@ public class GymPageServlet extends HttpServlet {
 			 * 
 			 */
 		} else if (request.getParameter("setNewSession") != null) {
-			if(request.getParameter("timeStart")!=null && request.getParameter("timeEnd")!=null&&
-					request.getParameter("date")!=null&& request.getParameter("selectCourse")!=null &&
-					request.getParameter("selectTrainer")!=null && request.getParameter("individualValue")!=null) {
-				
-				if(gymPageController.addNewSession(request.getParameter("timeStart"), request.getParameter("timeEnd"),
-						request.getParameter("date"), request.getParameter("selectCourse"),
-						request.getParameter("selectTrainer"), request.getParameter("individualValue"),request.getParameter("description"))) {
-					doGet(request,response);
-				}
+			if (request.getParameter("timeStart") != null && request.getParameter("timeEnd") != null
+					&& request.getParameter("date") != null && request.getParameter("selectCourse") != null
+					&& request.getParameter("selectTrainer") != null && request.getParameter("individualValue") != null
+					&&
+
+					gymPageController.addNewSession(request.getParameter("timeStart"), request.getParameter("timeEnd"),
+							request.getParameter("date"), request.getParameter("selectCourse"),
+							request.getParameter("selectTrainer"), request.getParameter("individualValue"),
+							request.getParameter("description"))) {
+				doGet(request, response);
+
 			}
-			
+
 			response.sendRedirect("GymPageServlet");
-				
+
 		} else if (deleteSession != null) {
 			String sessionToRemoveString = deleteSession;
 			int sessionIndex = Integer.parseInt(sessionToRemoveString.replace("deleteSession", "").trim());
-			
+
 			List<Session> avaiabSessions = gymPageController.getAvaiableSession();
 			Session sessionToRemove = avaiabSessions.get(sessionIndex);
 			if (gymPageController.sessionBooked(sessionToRemove)) {
-				response.sendRedirect("GymPageServlet");	 
-			}
-			else {
+				response.sendRedirect("GymPageServlet");
+			} else {
 				gymPageController.removeSession(sessionToRemove);
-				doGet(request,response);
+				doGet(request, response);
 
-			}	
+			}
 		}
-
+		}catch(ServletException|IOException|NumberFormatException e) {
+			LOGGER.log(Level.SEVERE,"exception",e);
+		}
 	}
-
 
 }

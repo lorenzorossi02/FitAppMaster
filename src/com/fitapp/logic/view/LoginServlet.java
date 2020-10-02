@@ -1,6 +1,8 @@
 package com.fitapp.logic.view;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,18 +29,14 @@ import com.fitapp.logic.model.UserModel;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public LoginServlet() {
 		super();
-	}
-	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
 	}
 
 	/**
@@ -120,7 +118,7 @@ public class LoginServlet extends HttpServlet {
 
 			}
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE,"Exception", e);
 		}
 
 	}

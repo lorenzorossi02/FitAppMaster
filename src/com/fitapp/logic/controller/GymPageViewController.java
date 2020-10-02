@@ -21,6 +21,7 @@ import animatefx.animation.ZoomOut;
 import javafx.beans.binding.BooleanBinding;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -86,7 +87,7 @@ public class GymPageViewController {
 	private TableView<Trainer> trainerTable;
 
 	@FXML
-	private TableColumn<Trainer, String> trainerName;
+	private TableColumn<Trainer, StringProperty> trainerName;
 
 	@FXML
 	private TableColumn<Trainer, Boolean> kickCol;
@@ -289,7 +290,13 @@ public class GymPageViewController {
 		checkList.add(functCheck);
 		checkList.add(walkCheck);
 		checkList.add(pumpCheck);
-		trainerName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		trainerName.setCellValueFactory(new PropertyValueFactory<>("trainerName"));
+		
+
+		
+
+	
+
 		for (TableColumn<Trainer, Boolean> column : colList) {
 			column.setCellValueFactory(new PropertyValueFactory<>(propertyName[colList.indexOf(column)]));
 		}

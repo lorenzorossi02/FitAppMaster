@@ -3,6 +3,8 @@ package com.fitapp.logic.view;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,6 +24,8 @@ import com.fitapp.logic.model.BookingOnMapModel;
 @WebServlet("/BookingFormServlet")
 public class BookingFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+    private static final Logger LOGGER = Logger.getLogger(BookingFormServlet.class.getName());
+
 	private UserBean userBean;
        
     /**
@@ -34,28 +38,35 @@ public class BookingFormServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    	try {
 		if(request.getParameter("homePageBtn")!=null) {
 			response.sendRedirect("UserPageServlet");
 			return;
 		}
+		
 		userBean = (UserBean) request.getSession().getAttribute("userBean");
 		request.setAttribute("username", userBean.getUserUsername().get());
 		request.setAttribute("userStreet", userBean.getUserPosition().get());
 		
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/BookingForm.jsp");
 		dis.forward(request, response);
+    	}catch(ServletException| IOException ex) {
+    		LOGGER.log(Level.SEVERE,"Exception occurred", ex);
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+		try {
 		if(request.getParameter("goBooking")!=null) {
-			String radious= (String) request.getParameter("radiousBooking");
-			String date = (String) request.getParameter("dateBooking");
-			String time = (String) request.getParameter("timeBooking");
+			String radious=  request.getParameter("radiousBooking");
+			String date =  request.getParameter("dateBooking");
+			String time =  request.getParameter("timeBooking");
 			if(radious!=null && date!=null && time!=null) {
 				
 				request.getSession().setAttribute("userId", userBean.getUserId());
@@ -77,6 +88,10 @@ public class BookingFormServlet extends HttpServlet {
 				 response.getWriter().println("</script>");
 			}
 		}
+		}catch( IOException ex) {
+			LOGGER.log(Level.SEVERE, "Exception occured", ex);
+		}
+		
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.fitapp.logic.view;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,7 @@ import com.fitapp.logic.controller.LoginController;
 @WebServlet("/SignUpServlet")
 public class SignUpServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(SignUpServlet.class.getName());
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -31,8 +34,7 @@ public class SignUpServlet extends HttpServlet {
 	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			response.setContentType("text/html");
 			LoginController loginController = (LoginController) request.getSession().getAttribute("LoginController");
@@ -54,7 +56,8 @@ public class SignUpServlet extends HttpServlet {
 			}
 
 		} catch (ServletException | IOException e) {
-			e.printStackTrace();
+			LOGGER.log(Level.SEVERE,"Exception",e);
+			
 		}
 	}
 

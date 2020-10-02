@@ -64,7 +64,7 @@ public class ManagerUserModel extends Observable {
 		List<Trainer> trainerGymList = trainerDAO.getTrainerList(gym.getGymId());
 		if(trainerGymList.isEmpty()) {
 			Trainer trainer = new Trainer();
-			trainer.setTrainerStringNameString("DEFAULT");
+			trainer.setName("DEFAULT");
 			trainer.setTrainerId(0);
 			trainer.setGymId(0);
 			Map<Course, Boolean> map = new EnumMap<>(Course.class);

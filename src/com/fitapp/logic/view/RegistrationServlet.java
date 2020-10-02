@@ -1,6 +1,8 @@
 package com.fitapp.logic.view;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +20,8 @@ import com.fitapp.logic.controller.SignUpController;
 @WebServlet("/RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(RegistrationServlet.class.getName());
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -26,22 +30,15 @@ public class RegistrationServlet extends HttpServlet {
 		super();
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response){
+		try {
 		SignUpController signUpController = (SignUpController) request.getSession().getAttribute("SignUpController");
 		String username = request.getParameter("username");
 		String email = (String) request.getSession().getAttribute("email");
@@ -80,6 +77,10 @@ public class RegistrationServlet extends HttpServlet {
 				response.getWriter().println("location='Registration.jsp';");
 				response.getWriter().println("</script>");
 			}
+		}
+		}catch(ServletException | IOException ex) {
+			LOGGER.log(Level.SEVERE, "Exception", ex);
+
 		}
 
 	}

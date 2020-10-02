@@ -7,16 +7,6 @@ import javafx.beans.property.StringProperty;
 
 public class Trainer {
 	private StringProperty trainername = new SimpleStringProperty();
-	private String trainerStringNameString;
-
-	public String getTrainerStringNameString() {
-		return trainerStringNameString;
-	}
-
-	public void setTrainerStringNameString(String trainerStringNameString) {
-		this.trainerStringNameString = trainerStringNameString;
-
-	}
 
 	private int trainerId;
 	private int gymId;
@@ -40,19 +30,21 @@ public class Trainer {
 		setGymId(gymId);
 		setCourse(course);
 	}
+	
+	public String getTrainerName() {
+		return this.trainername.get();
+	}
 
 	public StringProperty getName() {
 
 		return this.trainername;
 	}
 
-	public String getTrainerName() {
-		return trainerStringNameString;
-	}
+
 
 	public void setName(String trainername) {
-		setTrainerStringNameString(trainername);
 		this.trainername.set(trainername);
+		
 	}
 
 	public int getTrainerId() {

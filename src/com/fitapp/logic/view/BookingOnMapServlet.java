@@ -2,6 +2,8 @@ package com.fitapp.logic.view;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,6 +31,8 @@ public class BookingOnMapServlet extends HttpServlet {
 	private static BookingOnMapModel bookingOnMapModel;
 	private static List<Session> allBookList;
 	private static BookingOnMapBean bookingOnMapBean;
+    private static final Logger LOGGER = Logger.getLogger(BookingOnMapServlet.class.getName());
+
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -40,7 +44,9 @@ public class BookingOnMapServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+    	try {
 		if(request.getParameter("homePageBtn")!=null) {
 			response.sendRedirect("UserPageServlet");
 			return;
@@ -58,12 +64,17 @@ public class BookingOnMapServlet extends HttpServlet {
 		
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/BookingOnMap.jsp");
 		dis.forward(request, response);
+    	}catch(ServletException| IOException ex) {
+    		LOGGER.log(Level.SEVERE,"Exception occurred", ex);
+    	}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+    	try {
 		GymMapPopupBean gymMapPopupBean = new GymMapPopupBean();
 		GymMapPopupModel gymMapPopupModel = new GymMapPopupModel(gymMapPopupBean,bookingOnMapBean);
 		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
@@ -83,7 +94,12 @@ public class BookingOnMapServlet extends HttpServlet {
 				}
 			}
 			RequestDispatcher dis= getServletContext().getRequestDispatcher("/UserPageServlet");
-			dis.forward(request, response);		}
+			dis.forward(request, response);		
+			}
+    	}catch(ServletException |IOException ex) {
+    		LOGGER.log(Level.SEVERE,"Exception occurred", ex);
+
+    	}
 	}
 
 }
