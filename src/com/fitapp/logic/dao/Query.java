@@ -39,10 +39,6 @@ public class Query {
 		return st.executeQuery(sql);
 	}
 	
-	public static ResultSet getManagerGym(Statement st, Integer id) throws SQLException {
-		String sql = "select  * from gym where manager_id = '" + id + "';";
-		return st.executeQuery(sql);
-	}
 
 	public static ResultSet getEventListByEvent(Statement st, String data, String timeStart) throws SQLException {
 		String sql = "select * from training_session where day ='" + data + "' and time_start between '" + timeStart
@@ -51,10 +47,11 @@ public class Query {
 
 	}
 
-	public static ResultSet getGymById(Statement st, Integer id) throws SQLException {
+	public static ResultSet getGymByManagerId(Statement st, Integer id) throws SQLException {
 		String sql = "select * from gym where manager_id = '" + id + "';";
 		return st.executeQuery(sql);
 	}
+	
 
 	public static ResultSet getCourseName(Statement st, Integer id) throws SQLException {
 		String sql = "select course_name from course where course_id = '" + id + "';";

@@ -56,35 +56,38 @@ public class Geocode {
 
 	public void getLocation(String address) {
 
-		StringBuilder str = this.getConnection(address);
 
-		JSONObject location = null;
-		LatLong coord = null;
-		try {
-			JSONParser parser = new JSONParser();
-			String requestResult = str.toString();
-			Object obj = parser.parse(requestResult);
-			JSONObject jb = (JSONObject) obj;
-			JSONArray array = (JSONArray) jb.get("results");
-			JSONObject result = (JSONObject) array.get(0);
-			JSONObject geometry = (JSONObject) result.get("geometry");
-			location = (JSONObject) geometry.get("location");
+			LatLong coord = null;
+			JSONObject location = googleGeocode(address);
+			if(location!=null) {
 
-			double lng = (double) location.get("lng");
-			double lat = (double) location.get("lat");
-			coord = new LatLong(lat,lng);
+				double lng = (double) location.get("lng");
+				double lat = (double) location.get("lat");
+				coord = new LatLong(lat,lng);
+			}
 			setCoordinates(coord);
-		} catch (ParseException e) {
-			AlertFactory.getInstance().createAlert(e);
-		}
 	}
-
+	
 	public Double[] getCoords(String address) {
 
-		StringBuilder str = this.getConnection(address);
+		
+			Double[] coord = new Double[2];
+			JSONObject location = googleGeocode(address);
+			if(location!=null) {
+				double lng = (double) location.get("lng");
+				double lat = (double) location.get("lat");
+				coord[0] = lat;
+				coord[1] = lng;
+				return coord;
+			}
+			return coord;
+			
+		
+	}
 
-		JSONObject location = null;
-		Double[] coord = new Double[2];
+	
+	private JSONObject googleGeocode(String address) {
+		StringBuilder str = this.getConnection(address);
 		try {
 			JSONParser parser = new JSONParser();
 			String requestResult = str.toString();
@@ -93,20 +96,13 @@ public class Geocode {
 			JSONArray array = (JSONArray) jb.get("results");
 			JSONObject result = (JSONObject) array.get(0);
 			JSONObject geometry = (JSONObject) result.get("geometry");
-			location = (JSONObject) geometry.get("location");
-
-			double lng = (double) location.get("lng");
-			double lat = (double) location.get("lat");
-			coord[0] = lat;
-			coord[1] = lng;
-			return coord;
-			
+			return (JSONObject) geometry.get("location");
 		} catch (ParseException e) {
 			AlertFactory.getInstance().createAlert(e);
 		}
-		return coord;
+		return null;
+		
 	}
-
 
 
 }

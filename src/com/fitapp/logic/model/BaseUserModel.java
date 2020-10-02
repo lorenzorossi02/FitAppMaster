@@ -123,7 +123,7 @@ public class BaseUserModel extends Observable {
 			setManager(user.isManager());
 			setMyPosition(user.getMyPosition());
 			if (user.isManager()) {
-				gym = GymDAO.getInstance().getGymEntityByManagerId(user.getId());
+				gym = GymDAO.getInstance().getGymEntityById(user.getId());
 				setGym(gym);
 			}
 			return autenticated;

@@ -31,14 +31,8 @@ public class GymDAO extends ConnectionManager {
 			ResultSet rs = Query.getGym(this.statement, id);
 			while (rs.next()) {
 				if (checkResultValidity(1, 5, rs)) {
-					Gym g = new Gym();
-					g.setManagerId(id);
-					g.setGymId(rs.getInt(GYMID));
-					g.setGymName(rs.getString(GYMNAME));
-					g.setStreet(rs.getString(GYMSTREET));
-					g.setManagerName(rs.getString(MANAGERNAME));
-					g.setManagerId(rs.getInt(MANAGERID));
-					return g;
+				
+					return setGymEntity(rs);
 				}
 			}
 
@@ -50,17 +44,11 @@ public class GymDAO extends ConnectionManager {
 
 	public Gym getGymEntityById(int id) {
 		try {
-			ResultSet rs = Query.getGymById(this.statement, id);
+			ResultSet rs = Query.getGymByManagerId(this.statement, id);
 			while (rs.next()) {
 				if (checkResultValidity(1, 5, rs)) {
-					Gym g = new Gym();
+					return setGymEntity(rs);
 
-					g.setGymId(rs.getInt(GYMID));
-					g.setGymName(rs.getString(GYMNAME));
-					g.setStreet(rs.getString(GYMSTREET));
-					g.setManagerId(Integer.parseInt(rs.getString(MANAGERID)));
-					g.setManagerName(rs.getString(MANAGERNAME));
-					return g;
 				}
 
 			}
@@ -69,7 +57,7 @@ public class GymDAO extends ConnectionManager {
 		}
 		return null;
 	}
-
+	
 	public String getManagerNameGymIdByName(String gym) {
 		try {
 			ResultSet rs = Query.getGymByName(this.statement, gym);
@@ -95,25 +83,19 @@ public class GymDAO extends ConnectionManager {
 		}
 	}
 
-	public Gym getGymEntityByManagerId(int id) {
-		try {
-			ResultSet rs = Query.getManagerGym(this.statement, id);
-			while (rs.next()) {
-				if (checkResultValidity(1, 5, rs)) {
-					Gym g = new Gym();
-					g.setManagerId(id);
-					g.setGymId(rs.getInt(GYMID));
-					g.setGymName(rs.getString(GYMNAME));
-					g.setStreet(rs.getString(GYMSTREET));
-					g.setManagerName(rs.getString(MANAGERNAME));
-					g.setManagerId(rs.getInt(MANAGERID));
-					return g;
-				}
-			}
-
-		} catch (SQLException e) {
+	private Gym setGymEntity(ResultSet rs) {
+		Gym g = new Gym();
+		try{
+			g.setGymId(rs.getInt(GYMID));
+			g.setGymName(rs.getString(GYMNAME));
+			g.setStreet(rs.getString(GYMSTREET));
+			g.setManagerName(rs.getString(MANAGERNAME));
+			g.setManagerId(rs.getInt(MANAGERID));
+			return g;
+		}catch(SQLException e) {
 			AlertFactory.getInstance().createAlert(e);
+
 		}
-		return null;
+		return g;
 	}
 }

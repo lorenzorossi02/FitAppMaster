@@ -76,7 +76,7 @@ public class UserPageServlet extends HttpServlet {
 
 		}else if(emailToGym!=null) {
 			String subject= request.getParameter("subject");
-			String object = request.getParameter("object");
+			String object = request.getParameter("object");	
 			Session selectedSession = avaiableSession.get(Integer.parseInt(emailToGym));
 			
 			userPageController.setSelectedSessionInfo(selectedSession.getCourseName().get(), selectedSession.getGymId());
