@@ -55,7 +55,6 @@ public class LoginController {
 	}
 
 	public void setManagerModel(Integer userId, String userName, Gym gym) {
-		System.out.println(gym.getManagerName()+ gym.getStreet().get()+ gym.getGymName().get());
 		managerUserModel.setManagerId(userId);
 		managerUserModel.setManagerName(userName);
 		managerUserModel.setGym(gym);

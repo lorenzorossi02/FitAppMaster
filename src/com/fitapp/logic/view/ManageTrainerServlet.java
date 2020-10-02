@@ -70,7 +70,6 @@ public class ManageTrainerServlet extends HttpServlet {
 			gymPageController.addTrainer(newTrainer);
 			doGet(request,response);
 
-			return;
 		}else if(request.getParameter("deleteTrainer")!=null) {
 			String trainerIdString = request.getParameter("deleteTrainer");
 			

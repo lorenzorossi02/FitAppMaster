@@ -69,6 +69,7 @@ public class GymPageServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String deleteSession = request.getParameter("deleteSession");
 		if (request.getParameter("manageTrainerBtn") != null) {
 			request.getSession().setAttribute("ManagerUserBean", managerUserBean);
 			request.getSession().setAttribute("GymPageController", gymPageController);
@@ -96,8 +97,8 @@ public class GymPageServlet extends HttpServlet {
 			
 			response.sendRedirect("GymPageServlet");
 				
-		} else if (request.getParameter("deleteSession") != null) {
-			String sessionToRemoveString = request.getParameter("deleteSession");
+		} else if (deleteSession != null) {
+			String sessionToRemoveString = deleteSession;
 			int sessionIndex = Integer.parseInt(sessionToRemoveString.replace("deleteSession", "").trim());
 			
 			List<Session> avaiabSessions = gymPageController.getAvaiableSession();
