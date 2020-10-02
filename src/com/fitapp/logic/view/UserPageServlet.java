@@ -66,7 +66,7 @@ public class UserPageServlet extends HttpServlet {
 			dis.forward(request, response);
 
 		} catch (ServletException | IOException e) {
-			LOGGER.log(Level.SEVERE,"Exception",e);
+			LOGGER.log(Level.SEVERE,"Exception.",e);
 
 		}
 	}

@@ -79,7 +79,7 @@ public class RegistrationServlet extends HttpServlet {
 			}
 		}
 		}catch(ServletException | IOException ex) {
-			LOGGER.log(Level.SEVERE, "Exception", ex);
+			LOGGER.log(Level.SEVERE, "Exception.", ex);
 
 		}
 

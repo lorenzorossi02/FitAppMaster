@@ -43,7 +43,7 @@ public class LogoutServlet extends HttpServlet {
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/index.jsp");
 		dis.forward(request, response);
 		}catch(ServletException|IOException ex) {
-			LOGGER.log(Level.SEVERE,"Exception occurred", ex);
+			LOGGER.log(Level.SEVERE,"Exception occurred.", ex);
 		}
 	}
 
