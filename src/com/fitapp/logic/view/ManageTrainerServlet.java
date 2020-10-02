@@ -51,7 +51,7 @@ public class ManageTrainerServlet extends HttpServlet {
 			request.setAttribute("managerTrainerList", listGymTrainers);
 			request.getRequestDispatcher("/ManageTrainer.jsp").forward(request, response);
 		} catch (ServletException | IOException ex) {
-			LOGGER.log(Level.SEVERE, "Exception.", ex);
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 	}
 
@@ -98,7 +98,7 @@ public class ManageTrainerServlet extends HttpServlet {
 				response.sendRedirect("GymPageServlet");
 			}
 		} catch (NumberFormatException|IOException ex) {
-			LOGGER.log(Level.SEVERE, "Exception.", ex);
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 	}
 

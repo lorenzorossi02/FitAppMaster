@@ -55,8 +55,8 @@ public class SignUpServlet extends HttpServlet {
 
 			}
 
-		} catch (ServletException | IOException e) {
-			LOGGER.log(Level.SEVERE,"Exception.",e);
+		} catch (ServletException | IOException ex) {
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 			
 		}
 	}

@@ -117,8 +117,8 @@ public class LoginServlet extends HttpServlet {
 				dispatcher.forward(request, response);
 
 			}
-		} catch (ServletException | IOException e) {
-			LOGGER.log(Level.SEVERE,"Exception.", e);
+		} catch (ServletException | IOException ex) {
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 
 	}

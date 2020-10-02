@@ -53,7 +53,7 @@ public class BookingFormServlet extends HttpServlet {
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/BookingForm.jsp");
 		dis.forward(request, response);
     	}catch(ServletException| IOException ex) {
-    		LOGGER.log(Level.SEVERE,"Exception occurred.", ex);
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class BookingFormServlet extends HttpServlet {
 			}
 		}
 		}catch( IOException ex) {
-			LOGGER.log(Level.SEVERE, "Exception occured.", ex);
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 		
 	}

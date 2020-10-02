@@ -65,8 +65,8 @@ public class UserPageServlet extends HttpServlet {
 			RequestDispatcher dis= getServletContext().getRequestDispatcher("/UserPage.jsp");
 			dis.forward(request, response);
 
-		} catch (ServletException | IOException e) {
-			LOGGER.log(Level.SEVERE,"Exception.",e);
+		} catch (ServletException | IOException ex) {
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 
 		}
 	}

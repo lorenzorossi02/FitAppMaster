@@ -61,7 +61,7 @@ public class GymPageServlet extends HttpServlet {
 		RequestDispatcher dis = getServletContext().getRequestDispatcher("/GymPage.jsp");
 		dis.forward(request, response);
 		}catch(ServletException| IOException ex) {
-			LOGGER.log(Level.SEVERE,"exception.",ex);
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 
 		}
 	}
@@ -117,8 +117,8 @@ public class GymPageServlet extends HttpServlet {
 
 			}
 		}
-		}catch(ServletException|IOException|NumberFormatException e) {
-			LOGGER.log(Level.SEVERE,"exception.",e);
+		}catch(ServletException|IOException|NumberFormatException ex) {
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
 		}
 	}
 
