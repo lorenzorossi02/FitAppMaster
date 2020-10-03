@@ -68,10 +68,10 @@ public class Geocode {
 			setCoordinates(coord);
 	}
 	
-	public Double[] getCoords(String address) {
+	public double[] getCoords(String address) {
 
 		
-			Double[] coord = new Double[2];
+			double[] coord = new double[2];
 			JSONObject location = googleGeocode(address);
 			if(location!=null) {
 				double lng = (double) location.get("lng");

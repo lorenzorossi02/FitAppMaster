@@ -1,0 +1,221 @@
+{
+  "id": "393a6f10-b74b-43bf-afd5-b0a08698e4a3",
+  "version": "2.0",
+  "name": "FitApp",
+  "url": "http://localhost:8100",
+  "tests": [{
+    "id": "7e696597-243c-42b2-9697-6f9f0729398a",
+    "name": "Untitled",
+    "commands": [{
+      "id": "7807874e-4e38-4584-81a0-2910612c26ba",
+      "comment": "",
+      "command": "open",
+      "target": "/FitAppMaster/GymPageServlet",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "2182f9d5-5633-411b-8c3c-d5f7ed0753d6",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1936x1096",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "c9d0a02a-a7a8-4e85-b563-50c8ef28bdb6",
+      "comment": "",
+      "command": "click",
+      "target": "name=timeStart",
+      "targets": [
+        ["name=timeStart", "name"],
+        ["css=p:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='timeStart']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "38fd6843-de85-4c8e-b565-000f349d98ba",
+      "comment": "",
+      "command": "type",
+      "target": "name=timeStart",
+      "targets": [
+        ["name=timeStart", "name"],
+        ["css=p:nth-child(1) > input", "css:finder"],
+        ["xpath=//input[@name='timeStart']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "22:48"
+    }, {
+      "id": "7122e6cf-a377-4fcd-848a-17077ff5497b",
+      "comment": "",
+      "command": "click",
+      "target": "name=timeEnd",
+      "targets": [
+        ["name=timeEnd", "name"],
+        ["css=p:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='timeEnd']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p[2]/input", "xpath:idRelative"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "52caf220-dafa-48fc-b7f6-04825a0d4770",
+      "comment": "",
+      "command": "type",
+      "target": "name=timeEnd",
+      "targets": [
+        ["name=timeEnd", "name"],
+        ["css=p:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='timeEnd']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p[2]/input", "xpath:idRelative"],
+        ["xpath=//p[2]/input", "xpath:position"]
+      ],
+      "value": "23:48"
+    }, {
+      "id": "587a7cf3-3565-49f4-8b95-f1758c2c8282",
+      "comment": "",
+      "command": "click",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=p:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e0e18291-0b82-430f-86a6-0cf234be7d02",
+      "comment": "",
+      "command": "type",
+      "target": "name=date",
+      "targets": [
+        ["name=date", "name"],
+        ["css=p:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='date']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/p[3]/input", "xpath:idRelative"],
+        ["xpath=//p[3]/input", "xpath:position"]
+      ],
+      "value": "2020-10-23"
+    }, {
+      "id": "47470a3b-2328-47cc-a09a-8252f58717ac",
+      "comment": "",
+      "command": "click",
+      "target": "name=selectTrainer",
+      "targets": [
+        ["name=selectTrainer", "name"],
+        ["css=.form-group:nth-child(6) > #selectCourse", "css:finder"],
+        ["xpath=(//select[@id='selectCourse'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[3]/select", "xpath:idRelative"],
+        ["xpath=//div[3]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00da372f-073a-4bd0-bf0a-ef4e81ddc136",
+      "comment": "",
+      "command": "select",
+      "target": "name=selectTrainer",
+      "targets": [],
+      "value": "label=21-Tom e Jerry"
+    }, {
+      "id": "f4adc16e-380d-4882-9432-b9d18eb805ec",
+      "comment": "",
+      "command": "click",
+      "target": "name=selectTrainer",
+      "targets": [
+        ["name=selectTrainer", "name"],
+        ["css=.form-group:nth-child(6) > #selectCourse", "css:finder"],
+        ["xpath=(//select[@id='selectCourse'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[3]/select", "xpath:idRelative"],
+        ["xpath=//div[3]/select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f7544547-fb27-4a1a-8d9e-93eba38ada37",
+      "comment": "",
+      "command": "click",
+      "target": "id=descriptionArea",
+      "targets": [
+        ["id=descriptionArea", "id"],
+        ["name=description", "name"],
+        ["css=#descriptionArea", "css:finder"],
+        ["xpath=//textarea[@id='descriptionArea']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "606b9b8c-4aa7-48a5-845c-d4096a5e7f12",
+      "comment": "",
+      "command": "click",
+      "target": "id=descriptionArea",
+      "targets": [
+        ["id=descriptionArea", "id"],
+        ["name=description", "name"],
+        ["css=#descriptionArea", "css:finder"],
+        ["xpath=//textarea[@id='descriptionArea']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9b7573a7-3d69-4f48-9a38-83b43085a6e5",
+      "comment": "",
+      "command": "click",
+      "target": "id=descriptionArea",
+      "targets": [
+        ["id=descriptionArea", "id"],
+        ["name=description", "name"],
+        ["css=#descriptionArea", "css:finder"],
+        ["xpath=//textarea[@id='descriptionArea']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c3acb446-6c6e-4866-9c94-dbb60290e722",
+      "comment": "",
+      "command": "type",
+      "target": "id=descriptionArea",
+      "targets": [
+        ["id=descriptionArea", "id"],
+        ["name=description", "name"],
+        ["css=#descriptionArea", "css:finder"],
+        ["xpath=//textarea[@id='descriptionArea']", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/div/div[4]/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "Questa è una lezione di Kick boxing che si svolge alla FitExpress in via bernardino alimenta,111,00173"
+    }, {
+      "id": "f1c512b7-b4c4-4f75-8849-0085737665cb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.btn-lg:nth-child(2)",
+      "targets": [
+        ["css=.btn-lg:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@name='setNewSession'])[2]", "xpath:attributes"],
+        ["xpath=//form[@id='sessionForm']/button", "xpath:idRelative"],
+        ["xpath=//td/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b9234d5-03a3-424e-bbdd-24e3d8c756e9",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "bb9559d9-6cdd-45e0-9d2c-b73b5a792481",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["7e696597-243c-42b2-9697-6f9f0729398a"]
+  }],
+  "urls": ["http://localhost:8100/"],
+  "plugins": []
+}

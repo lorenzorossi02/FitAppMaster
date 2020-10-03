@@ -206,12 +206,12 @@ public class BookingOnMapModel extends Observable {
 		Geocode pos = new Geocode();
 		this.baseAddress = baseAddress;
 		pos.getCoords(this.baseAddress);
-		Double[] baseCoordinates = pos.getCoords(this.baseAddress);
+		double[] baseCoordinates = pos.getCoords(this.baseAddress);
 		if (baseCoordinates == null) {
 			return new ArrayList<>();
 		}		
 		for (int indexSessionList = userSessionList.size() - 1; indexSessionList >= 0; --indexSessionList) {
-			Double[] endPoint = pos.getCoords(userSessionList.get(indexSessionList).getGymStreet().get());
+			double[] endPoint = pos.getCoords(userSessionList.get(indexSessionList).getGymStreet().get());
 			double relativeDistance = distanceRelative(baseCoordinates[0], endPoint[0],
 					baseCoordinates[1], endPoint[1]);
 			if (Double.compare(relativeDistance, bookingRadius) < 0) {

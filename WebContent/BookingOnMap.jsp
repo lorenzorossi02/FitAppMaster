@@ -41,8 +41,8 @@ html, body {
       let map;
 	  var marker;
       function initMap() {
-    	  <% Double[] center = new Double[2];
-    			center =  (Double[]) request.getAttribute("userBaseCoords");
+    	  <% double[] center = new double[2];
+    			center =  (double[]) request.getAttribute("userBaseCoords");
     			List<Session> bookableSessions = (List<Session>) request.getAttribute("allBookList");
     			%>
     	  var latCenter = <%=center[0]%>;

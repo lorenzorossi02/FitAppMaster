@@ -14,7 +14,7 @@ public class BaseUserModel extends Observable {
 	 * attributes that helps observers of this class to identify which attribute is
 	 * changed.
 	 * 
-	 * @author Andrea Efficace.
+	 * 
 	 */
 
 	private Integer id;

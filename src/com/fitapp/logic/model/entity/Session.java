@@ -171,11 +171,11 @@ public class Session {
 		return this.sessionTime.getDuration().get();
 	}
 
-	public void setCoordinates(Double[] endPoint) {
+	public void setCoordinates(double[] endPoint) {
 		this.sessionGym.setCoorindates(endPoint);
 	}
 	
-	public Double[] getCoordinates() {
+	public double[] getCoordinates() {
 		return this.sessionGym.getCoordinates();
 	}
 
