@@ -35,6 +35,7 @@ public class UserPageServlet extends HttpServlet {
 	private static final CalendaUserBean calendarUserBean = new CalendaUserBean();
 	private static final CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
 	private static UserPageController userPageController = new UserPageController(bookingFormModel, calendarUserModel);
+	private static final String USERSTREET = "userStreet";
 
 
 
@@ -53,7 +54,7 @@ public class UserPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		try {
 			String username = (String) request.getSession().getAttribute("username");
-			String userStreet = (String) request.getSession().getAttribute("userStreet");
+			String userStreet = (String) request.getSession().getAttribute(USERSTREET);
 			String userId= String.valueOf(request.getSession().getAttribute("userId"));
 			String userEmail = (String) request.getSession().getAttribute("userEmail");
 			userModel.setUsername(username);
@@ -62,13 +63,13 @@ public class UserPageServlet extends HttpServlet {
 			userModel.setUserEmail(userEmail);
 			
 			request.setAttribute("userUsername", userBean.getUserUsername().get());
-			request.setAttribute("userStreet", userBean.getUserPosition().getValue());
+			request.setAttribute(USERSTREET, userBean.getUserPosition().getValue());
 			userPageController.setCalendarInfo(userBean.getUserId(), userBean.getUserEmail());
 			List<Session> avaiableSession = userPageController.getBookedSession();
 			request.setAttribute("avaiableSessions", avaiableSession);
 			if(request.getParameter("bookingForm")!=null) {
 				request.getSession().setAttribute("userUsername", userBean.getUserUsername().get());
-				request.getSession().setAttribute("userStreet", userBean.getUserPosition().getValue());
+				request.getSession().setAttribute(USERSTREET, userBean.getUserPosition().getValue());
 				request.getSession().setAttribute("userId", userBean.getUserId());
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/BookingFormServlet");
 				dispatcher.forward(request, response);			

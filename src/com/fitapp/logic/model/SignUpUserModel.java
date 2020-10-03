@@ -140,4 +140,10 @@ public class SignUpUserModel extends Observable {
 		this.gym = gym;
 	}
 
+
+
+	public Gym getGym() {
+		return gym;
+	}
+
 }

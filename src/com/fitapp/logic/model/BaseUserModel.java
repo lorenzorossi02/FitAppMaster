@@ -1,8 +1,6 @@
 package com.fitapp.logic.model;
 
 import java.util.Observable;
-import java.util.Random;
-
 import com.fitapp.logic.bean.BaseUserBean;
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.dao.GymDAO;

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.SignUpUserBean;
-import com.fitapp.logic.controller.LoginController;
 import com.fitapp.logic.controller.SignUpController;
 import com.fitapp.logic.model.SignUpUserModel;
 

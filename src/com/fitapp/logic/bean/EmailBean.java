@@ -27,6 +27,7 @@ public class EmailBean implements Observer {
 	private Session sessionToSendEmail;
 	private Time[] sessionToSendDuration;
 	private String emailUser;
+	private static final String ILLEGALSTATE ="Unexpected ChangedValue type> ";
 
 	public String getEmailUser() {
 		return emailUser;
@@ -137,7 +138,7 @@ public class EmailBean implements Observer {
 				break;
 
 			default:
-				throw new IllegalStateException("Unexpected ChangedValue type> " + changedValue);
+				throw new IllegalStateException(ILLEGALSTATE+ changedValue);
 
 			}
 		} else if (o instanceof EmailPopupModel && arg instanceof EmailValue) {
@@ -154,7 +155,7 @@ public class EmailBean implements Observer {
 				setEmailUser(emailPopupModel.getEmailUser());
 				break;
 			default:
-				throw new IllegalStateException("Unexpected ChangedValue type> " + emailValue);
+				throw new IllegalStateException(ILLEGALSTATE + emailValue);
 			}
 		} else if(o instanceof SignUpUserModel && arg instanceof SignUpValue){
 			SignUpUserModel signUpUserModel = (SignUpUserModel) o;
@@ -179,7 +180,7 @@ public class EmailBean implements Observer {
 			case GYMSTREET:
 				break;
 			default:
-				throw new IllegalStateException("Unexpected ChangedValue type> " + signUpValue);
+				throw new IllegalStateException(ILLEGALSTATE + signUpValue);
 
 			}
 		}
