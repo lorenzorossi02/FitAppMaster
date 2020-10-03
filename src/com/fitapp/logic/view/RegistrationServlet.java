@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fitapp.logic.bean.EmailBean;
+import com.fitapp.logic.bean.SignUpUserBean;
 import com.fitapp.logic.controller.SignUpController;
+import com.fitapp.logic.model.SignUpUserModel;
 
 
 /**
@@ -22,13 +25,15 @@ public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(RegistrationServlet.class.getName());
 
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public RegistrationServlet() {
 		super();
 	}
+	
+
+
 
 
 
@@ -39,7 +44,7 @@ public class RegistrationServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response){
 		try {
-		SignUpController signUpController = (SignUpController) request.getAttribute("SignUpController");
+		
 		String username = request.getParameter("username");
 		String email = (String) request.getSession().getAttribute("email");
 		String confirmEmail = request.getParameter("confirmEmail");
@@ -57,7 +62,15 @@ public class RegistrationServlet extends HttpServlet {
 				if (managerProperty != null) {
 					isManagerBoolean = true;
 				}
-			
+				EmailBean emailBean = new EmailBean();
+				SignUpUserBean signUpUserBean = new SignUpUserBean();
+				SignUpUserModel signUpUserModel = new SignUpUserModel(signUpUserBean, emailBean);
+				
+				signUpUserModel.setEmail(email);
+				signUpUserModel.setName(username);
+				signUpUserModel.setPwd(password);
+				signUpUserModel.setUserId((int) request.getSession().getAttribute("userId"));
+				SignUpController signUpController = new SignUpController(signUpUserModel);
 				signUpController.registerUser(confirmEmail, username, userStreet, confirmPassword, isManagerBoolean,
 						gymName, gymStreet);
 				

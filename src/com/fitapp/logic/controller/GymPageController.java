@@ -11,6 +11,7 @@ import com.calendarfx.model.Entry;
 import com.calendarfx.view.page.DayPage;
 import com.calendarfx.view.page.MonthPage;
 import com.fitapp.logic.bean.CalendarPopupBean;
+import com.fitapp.logic.dao.GymDAO;
 import com.fitapp.logic.dao.TrainerDAO;
 import com.fitapp.logic.facade.CalendarFacade;
 import com.fitapp.logic.model.CalendarGymModel;
@@ -135,6 +136,11 @@ public class GymPageController {
 		Map<Course, Boolean> mapCourseTrainer = trainer.getCourse();
 		return Boolean.TRUE.equals(mapCourseTrainer.get(Course.getCourse(courseId-1)));
 			
+	}
+
+	public void setGym(Integer gymId) {
+		Gym managerGym = GymDAO.getInstance().getGymEntity(gymId);
+	 managerModel.setGym(managerGym);
 	}
 
 }

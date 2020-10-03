@@ -52,7 +52,7 @@ public class CalendarPopupBean implements Observer {
 				break;
 
 			default:
-				throw new IllegalStateException();
+				throw new IllegalStateException("Unexpected ChangedValue type> " + popupValue);
 			}
 		}
 	}

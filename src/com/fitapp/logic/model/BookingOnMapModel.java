@@ -24,7 +24,7 @@ import javafx.collections.ObservableList;
 
 public class BookingOnMapModel extends Observable {
 	public enum BookingOnMapValues {
-		DATE, TIME, RADIUS, BOOKLIST;
+		DATE, TIME, RADIUS, BOOKLIST, BASESTREET;
 	}
 
 	private LocalDate dateBooking;
@@ -34,6 +34,7 @@ public class BookingOnMapModel extends Observable {
 	private LatLong baseLatLong;
 	
 	private ObservableList<Session> newSessionList = FXCollections.observableArrayList();
+	private String baseStreet;
 
 	public ObservableList<Session> getNewSessionList() {
 		return newSessionList;
@@ -230,6 +231,16 @@ public class BookingOnMapModel extends Observable {
 	public Object getCenterMap() {
 		Geocode pos = new Geocode();
 		return pos.getCoords(baseAddress);
+	}
+
+	public void setBaseStreet(String userStreet) {
+		this.baseStreet = userStreet;
+		setChanged();
+		notifyObservers(BookingOnMapValues.BASESTREET);
+	}
+
+	public String getBaseStreet() {
+		return baseStreet;
 	}
 
 }

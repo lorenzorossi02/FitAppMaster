@@ -267,7 +267,7 @@
                   <HBox alignment="TOP_RIGHT" layoutX="-50.0" layoutY="536.0" minHeight="80.0" prefHeight="58.0" prefWidth="694.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Button fx:id="backBtn" mnemonicParsing="false" onAction="#back" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Back" />
-                        <Button fx:id="confirmBtn" mnemonicParsing="false" onAction="#confirmAction" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Confirm">
+                        <Button fx:id="confirmBtn" mnemonicParsing="false" onMouseClicked="#confirmAction" styleClass="LogInBtn" stylesheets="@../../lib/styles.css" text="Confirm">
                            <HBox.margin>
                               <Insets left="20.0" right="10.0" />
                            </HBox.margin>

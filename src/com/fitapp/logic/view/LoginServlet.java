@@ -3,7 +3,6 @@ package com.fitapp.logic.view;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,17 +10,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import com.fitapp.logic.bean.BaseUserBean;
 import com.fitapp.logic.bean.EmailBean;
-import com.fitapp.logic.bean.ManagerUserBean;
-import com.fitapp.logic.bean.UserBean;
-import com.fitapp.logic.controller.GymPageController;
 import com.fitapp.logic.controller.LoginController;
-import com.fitapp.logic.controller.SignUpController;
 import com.fitapp.logic.model.BaseUserModel;
-import com.fitapp.logic.model.ManagerUserModel;
-import com.fitapp.logic.model.UserModel;
 
 /**
  * Servlet implementation class LoginServlet
@@ -30,6 +22,8 @@ import com.fitapp.logic.model.UserModel;
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
+    private static final String USERNAME = "username";
+    private static final String USERID = "userId";
 
 
 	/**
@@ -52,15 +46,11 @@ public class LoginServlet extends HttpServlet {
 			BaseUserBean baseUserBean = new BaseUserBean();
 			BaseUserModel baseUserModel = new BaseUserModel(baseUserBean, emailBean);
 
-			UserBean userBean = new UserBean();
-			UserModel userModel = new UserModel(userBean);
 
-			ManagerUserBean managerUserBean = new ManagerUserBean();
-			ManagerUserModel managerUserModel = new ManagerUserModel(managerUserBean);
 
-			LoginController loginController = new LoginController(baseUserModel, managerUserModel, userModel);
+			LoginController loginController = new LoginController(baseUserModel);
 			if (request.getParameter("Login") != null) {
-				String username = request.getParameter("username");
+				String username = request.getParameter(USERNAME);
 				String password = request.getParameter("password");
 
 				baseUserBean.setUserName(username);
@@ -71,9 +61,11 @@ public class LoginServlet extends HttpServlet {
 					session.setAttribute("user", username);
 
 					if (loginController.getBaseUsername().equals("guest")) {
-						SignUpController signUpController = new SignUpController(baseUserModel);
-						request.setAttribute("SignUpController", signUpController);
-						request.getSession().setAttribute("email", signUpController.getEmail());
+						request.getSession().setAttribute(USERNAME, username);
+						request.getSession().setAttribute("password", password);
+						request.getSession().setAttribute(USERID, loginController.getBaseUserModel().getId());
+
+						request.getSession().setAttribute("email", loginController.getBaseUserModel().getEmail());
 						String nextJSPString = "/Registration.jsp";
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSPString);
 						dispatcher.forward(request, response);
@@ -81,20 +73,22 @@ public class LoginServlet extends HttpServlet {
 
 					} else if (loginController.checkManager()) {
 
-						loginController.setManagerModel(baseUserBean.getUserId(), baseUserBean.getUserName(),
-								baseUserBean.getGym());
-						request.getSession().setAttribute("ManagerUserBean", managerUserBean);
-						GymPageController gymPageController = new GymPageController(managerUserModel);
-						request.getSession().setAttribute("GymPageController", gymPageController);
+						
+						request.getSession().setAttribute(USERID, baseUserBean.getUserId());
+						request.getSession().setAttribute(USERNAME,  baseUserBean.getUserName());
+						request.getSession().setAttribute("gymId",  baseUserBean.getGym().getGymId());
 						String nextJSPString = "GymPageServlet";
 
 						response.sendRedirect(nextJSPString);
 
 
 					} else if(!loginController.checkManager()) {
-						loginController.setUserModel(baseUserBean.getUserName(), baseUserBean.getUserPosition(),
-								baseUserBean.getUserId(), baseUserBean.getUserEmail());
-						request.getSession().setAttribute("UserBean", userBean);
+						
+						request.getSession().setAttribute(USERNAME, baseUserBean.getUserName());
+						request.getSession().setAttribute("userStreet", baseUserBean.getUserPosition());
+						request.getSession().setAttribute(USERID, baseUserBean.getUserId());
+						request.getSession().setAttribute("userEmail", baseUserBean.getUserEmail());
+
 						String nextJSPString = "/UserPageServlet";
 						RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSPString);
 						dispatcher.forward(request, response);
@@ -112,7 +106,6 @@ public class LoginServlet extends HttpServlet {
 
 			} else if (request.getParameter("SignUp") != null) {
 				String nextJSPString = "/SignUp.jsp";
-				request.getSession().setAttribute("LoginController", loginController);
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSPString);
 				dispatcher.forward(request, response);
 

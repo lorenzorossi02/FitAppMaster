@@ -7,7 +7,7 @@ import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.factory.alertfactory.CustomAlertBox;
 import com.fitapp.logic.factory.viewfactory.ViewType;
-import com.fitapp.logic.model.BaseUserModel;
+import com.fitapp.logic.model.SignUpUserModel;
 import com.jfoenix.controls.JFXCheckBox;
 
 import javafx.event.ActionEvent;
@@ -17,6 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 
 public class SignUpViewController {
@@ -114,7 +115,7 @@ public class SignUpViewController {
 	}
 
 	@FXML
-	public void confirmAction(ActionEvent event) {
+	public void confirmAction(MouseEvent event) {
 		if (!guestLabel.isVisible() && !confirmEmailLabel.isVisible() && !confirmPassLabel.isVisible()
 				&& (userStreet.getText() != null || (gymName.getText() != null && gymStreet.getText() != null))) {
 
@@ -197,9 +198,9 @@ public class SignUpViewController {
 
 	}
 
-	public void initModel(BaseUserModel userModel) {
+	public void initModel(SignUpUserModel signUpUserModel) {
 
-		signUpController = new SignUpController(userModel);
+		signUpController = new SignUpController(signUpUserModel);
 		setEmail();
 
 	}

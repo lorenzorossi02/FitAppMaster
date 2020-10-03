@@ -18,6 +18,7 @@ import com.fitapp.logic.bean.UserBean;
 import com.fitapp.logic.controller.UserPageController;
 import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.CalendarUserModel;
+import com.fitapp.logic.model.UserModel;
 import com.fitapp.logic.model.entity.Session;
 
 /**
@@ -26,9 +27,17 @@ import com.fitapp.logic.model.entity.Session;
 @WebServlet("/UserPageServlet")
 public class UserPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static UserPageController userPageController;
-	private static  List<Session> avaiableSession;
 	private static final Logger LOGGER = Logger.getLogger(UserPageServlet.class.getName());
+	private static final UserBean userBean = new UserBean();
+	private static final UserModel userModel = new UserModel(userBean);
+	private static final BookingFormBean bookingFormBean = new BookingFormBean();
+	private static final BookingFormModel bookingFormModel = new BookingFormModel(bookingFormBean);
+	private static final CalendaUserBean calendarUserBean = new CalendaUserBean();
+	private static final CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
+	private static UserPageController userPageController = new UserPageController(bookingFormModel, calendarUserModel);
+
+
+
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -43,20 +52,24 @@ public class UserPageServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)  {
 		try {
-			UserBean userBean = (UserBean) request.getSession().getAttribute("UserBean");
+			String username = (String) request.getSession().getAttribute("username");
+			String userStreet = (String) request.getSession().getAttribute("userStreet");
+			String userId= String.valueOf(request.getSession().getAttribute("userId"));
+			String userEmail = (String) request.getSession().getAttribute("userEmail");
+			userModel.setUsername(username);
+			userModel.setUserPosition(userStreet);
+			userModel.setUserId(Integer.parseInt(userId));
+			userModel.setUserEmail(userEmail);
+			
 			request.setAttribute("userUsername", userBean.getUserUsername().get());
 			request.setAttribute("userStreet", userBean.getUserPosition().getValue());
-			BookingFormBean bookingFormBean = new BookingFormBean();
-			BookingFormModel bookingFormModel = new BookingFormModel(bookingFormBean);
-
-			CalendaUserBean calendarUserBean = new CalendaUserBean();
-			CalendarUserModel calendarUserModel = new CalendarUserModel(calendarUserBean);
-			userPageController = new UserPageController(bookingFormModel, calendarUserModel);
 			userPageController.setCalendarInfo(userBean.getUserId(), userBean.getUserEmail());
-			avaiableSession = userPageController.getBookedSession();
+			List<Session> avaiableSession = userPageController.getBookedSession();
 			request.setAttribute("avaiableSessions", avaiableSession);
 			if(request.getParameter("bookingForm")!=null) {
-				request.getSession().setAttribute("userBean", userBean);
+				request.getSession().setAttribute("userUsername", userBean.getUserUsername().get());
+				request.getSession().setAttribute("userStreet", userBean.getUserPosition().getValue());
+				request.getSession().setAttribute("userId", userBean.getUserId());
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/BookingFormServlet");
 				dispatcher.forward(request, response);			
 				return;
@@ -76,24 +89,27 @@ public class UserPageServlet extends HttpServlet {
 	 */
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)  {
+		try {
 		String sessionToRemoveString = request.getParameter("deleteSession");
 		String emailToGym = request.getParameter("emailToGym");
 		if (sessionToRemoveString != null) {
 			int sessionIndex = Integer.parseInt(sessionToRemoveString.replace("deleteSession", "").trim());
-			Session sessionToRemove = avaiableSession.get(sessionIndex);
+			Session sessionToRemove = userPageController.getBookedSession().get(sessionIndex);
 
 			userPageController.removeSession(sessionToRemove);
 
 		}else if(emailToGym!=null) {
 			String subject= request.getParameter("subject");
 			String object = request.getParameter("object");	
-			Session selectedSession = avaiableSession.get(Integer.parseInt(emailToGym));
+			Session selectedSession = userPageController.getBookedSession().get(Integer.parseInt(emailToGym));
 
 			userPageController.setSelectedSessionInfo(selectedSession.getCourseName().get(), selectedSession.getGymId());
 			userPageController.sendEmail(subject,object);
 		}
 		doGet(request,response);
-
+		}catch(NumberFormatException ex) {
+			LOGGER.log(Level.SEVERE,ex, ()->"Exception:"+ ex);
+		}
 	}
 		
 

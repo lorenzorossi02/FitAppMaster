@@ -41,7 +41,8 @@ public class CalendaUserBean implements Observer {
 				setUserEmail(calendarUserModel.getUserEmail());
 				break;
 			default:
-				throw new IllegalStateException();
+				throw new IllegalStateException("Unexpected ChangedValue type> " + userCalendarValue);
+
 			}
 		}
 	}

@@ -24,8 +24,8 @@ body {
 .card {
 	min-width: 800px;
 	height: 80px;
-	max-height: 500px;
-	min-height: 800px; border-radius : 16px;
+	max-height: 800px;
+	min-height: 100px; border-radius : 16px;
 	background-color: #17141d;
 	display: flex;
 	flex-direction: column;

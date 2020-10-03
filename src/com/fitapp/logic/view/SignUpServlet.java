@@ -12,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.EmailBean;
+import com.fitapp.logic.bean.SignUpUserBean;
 import com.fitapp.logic.controller.LoginController;
+import com.fitapp.logic.controller.SignUpController;
+import com.fitapp.logic.model.SignUpUserModel;
 
 /**
  * Servlet implementation class SignUpServlet
@@ -36,13 +39,14 @@ public class SignUpServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			response.setContentType("text/html");
-			LoginController loginController = (LoginController) request.getSession().getAttribute("LoginController");
+			EmailBean emailBean = new EmailBean();
+
+			SignUpUserBean signUpUserBean = new SignUpUserBean();
+			SignUpUserModel signUpUserModel = new SignUpUserModel(signUpUserBean,emailBean);
+			SignUpController signUpController = new SignUpController(signUpUserModel);
 			if (request.getParameter("SignUpBtn") != null) {
-				EmailBean emailBean = new EmailBean();
 				String emailString = request.getParameter("email");
-				emailBean.setEmail(emailString);
-				if (loginController.signUp(emailBean.getEmail())) {
+				if (signUpController.signUp(emailString)) {
 					String nextPage = "/index.jsp";
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextPage);
 					dispatcher.forward(request, response);

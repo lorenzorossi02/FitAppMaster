@@ -158,11 +158,7 @@ public class BaseUserModel extends Observable {
 		return gym;
 	}
 
-	// Generates a random int with n digits
-	public int generateRandomDigits(int n) {
-		int m = (int) Math.pow(10, (double) n - 1);
-		return m + new Random().nextInt(9 * m);
-	}
+
 
 	public void signUp(String email, String pwd) {
 		UserDAO.getInstance().signUp(email, pwd);
@@ -170,12 +166,6 @@ public class BaseUserModel extends Observable {
 		setPwd(pwd);
 	}
 
-	public void registerNewUser() {
-		UserDAO.getInstance().registerUser(this.name, this.pwd, this.email, this.manager, this.myPosition, this.id);
-		if (Boolean.TRUE.equals(manager)) {
-			GymDAO.getInstance().registerGym(this.gymName, this.gymStreet, this.id, this.name);
-		}
-	}
 
 	public boolean alreadyRegistered(String email) {
 		return UserDAO.getInstance().isRegistered(email);

@@ -72,15 +72,15 @@ public class ManagerUserBean implements Observer {
 		}
 	}
 
-	private void setGym(Gym gym) {
+	public void setGym(Gym gym) {
 		this.gym = gym;
 	}
 
-	private void setAddedTrainerId(int addedTrainerId) {
+	public void setAddedTrainerId(int addedTrainerId) {
 		this.addedTrainerId = addedTrainerId;
 	}
 
-	private void setManagerTrainerList(ObservableList<Trainer> trainerList) {
+	public void setManagerTrainerList(ObservableList<Trainer> trainerList) {
 		if (!trainerList.isEmpty())
 			this.managerTrainerList = trainerList;
 	}

@@ -3,12 +3,14 @@ package com.fitapp.logic.controller;
 import com.fitapp.logic.bean.BaseUserBean;
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.ManagerUserBean;
+import com.fitapp.logic.bean.SignUpUserBean;
 import com.fitapp.logic.bean.UserBean;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.BaseUserModel;
 import com.fitapp.logic.model.ManagerUserModel;
+import com.fitapp.logic.model.SignUpUserModel;
 import com.fitapp.logic.model.UserModel;
 import com.fitapp.logic.view.GymPageView;
 import com.fitapp.logic.view.SignUpView;
@@ -61,7 +63,11 @@ public class LoginViewController {
 		if (event.getSource().equals(btnSignUp)) {
 			String email = tfEmailAddr.getText();
 			if (!email.equals("")) {
-				if (loginController.signUp(email)) {
+				EmailBean emailBean = new EmailBean();
+				SignUpUserBean signUpUserBean = new SignUpUserBean();
+				SignUpUserModel signUpUserModel = new SignUpUserModel(signUpUserBean,emailBean);
+				SignUpController signUpController = new SignUpController(signUpUserModel);
+				if (signUpController.signUp(email)) {
 					this.loginAnimation(false);
 				} else {
 					AlertFactory.getInstance().createAlert(AlertType.INFORMATION, "Input not compliant",
@@ -88,32 +94,51 @@ public class LoginViewController {
 			AlertFactory.getInstance().createAlert(AlertType.INFORMATION, "User not Found",
 					"Incorrect name or password.", "You don't have a fitApp account? Please sign up.").show();
 		} else {
-			tfUsername.clear();
-			tfPwd.clear();
+			
 			if (loginController.getBaseUsername().contentEquals("guest")) {
+				SignUpUserBean signUpUserBean = new SignUpUserBean();
+				EmailBean emailBean = new EmailBean();
+				SignUpUserModel signUpUserModel = new SignUpUserModel(signUpUserBean,emailBean);
+				signUpUserModel.setName(tfUsername.getText());
+				signUpUserModel.setPwd( tfPwd.getText());
+				signUpUserModel.setEmail(loginController.getBaseUserModel().getEmail());
+				signUpUserModel.setUserId(loginController.getBaseUserModel().getId());
 				applicationFacade.decorateView(ViewType.REGISTRATION);
 				SignUpView signUpView = (SignUpView) applicationFacade.getViewMap().get(ViewType.REGISTRATION);
 				SignUpViewController signUpViewController = (SignUpViewController) signUpView
 						.getChildernController(ViewType.REGISTRATION);
-				signUpViewController.initModel(loginController.getBaseUserModel());
+				
+				signUpViewController.initModel(signUpUserModel);
 			} else if (Boolean.TRUE.equals(loginController.checkManager())) {
 
-				loginController.setManagerModel(baseUserBean.getUserId(), baseUserBean.getUserName(),
-						baseUserBean.getGym());
+			
+				ManagerUserBean managerUserBean = new ManagerUserBean();
+				ManagerUserModel managerUserModel = new ManagerUserModel(managerUserBean);
+				managerUserModel.setGym(baseUserBean.getGym());
+				managerUserModel.setManagerId(baseUserBean.getUserId());
+				managerUserModel.setManagerName(baseUserBean.getUserName());
 				applicationFacade.decorateView(ViewType.GYMPAGE);
 				GymPageView gymPageView = (GymPageView) applicationFacade.getViewMap().get(ViewType.GYMPAGE);
 				GymPageViewController gymPageViewController = (GymPageViewController) gymPageView
 						.getChildernController(ViewType.GYMPAGE);
-				gymPageViewController.initModel(loginController.getManagerModel());
+				gymPageViewController.initModel(managerUserModel);
 			} else if (Boolean.FALSE.equals(loginController.checkManager())) {
-				loginController.setUserModel(baseUserBean.getUserName(), baseUserBean.getUserPosition(),
-						baseUserBean.getUserId(), baseUserBean.getUserEmail());
+				userBean = new UserBean();
+				UserModel userModel = new UserModel(userBean);
+				
+				userModel.setUsername(baseUserBean.getUserName());
+				userModel.setUserEmail(baseUserBean.getUserEmail());
+				userModel.setUserId(baseUserBean.getUserId());
+				userModel.setUserPosition(baseUserBean.getUserPosition());
+
 				applicationFacade.decorateView(ViewType.USERPAGE);
 				UserPageView userPageView = (UserPageView) applicationFacade.getViewMap().get(ViewType.USERPAGE);
 				UserPageViewController userPageViewController = (UserPageViewController) userPageView
 						.getChildernController(ViewType.USERPAGE);
-				userPageViewController.initModel(loginController.getUserModel());
+				userPageViewController.initModel(userModel);
 			}
+			tfUsername.clear();
+			tfPwd.clear();
 
 		}
 
@@ -155,14 +180,10 @@ public class LoginViewController {
 		assert btnLogIn != null : "fx:id=\"btnLogIn\" was not injected: check your FXML file 'scene.fxml'.";
 		assert btnNoAcc != null : "fx:id=\"btnNoAcc\" was not injected: check your FXML file 'scene.fxml'.";
 		EmailBean emailBean = new EmailBean();
-		baseUserBean = new BaseUserBean();
-		userBean = new UserBean();
-		ManagerUserBean managerUserBean = new ManagerUserBean();
-		ManagerUserModel managerUserModel = new ManagerUserModel(managerUserBean);
+		baseUserBean = new BaseUserBean();		
 		BaseUserModel baseUserModel = new BaseUserModel(baseUserBean, emailBean);
-		UserModel userModel = new UserModel(userBean);
 		tfUsername.textProperty().bindBidirectional(emailBean.getGuestUsernameProperty());
-		loginController = new LoginController(baseUserModel, managerUserModel, userModel);
+		loginController = new LoginController(baseUserModel);
 
 	}
 }

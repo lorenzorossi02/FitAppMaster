@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.ManagerUserBean;
 import com.fitapp.logic.controller.GymPageController;
+import com.fitapp.logic.model.ManagerUserModel;
 import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Trainer;
 
@@ -24,9 +25,10 @@ import com.fitapp.logic.model.entity.Trainer;
 @WebServlet("/ManageTrainerServlet")
 public class ManageTrainerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private GymPageController gymPageController;
 	private static final Logger LOGGER = Logger.getLogger(ManageTrainerServlet.class.getName());
-
+	private final ManagerUserBean managerUserBean = new ManagerUserBean();
+	private final ManagerUserModel managerUserModel = new ManagerUserModel(managerUserBean);
+	private final GymPageController gymPageController = new GymPageController(managerUserModel);
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -41,11 +43,19 @@ public class ManageTrainerServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
 		try {
-			ManagerUserBean managerUserBean = (ManagerUserBean) request.getSession().getAttribute("ManagerUserBean");
-			request.setAttribute("managerUserName", managerUserBean.getManagerName().get());
-			request.setAttribute("managerGymName", managerUserBean.getGym().getGymName().get());
-			request.setAttribute("managerGymStreet", managerUserBean.getGym().getStreet().get());
-			gymPageController = (GymPageController) request.getSession().getAttribute("GymPageController");
+			String managerName = (String) request.getSession().getAttribute("managerUserName");
+			String managerGymName = (String) request.getSession().getAttribute("managerGymName");
+			String managerGymStreet = (String) request.getSession().getAttribute("managerGymStreet");
+			request.setAttribute("managerUserName", managerName);
+			request.setAttribute("managerGymName", managerGymName);
+			request.setAttribute("managerGymStreet", managerGymStreet);
+			
+			managerUserModel.setManagerId((Integer) request.getSession().getAttribute("userId"));
+			managerUserModel.setManagerName(managerName);
+			
+			gymPageController.setGym((Integer) request.getSession().getAttribute("gymId"));
+			
+			
 			gymPageController.initializeTrainers();
 			List<Trainer> listGymTrainers = managerUserBean.getManagerTrainerList();
 			request.setAttribute("managerTrainerList", listGymTrainers);

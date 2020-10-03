@@ -8,6 +8,8 @@ import com.fitapp.logic.model.BaseUserModel;
 import com.fitapp.logic.model.BaseUserModel.ChangedValue;
 import com.fitapp.logic.model.EmailPopupModel;
 import com.fitapp.logic.model.EmailPopupModel.EmailValue;
+import com.fitapp.logic.model.SignUpUserModel;
+import com.fitapp.logic.model.SignUpUserModel.SignUpValue;
 import com.fitapp.logic.model.entity.Session;
 
 import javafx.beans.property.SimpleStringProperty;
@@ -153,6 +155,32 @@ public class EmailBean implements Observer {
 				break;
 			default:
 				throw new IllegalStateException("Unexpected ChangedValue type> " + emailValue);
+			}
+		} else if(o instanceof SignUpUserModel && arg instanceof SignUpValue){
+			SignUpUserModel signUpUserModel = (SignUpUserModel) o;
+			SignUpValue signUpValue = (SignUpValue) arg;
+			switch(signUpValue) {
+			case USERNAME:
+				break;
+			case USERID:
+				break;
+			case PWD:
+				setPwd(signUpUserModel.getPwd());
+				break;
+			case ISMANAGER:
+				break;
+			case USERSTREET:
+				break;
+			case EMAIL:
+				setEmail(signUpUserModel.getEmail());
+				break;
+			case GYMNAME:
+				break;
+			case GYMSTREET:
+				break;
+			default:
+				throw new IllegalStateException("Unexpected ChangedValue type> " + signUpValue);
+
 			}
 		}
 

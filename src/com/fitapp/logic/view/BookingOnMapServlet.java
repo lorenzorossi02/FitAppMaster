@@ -1,6 +1,8 @@
 package com.fitapp.logic.view;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.fitapp.logic.bean.BookingOnMapBean;
 import com.fitapp.logic.bean.GymMapPopupBean;
 import com.fitapp.logic.bean.UserBean;
+import com.fitapp.logic.controller.BookingFormController;
 import com.fitapp.logic.model.BookingOnMapModel;
 import com.fitapp.logic.model.GymMapPopupModel;
 import com.fitapp.logic.model.entity.Session;
@@ -28,11 +31,10 @@ import javafx.collections.ObservableList;
 @WebServlet("/BookingOnMapServlet")
 public class BookingOnMapServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static BookingOnMapModel bookingOnMapModel;
-	private static List<Session> allBookList;
-	private static BookingOnMapBean bookingOnMapBean;
     private static final Logger LOGGER = Logger.getLogger(BookingOnMapServlet.class.getName());
-
+    private static final BookingOnMapBean bookingOnMapBean = new BookingOnMapBean();
+    private static final BookingOnMapModel bookingOnMapModel = new BookingOnMapModel(bookingOnMapBean);
+    private static final BookingFormController bookingFormController = new BookingFormController(bookingOnMapModel);
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -51,15 +53,21 @@ public class BookingOnMapServlet extends HttpServlet {
 			response.sendRedirect("UserPageServlet");
 			return;
 		}
-		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
-		request.setAttribute("username", userBean.getUserUsername().get());
-		request.setAttribute("userStreet", userBean.getUserPosition().get());
-		bookingOnMapBean = (BookingOnMapBean) request.getSession().getAttribute("bookingOnMapBean");
-		bookingOnMapModel = (BookingOnMapModel) request.getSession().getAttribute("bookingOnMapModel");
+		String date =  (String) request.getSession().getAttribute("date");
+		String time = (String) request.getSession().getAttribute("time") ;
+		String radious = (String) request.getSession().getAttribute("radious") ;
+		String userStreet = (String) request.getSession().getAttribute("userStreet") ;
+		String username = (String) request.getSession().getAttribute("username") ;
+
+		bookingFormController.setSearchParameters(LocalDate.parse(date), LocalTime.parse(time), Double.parseDouble(radious));
+
+		request.setAttribute("username", username);
+		request.setAttribute("userStreet", userStreet);
 		
+		bookingOnMapModel.setBaseStreet(userStreet);
 		List<Session> userSessionList =  bookingOnMapModel.getAvaiableSession(bookingOnMapBean.getDateBooking(), bookingOnMapBean.getTimeBooking());	
-		allBookList = bookingOnMapModel.geocodeSessions(userSessionList, userBean.getUserPosition().get(), bookingOnMapBean.getBookingRadius());
-		request.setAttribute("allBookList", userSessionList);
+		List<Session> allBookList = bookingOnMapModel.geocodeSessions(userSessionList, userStreet, bookingOnMapBean.getBookingRadius());
+		request.setAttribute("allBookList", allBookList);
 		request.setAttribute("userBaseCoords", bookingOnMapModel.getCenterMap());
 		
 		RequestDispatcher dis= getServletContext().getRequestDispatcher("/BookingOnMap.jsp");
@@ -80,11 +88,15 @@ public class BookingOnMapServlet extends HttpServlet {
 		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
 		String bookSession = request.getParameter("bookSession");
 		gymMapPopupModel.setUserId(userBean.getUserId());
+		List<Session> userSessionList =  bookingOnMapModel.getAvaiableSession(bookingOnMapBean.getDateBooking(), bookingOnMapBean.getTimeBooking());	
+
+		List<Session> allBookList = bookingOnMapModel.geocodeSessions(userSessionList, bookingOnMapBean.getBaseStreet(), bookingOnMapBean.getBookingRadius());
+
 		if(bookSession!=null) {
 			int sessionIndex = Integer.parseInt(bookSession);
 			gymMapPopupModel.bookSession(sessionIndex);
 			for(int allBookId=0;allBookId< allBookList.size();allBookId++) {
-				if(allBookList.get(allBookId).getSessionId().get() == sessionIndex && allBookList.get(allBookId).isIndividual().getValue()) {
+				if(allBookList.get(allBookId).getSessionId().get() == sessionIndex && Boolean.TRUE.equals(allBookList.get(allBookId).isIndividual().getValue())) {
 					allBookList.remove(allBookList.get(sessionIndex));
 					ObservableList<Session> newSessionList = bookingOnMapModel.getNewSessionList();
 					newSessionList.clear();

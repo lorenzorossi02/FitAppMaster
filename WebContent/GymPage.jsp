@@ -57,7 +57,7 @@
 						<div class="col">
 							<img src="assets/img/user.png" alt="User profile"
 								style="width: 61px; margin-top: 0px; font-size: 61px; padding-top: -16px;">
-							<p id="managerUsername"
+							<p id="managerUsername" 
 								style="font-size: 30px; margin-top: -70px; padding-top: 17px; margin-left: 82px;"><%=request.getAttribute("managerUserName")%></p>
 						</div>
 					</div>
@@ -79,13 +79,13 @@
 								style="font-size: 30px; margin-top: -70px; padding-top: 17px; margin-left: 82px;"><%=request.getAttribute("managerGymStreet")%></p>
 						</div>
 					</div>
-					<form action="ManageTrainerServlet" method="GET">
+					<form action="GymPageServlet" method="POST">
 						<button class="btn btn-primary" type="submit"
 							id="manageTrainerBtn" name="manageTrainerBtn"
 							style="margin-top: 80px; margin-left: 60px; width: 397px; height: 64px; font-size: 27px; background-color: #214a80;">Manage
 							Trainer</button>
 						<button class="btn btn-primary" id="viewReviewBtn"
-							name="viewReviewBtn" type="submit"
+							name="viewReviewBtn" type="button"
 							style="margin-top: 80px; margin-left: 60px; width: 397px; height: 64px; font-size: 27px; background-color: #214a80;">View
 							Reviews</button>
 					</form>

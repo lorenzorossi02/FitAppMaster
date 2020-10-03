@@ -48,7 +48,6 @@ html, body {
     	  var latCenter = <%=center[0]%>;
     	  var lngCenter = <%=center[1]%>;
 			console.log('this is coords' + latCenter);
-			<%System.out.println("USERBASE COORDS"+request.getAttribute("userBaseCoords"));%>
         map = new google.maps.Map(document.getElementById("map"), 
         	{zoom: 4, center: {lat:latCenter,lng:lngCenter}}
         );
@@ -205,7 +204,6 @@ html, body {
 						<div class="card-container" style="margin-top: 5px;">
 							<%
 								List<Session> avaiableSessionList = (List<Session>) request.getAttribute("allBookList");
-							System.out.println("JSP" + avaiableSessionList);
 							for (int sessionIndex = 0; sessionIndex < avaiableSessionList.size(); sessionIndex++) {
 								Session singleSession = avaiableSessionList.get(sessionIndex);
 							%>

@@ -17,6 +17,7 @@ public class BookingOnMapBean implements Observer {
 	private LocalTime timeBooking;
 	private double bookingRadius;
 	private ObservableList<Session> bookList;
+	private String baseStreet;
 
 	public ObservableList<Session> getBookList() {
 		return bookList;
@@ -41,11 +42,18 @@ public class BookingOnMapBean implements Observer {
 			case BOOKLIST:
 				setBookList(bookingOnMapModel.getNewSessionList());
 				break;
+			case BASESTREET:
+				setBaseStreet(bookingOnMapModel.getBaseStreet());
+				break;
 
 			default:
-				break;
+				throw new IllegalStateException("Unexpected ChangedValue type> " + bookingOnMapValues);
 			}
 		}
+	}
+
+	private void setBaseStreet(String baseStreet) {
+		this.baseStreet = baseStreet;
 	}
 
 	public void setBookList(ObservableList<Session> observableList) {
@@ -74,6 +82,10 @@ public class BookingOnMapBean implements Observer {
 
 	public double getBookingRadius() {
 		return bookingRadius;
+	}
+
+	public String getBaseStreet() {
+		return baseStreet;
 	}
 
 }
