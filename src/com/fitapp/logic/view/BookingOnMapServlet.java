@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fitapp.logic.bean.BookingOnMapBean;
 import com.fitapp.logic.bean.GymMapPopupBean;
-import com.fitapp.logic.bean.UserBean;
 import com.fitapp.logic.controller.BookingFormController;
 import com.fitapp.logic.model.BookingOnMapModel;
 import com.fitapp.logic.model.GymMapPopupModel;
