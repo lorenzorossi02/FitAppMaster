@@ -223,7 +223,6 @@ public class GymPageViewController {
 	}
 
 	private void bindAdd() {
-		addButton.setDisable(true);
 		BooleanBinding checkBinding = kickCheck.selectedProperty()
 				.or(boxeCheck.selectedProperty().or(
 						zumbaCheck.selectedProperty().or(salsaCheck.selectedProperty().or(functCheck.selectedProperty()

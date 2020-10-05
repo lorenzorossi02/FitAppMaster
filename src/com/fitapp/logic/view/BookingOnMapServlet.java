@@ -85,9 +85,9 @@ public class BookingOnMapServlet extends HttpServlet {
     	try {
 		GymMapPopupBean gymMapPopupBean = new GymMapPopupBean();
 		GymMapPopupModel gymMapPopupModel = new GymMapPopupModel(gymMapPopupBean,bookingOnMapBean);
-		UserBean userBean = (UserBean) request.getSession().getAttribute("userBean");
+		int userId = (int) request.getSession().getAttribute("userId");
 		String bookSession = request.getParameter("bookSession");
-		gymMapPopupModel.setUserId(userBean.getUserId());
+		gymMapPopupModel.setUserId(userId);
 		List<Session> userSessionList =  bookingOnMapModel.getAvaiableSession(bookingOnMapBean.getDateBooking(), bookingOnMapBean.getTimeBooking());	
 
 		List<Session> allBookList = bookingOnMapModel.geocodeSessions(userSessionList, bookingOnMapBean.getBaseStreet(), bookingOnMapBean.getBookingRadius());

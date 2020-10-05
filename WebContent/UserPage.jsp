@@ -91,7 +91,7 @@
 				for (int sessionIndex = 0; sessionIndex < avaiableSessions.size(); sessionIndex++) {
 					Session singleSession = avaiableSessions.get(sessionIndex);
 				%>
-				<div class="card" style="width: 400px;">
+				<div class="card" style="width: 600px;height:700px;">
 					<header class="article-header">
 						<div>
 							<div class="category-title">
