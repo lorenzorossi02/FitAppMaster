@@ -119,7 +119,7 @@ public class SignUpViewController {
 		if (!guestLabel.isVisible() && !confirmEmailLabel.isVisible() && !confirmPassLabel.isVisible()
 				&& (userStreet.getText() != null || (gymName.getText() != null && gymStreet.getText() != null))) {
 
-			signUpController.registerUser(confirmEmail.getText(), username.getText(), userStreet.getText(),
+			signUpController.registerUser(confirmEmail.getText().toLowerCase(), username.getText(), userStreet.getText(),
 					password.getText(), managerCheck.isSelected(), gymName.getText(), gymStreet.getText());
 
 			String title = "User Created";

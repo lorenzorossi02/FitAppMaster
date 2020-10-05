@@ -54,7 +54,7 @@ public class SignUpController {
 	public boolean signUp(String email) {
 		EmailBean emailBean = new EmailBean();
 		
-		emailBean.setEmail(email);
+		emailBean.setEmail(email.toLowerCase());
 		email = emailBean.getEmail();
 
 		String pwd = String.valueOf(generateRandomDigits(8));

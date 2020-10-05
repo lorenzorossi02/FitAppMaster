@@ -1,0 +1,100 @@
+{
+  "id": "b1d391fb-4bc7-43ad-9bf5-e17f46ca629a",
+  "version": "2.0",
+  "name": "DeleteUserSession",
+  "url": "http://localhost:8100",
+  "tests": [{
+    "id": "35c0cd34-f4f6-4958-a827-b2d1721a4d2f",
+    "name": "TestDeleteUserSession",
+    "commands": [{
+      "id": "13c46406-77f9-4987-8154-192d80d7252a",
+      "comment": "",
+      "command": "open",
+      "target": "/FitAppMaster/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1f58a975-749a-484c-a6d2-c6725c82916c",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "976x1080",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "70441997-281f-4b23-9c24-d91e7e183405",
+      "comment": "",
+      "command": "click",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "91a2ddd6-8798-4dd4-97b0-8f495f5003f5",
+      "comment": "",
+      "command": "type",
+      "target": "id=username",
+      "targets": [
+        ["id=username", "id"],
+        ["name=username", "name"],
+        ["css=#username", "css:finder"],
+        ["xpath=//input[@id='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "effi"
+    }, {
+      "id": "ef8d7b28-11a4-444d-9dd8-813a66ae16ec",
+      "comment": "",
+      "command": "type",
+      "target": "id=password",
+      "targets": [
+        ["id=password", "id"],
+        ["name=password", "name"],
+        ["css=#password", "css:finder"],
+        ["xpath=//input[@id='password']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "pass"
+    }, {
+      "id": "2fdbd95a-49f3-47d0-b7c4-06a2b4357300",
+      "comment": "",
+      "command": "click",
+      "target": "id=Login",
+      "targets": [
+        ["id=Login", "id"],
+        ["name=Login", "name"],
+        ["css=#Login", "css:finder"],
+        ["xpath=//button[@id='Login']", "xpath:attributes"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Log In')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "b7fb0ac6-0db9-437a-97b3-365f86254754",
+      "comment": "",
+      "command": "click",
+      "target": "name=deleteSession",
+      "targets": [
+        ["name=deleteSession", "name"],
+        ["css=.card:nth-child(1) form > .card-btn", "css:finder"],
+        ["xpath=//button[@name='deleteSession']", "xpath:attributes"],
+        ["xpath=//div[2]/form/button", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "4d1cb2ea-9e74-4195-836f-03d46a4985e2",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["35c0cd34-f4f6-4958-a827-b2d1721a4d2f"]
+  }],
+  "urls": ["http://localhost:8100/"],
+  "plugins": []
+}
