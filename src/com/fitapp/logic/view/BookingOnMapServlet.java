@@ -96,8 +96,6 @@ public class BookingOnMapServlet extends HttpServlet {
 			gymMapPopupModel.bookSession(sessionIndex);
 			for(int allBookId=0;allBookId< allBookList.size();allBookId++) {
 				if(allBookList.get(allBookId).getSessionId().get() == sessionIndex && Boolean.TRUE.equals(allBookList.get(allBookId).isIndividual().getValue())) {
-					
-//					allBookList.remove(allBookList.get(sessionIndex));
 					ObservableList<Session> newSessionList = bookingOnMapModel.getNewSessionList();
 					newSessionList.clear();
 					newSessionList.addAll(allBookList);

@@ -2,13 +2,8 @@ package com.fitapp.test.junit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.EnumMap;
-import java.util.Map;
-
 import org.junit.jupiter.api.Test;
-
 import com.fitapp.logic.dao.TrainerDAO;
-import com.fitapp.logic.model.entity.Course;
 import com.fitapp.logic.model.entity.Trainer;
 
 class TestGetTrainer {

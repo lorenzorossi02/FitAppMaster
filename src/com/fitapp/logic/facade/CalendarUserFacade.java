@@ -8,7 +8,6 @@ import java.util.List;
 import org.controlsfx.control.PopOver;
 
 import com.calendarfx.model.Calendar;
-import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.model.Entry;
 import com.calendarfx.view.DateControl.EntryDetailsPopOverContentParameter;
 import com.calendarfx.view.RequestEvent;
@@ -24,11 +23,8 @@ import com.fitapp.logic.model.CalendarUserModel;
 import com.fitapp.logic.model.entity.Gym;
 import com.fitapp.logic.model.entity.Session;
 import com.fitapp.logic.model.entity.Trainer;
-
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
