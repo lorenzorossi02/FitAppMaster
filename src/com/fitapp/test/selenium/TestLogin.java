@@ -9,8 +9,8 @@ class TestLogin {
 		@Test
 		void testLogin() {
 			SeleniumTestLogin seleniumTestLogin = new SeleniumTestLogin();
-			String username = seleniumTestLogin.testLogin("Jerry Scotti", "gympass");
-			assertEquals("Jerry Scotti", username);
+			String username = seleniumTestLogin.testLogin("Francesco Totti", "pass");
+			assertEquals("Francesco Totti", username);
 		}
 
 }

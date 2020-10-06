@@ -52,20 +52,10 @@ public class CalendarUserFacade {
 	public void initCalendar() {
 		monthPage.getCalendarSources().setAll(calendaEvent.getAvaiableCalendar());
 		dayPage.getCalendarSources().setAll(calendaEvent.getAvaiableCalendar());
-
-		monthPage.getCalendars().get(0).addEventHandler(new EventHandler<CalendarEvent>() {
-
-			@Override
-			public void handle(CalendarEvent calendarEvent) {
-				calendarEvent.getEntry().removeFromCalendar();
-				AlertFactory.getInstance()
-						.createAlert(AlertType.INFORMATION, "Unable to create another event",
-								"FitApp's user can't create new session",
-								"Please book a session to insert in your calendar schedule")
-						.show();
-			}
-		});
+		
+		
 		addBookedSession();
+		
 		fullDayBehaviour();
 		leftBehaviour();
 
@@ -120,7 +110,7 @@ public class CalendarUserFacade {
 		List<Session> avaiableUserSessions = calendarUserModel.getBookedSession();
 		for (Session session : avaiableUserSessions) {
 
-			Gym sessionGym = GymDAO.getInstance().getGymEntityById(session.getGymId());
+			Gym sessionGym = GymDAO.getInstance().getGymEntity(session.getGymId());
 			Trainer sessionTrainer = TrainerDAO.getInstance().getTrainerById(session.getTrainerId());
 			session.setSessionGym(sessionGym);
 			session.setSessionTrainer(sessionTrainer);
@@ -144,6 +134,7 @@ public class CalendarUserFacade {
 
 			calendar.addEntry(newEntryCalendar);
 		}
+		
 	}
 
 }

@@ -2,6 +2,7 @@ package com.fitapp.logic.controller;
 
 import java.util.ResourceBundle;
 
+import com.calendarfx.model.CalendarEvent;
 import com.calendarfx.view.page.DayPage;
 import com.calendarfx.view.page.MonthPage;
 import com.fitapp.logic.bean.BookingFormBean;
@@ -9,6 +10,7 @@ import com.fitapp.logic.bean.CalendaUserBean;
 import com.fitapp.logic.bean.UserBean;
 import com.fitapp.logic.facade.CalendarUserFacade;
 import com.fitapp.logic.facade.application.ApplicationFacade;
+import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.CalendarUserModel;
@@ -18,9 +20,11 @@ import com.fitapp.logic.view.BookingView;
 import animatefx.animation.ZoomIn;
 import animatefx.animation.ZoomOut;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -98,6 +102,7 @@ public class UserPageViewController {
 		CalendarUserFacade calendarUserFacade = new CalendarUserFacade(userBean.getUserEmail(),
 				userPageController.getCalendarUserModel(), monthPage, dayPage);
 		calendarUserFacade.initCalendar();
+		
 	}
 
 	@FXML

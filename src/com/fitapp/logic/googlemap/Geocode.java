@@ -54,18 +54,16 @@ public class Geocode {
 		return urlFinal.toString();
 	}
 
-	public void getLocation(String address) {
+	public LatLong getLocation(String address) {
 
-
-			LatLong coord = null;
 			JSONObject location = googleGeocode(address);
 			if(location!=null) {
 
 				double lng = (double) location.get("lng");
 				double lat = (double) location.get("lat");
-				coord = new LatLong(lat,lng);
+				return new LatLong(lat,lng);
 			}
-			setCoordinates(coord);
+			return null;
 	}
 	
 	public double[] getCoords(String address) {

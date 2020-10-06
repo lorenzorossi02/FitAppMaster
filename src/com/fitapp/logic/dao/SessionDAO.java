@@ -70,12 +70,14 @@ public class SessionDAO extends ConnectionManager {
 
 			while (rs.next()) {
 				// Data property
+				String recurrence = null;
 				Time timeStart = Time.valueOf(rs.getString(TIMESTARTS));
 				Time timeEnd = Time.valueOf(rs.getString(TIMEEND));
 				Time[] duration = { timeStart, timeEnd };
 				Date data = rs.getDate("day");
-				String recurrence = rs.getString(RECURRENCE);
-				// SessionCourseProperty
+				if(rs.getString(RECURRENCE)!=null) {
+					 recurrence = rs.getString(RECURRENCE);
+				}
 				String description = rs.getString(DESCRIPTION);
 				int courseId = rs.getInt(COURSEID);
 				int sessionId = rs.getInt(SESSIONID);

@@ -71,7 +71,7 @@
         ["xpath=//input[@id='username']", "xpath:attributes"],
         ["xpath=//input", "xpath:position"]
       ],
-      "value": "Jerry Scotti"
+      "value": "Francesco Totti"
     }, {
       "id": "ff9ee560-49cf-42e7-8c41-14f1996c42b4",
       "comment": "",
@@ -84,7 +84,7 @@
         ["xpath=//input[@id='password']", "xpath:attributes"],
         ["xpath=//div[3]/input", "xpath:position"]
       ],
-      "value": "gympass"
+      "value": "pass"
     }, {
       "id": "839e5d43-df6a-471e-893a-972e3de371bb",
       "comment": "",

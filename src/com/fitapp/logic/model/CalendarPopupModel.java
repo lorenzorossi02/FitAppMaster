@@ -88,8 +88,27 @@ public class CalendarPopupModel extends Observable {
 		currentEntry.setCalendar(newCalendarEntry.getCalendar());
 		currentEntry.setInterval(newCalendarEntry.getUserObject().getTimeStart().get().toLocalTime(),
 				newCalendarEntry.getUserObject().getTimeEnd().get().toLocalTime());
-
 		setCurrentEntry(currentEntry);
+		String recurrence = newCalendarEntry.getUserObject().getRecurrence().get();
+		int instances = 0;
+		switch(recurrence) {
+		case "RRULE:FREQ=DAILY;INTERVAL=1;COUNT=1":
+			instances=0;
+			break;
+		case "RRULE:FREQ=DAILY;INTERVAL=1;COUNT=7":
+			instances = 6;
+			break;
+		case "RRULE:FREQ=DAILY;INTERVAL=1;COUNT=30":
+			instances = 29;
+			break;
+		default:
+			return;
+		}
+		for(int instanceIndex = 0; instanceIndex <= instances; instanceIndex++) {
+			newCalendarEntry.getUserObject().setRecurrence(null);
+			newCalendarEntry.getUserObject().getSessionTime().setDate(newCalendarEntry.getUserObject().getDate().get().plusDays(instanceIndex));
+			SessionDAO.getInstance().insertNewSession(newCalendarEntry.getUserObject());
+		}
 
 	}
 

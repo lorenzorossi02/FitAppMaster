@@ -10,7 +10,7 @@ import com.fitapp.logic.controller.EmailController;
 import com.fitapp.logic.model.BaseUserModel;
 
 class TestEmailController {
-
+//Lorenzo Rossi
 	@Test
 	void testEmailController() {
 		String emailTest = "fitAppFakeEmailTest@grr.la";

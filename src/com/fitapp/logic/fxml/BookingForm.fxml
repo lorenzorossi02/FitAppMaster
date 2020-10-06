@@ -97,7 +97,7 @@
                                     <Insets left="20.0" top="15.0" />
                                  </HBox.margin>
                               </Label>
-                              <JFXTimePicker fx:id="timeBtn" defaultColor="#78909c" prefHeight="25.0" prefWidth="137.0">
+                              <JFXTimePicker fx:id="timeBtn" defaultColor="#78909c" prefHeight="25.0" prefWidth="146.0">
                                  <HBox.margin>
                                     <Insets left="8.0" top="8.0" />
                                  </HBox.margin>
@@ -109,7 +109,7 @@
                         </HBox>
                         <HBox prefHeight="65.0" prefWidth="324.0">
                            <children>
-                              <Label fx:id="radiousLbl" text="Select radius:*" textFill="#797878">
+                              <Label fx:id="radiousLbl" prefHeight="27.0" prefWidth="142.0" text="Select radius:*(km)" textFill="#797878">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -119,7 +119,7 @@
                               </Label>
                               <JFXSlider fx:id="slideBtn" style="-fx-background-color: TRANSPARENT;">
                                  <HBox.margin>
-                                    <Insets left="25.0" top="21.0" />
+                                    <Insets left="-4.0" top="21.0" />
                                  </HBox.margin>
                                  <effect>
                                     <ColorAdjust brightness="-0.1" contrast="0.1" hue="0.1" saturation="-0.8" />

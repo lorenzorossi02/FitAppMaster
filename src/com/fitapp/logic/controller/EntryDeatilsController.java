@@ -133,7 +133,7 @@ public class EntryDeatilsController {
 		Time[] duration = { Time.valueOf(timeStartObjectProperty.get()), Time.valueOf(timeEndObjectProperty.get()) };
 		SessionTime sessionTime = new SessionTime(duration, LocalDate.parse(dateId.getText(), dateTimeFormatter),
 				recurrenceStringProperty.get());
-		SessionCourse sessionCourse = new SessionCourse(courseIdIntegerProperty.get() + 1, descriptionProperty.get(),
+		SessionCourse sessionCourse = new SessionCourse(courseIdIntegerProperty.get(), descriptionProperty.get(),
 				individualCourseBooleanProperty.get(), courseNameProperty.get());
 		Session newSession = new Session();
 		newSession.setTrainerSession(selectedTrainer.get().getSelectedItem());
@@ -163,23 +163,21 @@ public class EntryDeatilsController {
 	void setRecurrence(ActionEvent event) {
 		MenuItem obj = (MenuItem) event.getSource();
 		StringProperty rrule = new SimpleStringProperty();
-		LocalDate startDay = currentEntry.getStartDate();
 		if (obj.hashCode() == daily.hashCode()) {
 
-			rrule.set("RRULE:FREQ=DAILY;INTERVAL=7;COUNT=4;");
+			rrule.set("RRULE:FREQ=DAILY;INTERVAL=1;COUNT=1");
 
 		} else if (obj.hashCode() == weekly.hashCode()) {
-			LocalDate weeklyDay = startDay.plusDays(7);
-			String weeklyFormatted = weeklyDay.format(dateTimeFormatter);
-			rrule.set("RRULE:FREQ=DAILY;UNTIL=" + weeklyFormatted.replace("-", ""));
+	
+			rrule.set("RRULE:FREQ=DAILY;INTERVAL=1;COUNT=7");
 
 		}
 		if (obj.hashCode() == monthly.hashCode()) {
-			LocalDate monthlyDay = startDay.plusMonths(1);
-			String monthlyFormatted = monthlyDay.format(dateTimeFormatter);
-			rrule.set("RRULE:FREQ=DAILY;UNTIL=" + monthlyFormatted.replace("-", ""));
+			
+			rrule.set("RRULE:FREQ=DAILY;INTERVAL=1;COUNT=30");
 
 		}
+		currentEntry.setRecurrenceRule(rrule.get());
 		recurrenceStringProperty.bind(rrule);
 
 		intervalMenu.setText(obj.getText());

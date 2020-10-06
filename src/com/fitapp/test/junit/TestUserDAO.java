@@ -10,7 +10,7 @@ class TestUserDAO {
 //Lorenzo Rossi
 	@Test
 	void testUserDAO() {
-		boolean result = UserDAO.getInstance().isRegistered("gliassidicuori@gmail.com");
+		boolean result = UserDAO.getInstance().isRegistered("lorybtc@gmail.com");
 		assertTrue(result);
 	}
 

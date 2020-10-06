@@ -17,10 +17,10 @@ class TestGetTrainer {
 	 */
 	@Test
 	void testGetTrainer() {
-		int expectedResult = 13;
+		int expectedResult = 4;
 		Trainer trainer = new Trainer();
-		trainer.setName("Marco Carta");
-		trainer.setGymId(13);
+		trainer.setName("Jerry Scotti");
+		trainer.setGymId(4);
 		int trainerId = TrainerDAO.getInstance().getTrainerId(trainer);
 		assertEquals(expectedResult, trainerId);
 	}

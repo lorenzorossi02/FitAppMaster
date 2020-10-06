@@ -138,9 +138,6 @@ public class CalendarFacade {
 			entry.setCalendar(calendar);
 			entry.setTitle(calendar.getName() + " " + session.getSessionId().get());
 
-			if (entry.getUserObject().getRecurrence() != null) {
-				entry.setRecurrenceRule(entry.getUserObject().getRecurrence().get());
-			}
 			calendar.addEntry(entry);
 
 		}

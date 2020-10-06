@@ -71,16 +71,17 @@ public class MapInitializer implements MapComponentInitializedListener {
 		views.addMapReadyListener(() -> { // This call will fail unless the map is completely ready.
 		});
 		Geocode geocode = new Geocode();
-		geocode.getLocation(baseUserStreet);
-		LatLong baseLatLong = geocode.getCoordinates();
+		
+		LatLong baseLatLong = geocode.getLocation(baseUserStreet);
 		mark = bookingOnMapModel.geocodeMarkers(avaiableSession, baseUserStreet, bookingRadius, true);
-
+		try {
 		MapOptions mapOptions = new MapOptions();
-
 		mapOptions.center(baseLatLong).mapType(MapTypeIdEnum.ROADMAP).panControl(true).rotateControl(false)
 				.scaleControl(false).streetViewControl(false).zoomControl(true).zoom(14);
-
-		map = views.createMap(mapOptions);
+		map = this.views.createMap(mapOptions);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		for (Marker marker : mark) {
 			if (!marker.getTitle().equals("You are Here!")) {
 

@@ -85,8 +85,8 @@ public class BookingOnMapModel extends Observable {
 		List<Marker> listMarker = new ArrayList<>();
 		this.baseAddress = baseUserStreet;
 
-		posGeocode.getLocation(baseUserStreet);
-		LatLong baseCoordinates = posGeocode.getCoordinates();
+		
+		LatLong baseCoordinates = posGeocode.getLocation(baseUserStreet);
 		if (baseCoordinates == null) {
 			return new ArrayList<>();
 		}
@@ -94,13 +94,14 @@ public class BookingOnMapModel extends Observable {
 		Marker baseMarker = setupMaker(baseCoordinates, "You are Here!", baseUserStreet, 0, null);
 		listMarker.add(baseMarker);
 		}
-		for (int indexSessionList = avaiableSession.size() - 1; indexSessionList >= 0; --indexSessionList) {
-			posGeocode.getLocation(avaiableSession.get(indexSessionList).getGymStreet().get());
-			LatLong endPoint = posGeocode.getCoordinates();
+		for (int indexSessionList = avaiableSession.size()-1; indexSessionList >= 0; indexSessionList--) {
+			LatLong endPoint = posGeocode.getLocation(avaiableSession.get(indexSessionList).getGymStreet().get());
 			double relativeDistance = distanceRelative(baseCoordinates.getLatitude(), endPoint.getLatitude(),
 					baseCoordinates.getLongitude(), endPoint.getLongitude());
 			if (Double.compare(relativeDistance, bookingRadius) < 0) {
 				if(Boolean.TRUE.equals(markerObj)) {
+
+
 				Marker newMarker = setupMaker(endPoint, avaiableSession.get(indexSessionList).getGymName().getValue(),
 						avaiableSession.get(indexSessionList).getGymStreet().get(),
 						avaiableSession.get(indexSessionList).getSessionId().get(),
@@ -111,7 +112,6 @@ public class BookingOnMapModel extends Observable {
 				avaiableSession.remove(avaiableSession.get(indexSessionList));
 			}
 		}
-
 		newSessionList.setAll(avaiableSession);
 		setNewSessionList(newSessionList);
 		return listMarker;
@@ -186,7 +186,7 @@ public class BookingOnMapModel extends Observable {
 					&& Boolean.TRUE.equals(session.isIndividual().getValue())) {
 				sessionToRemove.add(session);
 			} else {
-				Gym newGym = GymDAO.getInstance().getGymEntityById(session.getGymId());
+				Gym newGym = GymDAO.getInstance().getGymEntity(session.getGymId());
 				Trainer newTrainer = TrainerDAO.getInstance().getTrainerById(session.getTrainerId());
 				session.setGymSession(newGym);
 				session.setTrainerSession(newTrainer);
@@ -197,7 +197,8 @@ public class BookingOnMapModel extends Observable {
 
 		}
 		temporanySessionList.removeAll(sessionToRemove);
-
+		
+		
 		return temporanySessionList;
 	}
 
