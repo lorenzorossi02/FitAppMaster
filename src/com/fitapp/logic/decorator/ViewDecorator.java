@@ -9,7 +9,7 @@ public abstract class ViewDecorator implements View {
 	View view;
 	private BorderPane parentRoot;
 
-	public ViewDecorator(View view) {
+	protected ViewDecorator(View view) {
 		this.view = view;
 	}
 
