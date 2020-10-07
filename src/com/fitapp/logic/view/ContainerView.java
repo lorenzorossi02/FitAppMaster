@@ -5,7 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import com.fitapp.logic.decorator.View;
-import com.fitapp.logic.factory.viewfactory.ViewType;
+import com.fitapp.logic.decorator.ViewType;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.Pane;

@@ -1,6 +1,6 @@
 package com.fitapp.logic.facade.application;
 
-import com.fitapp.logic.factory.viewfactory.ViewType;
+import com.fitapp.logic.decorator.ViewType;
 
 import javafx.application.Application;
 import javafx.scene.Group;

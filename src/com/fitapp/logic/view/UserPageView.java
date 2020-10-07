@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import com.fitapp.logic.decorator.View;
 import com.fitapp.logic.decorator.ViewDecorator;
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 
 public class UserPageView extends ViewDecorator {
 

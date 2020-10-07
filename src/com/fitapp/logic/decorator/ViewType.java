@@ -1,4 +1,4 @@
-package com.fitapp.logic.factory.viewfactory;
+package com.fitapp.logic.decorator;
 
 import java.net.URL;
 

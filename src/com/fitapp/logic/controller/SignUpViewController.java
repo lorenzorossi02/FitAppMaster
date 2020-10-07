@@ -3,10 +3,10 @@ package com.fitapp.logic.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
 import com.fitapp.logic.factory.alertfactory.CustomAlertBox;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.SignUpUserModel;
 import com.jfoenix.controls.JFXCheckBox;
 

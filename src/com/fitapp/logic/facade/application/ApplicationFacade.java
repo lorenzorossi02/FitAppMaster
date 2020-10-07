@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.fitapp.logic.controller.ContainerViewController;
 import com.fitapp.logic.decorator.View;
-import com.fitapp.logic.factory.viewfactory.ViewType;
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.view.BookingOnMapView;
 import com.fitapp.logic.view.BookingView;
 import com.fitapp.logic.view.ContainerView;

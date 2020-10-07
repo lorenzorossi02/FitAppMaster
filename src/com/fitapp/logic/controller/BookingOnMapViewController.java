@@ -5,8 +5,8 @@ import java.time.LocalTime;
 import java.util.List;
 
 import com.fitapp.logic.bean.BookingOnMapBean;
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.facade.application.ApplicationFacade;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.googlemap.MapInitializer;
 import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.BookingOnMapModel;

@@ -7,9 +7,9 @@ import org.controlsfx.control.PopOver;
 
 import com.fitapp.logic.bean.EmailBean;
 import com.fitapp.logic.bean.GymMapPopupBean;
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.BookingOnMapModel;
 import com.fitapp.logic.model.EmailPopupModel;
 import com.fitapp.logic.model.GymMapPopupModel;

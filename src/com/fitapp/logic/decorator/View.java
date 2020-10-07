@@ -2,8 +2,6 @@ package com.fitapp.logic.decorator;
 
 import java.io.IOException;
 
-import com.fitapp.logic.factory.viewfactory.ViewType;
-
 import javafx.scene.layout.Pane;
 
 public interface View {

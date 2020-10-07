@@ -1,7 +1,7 @@
 package com.fitapp.logic.controller;
 
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.facade.application.ApplicationFacade;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;

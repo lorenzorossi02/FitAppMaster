@@ -4,10 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 import com.fitapp.logic.bean.BookingOnMapBean;
+import com.fitapp.logic.decorator.ViewType;
 import com.fitapp.logic.exception.InputNotComplianException;
 import com.fitapp.logic.facade.application.ApplicationFacade;
 import com.fitapp.logic.factory.alertfactory.AlertFactory;
-import com.fitapp.logic.factory.viewfactory.ViewType;
 import com.fitapp.logic.model.BookingFormModel;
 import com.fitapp.logic.model.BookingOnMapModel;
 import com.fitapp.logic.view.BookingOnMapView;
