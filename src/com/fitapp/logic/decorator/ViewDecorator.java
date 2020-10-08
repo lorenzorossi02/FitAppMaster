@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 public abstract class ViewDecorator implements View {
-	View view;
+	private View view;
 	private BorderPane parentRoot;
 
 	protected ViewDecorator(View view) {
