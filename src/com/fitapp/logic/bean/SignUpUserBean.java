@@ -55,37 +55,37 @@ public class SignUpUserBean implements Observer {
 		}
 	}
 	
-	private void setGymStreet(String gymStreet) {
+	public void setGymStreet(String gymStreet) {
 		this.gymStreet = gymStreet;
 		}
 
 	
-	private void setGymName(String gymName) {
+	public void setGymName(String gymName) {
 		this.gymName = gymName;
 	}
 
-	private void setEmail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	private void setUserStreet(String userStreet) {
+	public void setUserStreet(String userStreet) {
 		this.userStreet = userStreet;
 	}
 
-	private void setManagerProp(boolean manager) {
+	public void setManagerProp(boolean manager) {
 		this.isManager = manager;
 		}
 
 
-	private void setPwd(String pwd) {
+	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
 
-	private void setUserId(Integer userId) {
+	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
 
-	private void setUsername(String username) {
+	public void setUsername(String username) {
 		this.username = username;
 	}
 

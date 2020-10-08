@@ -64,13 +64,13 @@ public class CalendarBean implements Observer {
 
 	}
 
-	private void setGym(Gym gym) {
+	public void setGym(Gym gym) {
 		if (gym != null) {
 			this.gym = gym;
 		}
 	}
 
-	private void setCalendarCurrentEntry(Entry<Session> currentEntry) {
+	public void setCalendarCurrentEntry(Entry<Session> currentEntry) {
 		if (currentEntry != null) {
 			this.currentEntry = currentEntry;
 		}

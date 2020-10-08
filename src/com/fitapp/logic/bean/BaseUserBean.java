@@ -114,7 +114,7 @@ public class BaseUserBean implements Observer {
 		}
 	}
 
-	private void setGym(Gym gym) {
+	public void setGym(Gym gym) {
 		if (gym != null) {
 			this.gym = gym;
 		}
