@@ -35,7 +35,6 @@ public class SessionDAO extends ConnectionManager {
 	private static final String TRAINERNAME = "trainer_name";
 	private static final String STREET = "street";
 
-	String none = "default";
 
 	private SessionDAO() {
 		super();

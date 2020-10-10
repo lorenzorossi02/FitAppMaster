@@ -56,8 +56,8 @@ public class UserPageViewController {
 	@FXML
 	private MonthPage monthPage;
 	private DayPage dayPage;
-	UserPageController userPageController;
-	UserBean userBean;
+	private UserPageController userPageController;
+	private UserBean userBean;
 
 	@FXML
 	public void bookSession(ActionEvent event) {
